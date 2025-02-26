@@ -1,0 +1,143 @@
+[gd_scene load_steps=16 format=3 uid="uid://bsow8susscqvf"]
+
+[ext_resource type="Script" path="res://scripts/portal.gd" id="1_36t7s"]
+[ext_resource type="Shader" path="res://shaders/Portal.gdshader" id="2_u7x4l"]
+[ext_resource type="Environment" uid="uid://0ja3rgp6mlci" path="res://Materials/WorldEnvoirment.tres" id="3_5we1s"]
+[ext_resource type="Material" uid="uid://bln56lvn44x7q" path="res://Materials/PortalFrameMaterial.tres" id="3_ankg1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y5k7a"]
+viewport_path = NodePath("PortalViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gaeiv"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_u7x4l")
+shader_parameter/exposure = 1.0
+shader_parameter/camTexture = SubResource("ViewportTexture_y5k7a")
+
+[sub_resource type="BoxMesh" id="BoxMesh_mmy8c"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_gaeiv")
+uv2_padding = 1.0
+size = Vector3(1.5, 2.25, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1rn0l"]
+size = Vector3(2, 2.25, 2.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_dfodx"]
+left_to_right = 0.0
+size = Vector3(0.25, 2.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_axf8u"]
+size = Vector3(0.25, 2.25, 0.25)
+
+[sub_resource type="PrismMesh" id="PrismMesh_wa0lk"]
+left_to_right = 1.0
+size = Vector3(0.25, 2.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_78kiq"]
+size = Vector3(0.25, 2.25, 0.25)
+
+[sub_resource type="PrismMesh" id="PrismMesh_3hmt4"]
+material = ExtResource("3_ankg1")
+left_to_right = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5j4h5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vyhvl"]
+size = Vector3(1.061, 0.05, 1.061)
+
+[node name="Portal" type="Node3D" node_paths=PackedStringArray("linkedPortal")]
+script = ExtResource("1_36t7s")
+linkedPortal = NodePath(".")
+
+[node name="PortalSurface" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+layers = 2
+mesh = SubResource("BoxMesh_mmy8c")
+
+[node name="PortalViewport" type="SubViewport" parent="."]
+debug_draw = 26
+use_hdr_2d = true
+render_target_update_mode = 4
+
+[node name="PortalCamera" type="Camera3D" parent="PortalViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+cull_mask = 1048573
+environment = ExtResource("3_5we1s")
+current = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+shape = SubResource("BoxShape3D_1rn0l")
+
+[node name="Frame" type="Node3D" parent="."]
+
+[node name="SideFrame1" type="MeshInstance3D" parent="Frame"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -0.875, -0.125, 0)
+material_override = ExtResource("3_ankg1")
+mesh = SubResource("PrismMesh_dfodx")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Frame/SideFrame1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Frame/SideFrame1/StaticBody3D"]
+shape = SubResource("BoxShape3D_axf8u")
+
+[node name="SideFrame2" type="MeshInstance3D" parent="Frame"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0.875, -0.125, 0)
+material_override = ExtResource("3_ankg1")
+mesh = SubResource("PrismMesh_wa0lk")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Frame/SideFrame2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Frame/SideFrame2/StaticBody3D"]
+shape = SubResource("BoxShape3D_78kiq")
+
+[node name="UpperFrame" type="MeshInstance3D" parent="Frame"]
+transform = Transform3D(2, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.125, 0)
+material_override = ExtResource("3_ankg1")
+mesh = SubResource("PrismMesh_3hmt4")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Frame/UpperFrame"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Frame/UpperFrame/StaticBody3D"]
+shape = SubResource("BoxShape3D_5j4h5")
+
+[node name="BottomFrame" type="MeshInstance3D" parent="Frame"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, -1.25, 0)
+material_override = ExtResource("3_ankg1")
+mesh = SubResource("BoxMesh_vyhvl")
+
+[node name="AncorPoints" type="Node3D" parent="."]
+
+[node name="Ancor1" type="Node3D" parent="AncorPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -1.25, 0.125)
+
+[node name="Ancor2" type="Node3D" parent="AncorPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -1.25, 0.125)
+
+[node name="Ancor3" type="Node3D" parent="AncorPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 1, 0.125)
+
+[node name="Ancor4" type="Node3D" parent="AncorPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1, 0.125)
+
+[node name="Ancor5" type="Node3D" parent="AncorPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -1.25, -0.125)
+
+[node name="Ancor6" type="Node3D" parent="AncorPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -1.25, -0.125)
+
+[node name="Ancor7" type="Node3D" parent="AncorPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 1, -0.125)
+
+[node name="Ancor8" type="Node3D" parent="AncorPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1, -0.125)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
