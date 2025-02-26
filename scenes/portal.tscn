@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/portal.gd" id="1_36t7s"]
 [ext_resource type="Shader" path="res://shaders/Portal.gdshader" id="2_u7x4l"]
-[ext_resource type="Environment" uid="uid://0ja3rgp6mlci" path="res://Materials/WorldEnvoirment.tres" id="3_5we1s"]
-[ext_resource type="Material" uid="uid://bln56lvn44x7q" path="res://Materials/PortalFrameMaterial.tres" id="3_ankg1"]
+[ext_resource type="Environment" uid="uid://0ja3rgp6mlci" path="res://materials/WorldEnvoirment.tres" id="3_5we1s"]
+[ext_resource type="Material" uid="uid://bln56lvn44x7q" path="res://materials/PortalFrameMaterial.tres" id="3_ankg1"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_y5k7a"]
 viewport_path = NodePath("PortalViewport")
