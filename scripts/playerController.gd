@@ -1,8 +1,8 @@
 class_name Player extends CharacterBody3D
 
 @export_category("PlayerOptions")
-@export var SPEED : float = 35
-@export var JUMP_VELOCITY : float = 15
+@export var SPEED : float = 5
+@export var JUMP_VELOCITY : float = 4
 
 @onready var camera: Camera3D = $Camera3D
 
