@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4ysh8hrr0kvy"]
+[gd_scene load_steps=7 format=3 uid="uid://ddbwxh34wybcs"]
 
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/player.tscn" id="1_0k6th"]
 [ext_resource type="Script" path="res://scripts/test_scene.gd" id="1_2nycv"]
 [ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/portal.tscn" id="1_3tbpf"]
 [ext_resource type="PackedScene" uid="uid://dhit0w3r7capu" path="res://Menus/pause_menu.tscn" id="3_b32c5"]
+[ext_resource type="ArrayMesh" uid="uid://bwj2llsam8vie" path="res://assets/Box.obj" id="4_1hfc5"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ldowc"]
 
@@ -13,19 +14,25 @@ script = ExtResource("1_2nycv")
 [node name="Player" parent="." instance=ExtResource("1_0k6th")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8445, 0, -12.8445)
+SPEED = 5.0
+JUMP_VELOCITY = 3.0
 
 [node name="pause_menu" parent="Player" instance=ExtResource("3_b32c5")]
 visible = false
 
 [node name="Portal" parent="." node_paths=PackedStringArray("linkedPortal") instance=ExtResource("1_3tbpf")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 4.89609, 0, 1.27621)
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 4.89609, 0.167962, 1.27621)
 linkedPortal = NodePath("../Portal2")
 
 [node name="Portal2" parent="." node_paths=PackedStringArray("linkedPortal") instance=ExtResource("1_3tbpf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.87662, 0, -10.3382)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.505187, 0.00899792, -10.3382)
 linkedPortal = NodePath("../Portal")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_ldowc")
+
+[node name="Box" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 8, 0, -6)
+mesh = ExtResource("4_1hfc5")
