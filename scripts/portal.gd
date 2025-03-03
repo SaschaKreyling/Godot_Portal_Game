@@ -1,4 +1,4 @@
-@tool
+
 extends Node3D
 class_name Portal
 
@@ -6,7 +6,7 @@ class_name Portal
 @export var linkedPortal: Portal
 
 @onready var player: Node3D = %Player
-@onready var playerCamera: Camera3D = $"../Player/Camera3D"
+@onready var playerCamera: Camera3D = $"../Player/Head/Camera3D"
 
 @onready var portalCamera: Camera3D = $PortalViewport/PortalCamera
 @onready var ancors = $AncorPoints.get_children()

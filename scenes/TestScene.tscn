@@ -1,16 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4ysh8hrr0kvy"]
+[gd_scene load_steps=3 format=3 uid="uid://c4ysh8hrr0kvy"]
 
+[ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/player.tscn" id="1_0k6th"]
 [ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/portal.tscn" id="1_3tbpf"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Player" type="Node3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.97674)
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(0.991167, 0, 0.13262, 0, 1, 0, -0.13262, 0, 0.991167, 7.08907, 0.292495, -11.4616)
-current = true
+[node name="Player" parent="." instance=ExtResource("1_0k6th")]
 
 [node name="Portal" parent="." node_paths=PackedStringArray("linkedPortal") instance=ExtResource("1_3tbpf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89609, 0, -8.72379)
