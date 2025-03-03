@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwdi26x82y0hu"]
+
+[ext_resource type="ArrayMesh" uid="uid://bwj2llsam8vie" path="res://assets/Box.obj" id="1_0qm42"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_to8it"]
+size = Vector3(1.6, 1.6, 1.6)
+
+[node name="Box" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.575, 0.1)
+mesh = ExtResource("1_0qm42")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0102241, 0.0267873, 0.0380322)
+shape = SubResource("BoxShape3D_to8it")
