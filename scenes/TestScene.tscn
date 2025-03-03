@@ -1,15 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4ysh8hrr0kvy"]
+[gd_scene load_steps=6 format=3 uid="uid://c4ysh8hrr0kvy"]
 
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/player.tscn" id="1_0k6th"]
+[ext_resource type="Script" path="res://scripts/test_scene.gd" id="1_2nycv"]
 [ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/portal.tscn" id="1_3tbpf"]
+[ext_resource type="PackedScene" uid="uid://dhit0w3r7capu" path="res://Menus/pause_menu.tscn" id="3_b32c5"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ldowc"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_2nycv")
 
 [node name="Player" parent="." instance=ExtResource("1_0k6th")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -13)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8445, 0, -12.8445)
+
+[node name="pause_menu" parent="Player" instance=ExtResource("3_b32c5")]
+visible = false
 
 [node name="Portal" parent="." node_paths=PackedStringArray("linkedPortal") instance=ExtResource("1_3tbpf")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 4.89609, 0, 1.27621)
