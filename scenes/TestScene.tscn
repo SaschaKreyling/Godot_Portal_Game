@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddbwxh34wybcs"]
+[gd_scene load_steps=12 format=3 uid="uid://ddbwxh34wybcs"]
 
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/player.tscn" id="1_0k6th"]
 [ext_resource type="Script" path="res://scripts/test_scene.gd" id="1_2nycv"]
 [ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/portal.tscn" id="1_3tbpf"]
 [ext_resource type="PackedScene" uid="uid://dhit0w3r7capu" path="res://Menus/pause_menu.tscn" id="3_b32c5"]
 [ext_resource type="PackedScene" uid="uid://cwdi26x82y0hu" path="res://scenes/box.tscn" id="5_v0u5p"]
+[ext_resource type="ArrayMesh" uid="uid://ckvhkh5yw3kj" path="res://assets/button.obj" id="6_wmj5c"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ldowc"]
 
@@ -26,6 +27,9 @@ size = Vector2(25, 25)
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_2nycv")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.524625, -0.288379, 0.801003, 0, 0.940881, 0.338738, -0.851333, -0.17771, 0.49361, 0, 13.254, 0)
+
 [node name="Player" parent="." instance=ExtResource("1_0k6th")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.792, 1.5, -7.114)
@@ -35,7 +39,7 @@ JUMP_VELOCITY = 5.25
 visible = false
 
 [node name="Portal" parent="." node_paths=PackedStringArray("linkedPortal") instance=ExtResource("1_3tbpf")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 43.1745, -0.0216715, 7.73866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.1745, -0.0216715, 7.73866)
 linkedPortal = NodePath("../Portal2")
 
 [node name="Portal2" parent="." node_paths=PackedStringArray("linkedPortal") instance=ExtResource("1_3tbpf")]
@@ -43,10 +47,10 @@ transform = Transform3D(-0.99951, 0, 0.0312887, 0, 1, 0, -0.0312887, 0, -0.99951
 linkedPortal = NodePath("../Portal")
 
 [node name="Box" parent="." instance=ExtResource("5_v0u5p")]
-transform = Transform3D(0.959874, 0, 0.280432, 0, 1, 0, -0.280432, 0, 0.959874, 49.4918, 0.800666, -5.92548)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.352, 1.0448, 7.73633)
 
 [node name="Box2" parent="." instance=ExtResource("5_v0u5p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.05207, 0.806803, -1.15564)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 49.1322, 1.02703, 7.75953)
 
 [node name="Floor1" type="StaticBody3D" parent="."]
 
@@ -57,11 +61,15 @@ shape = SubResource("WorldBoundaryShape3D_ldowc")
 mesh = SubResource("QuadMesh_k62dj")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Floor2" type="StaticBody3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2"]
 shape = SubResource("WorldBoundaryShape3D_ldowc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
 mesh = SubResource("PlaneMesh_yddl3")
+
+[node name="Button" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 45.6012, 0, 7.82373)
+mesh = ExtResource("6_wmj5c")

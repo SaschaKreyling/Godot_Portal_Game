@@ -86,7 +86,7 @@ mesh = ExtResource("4_68e08")
 shape = SubResource("ConcavePolygonShape3D_uqv21")
 
 [node name="PortalLight" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.5, -1.29746, 2.4471, 0)
+transform = Transform3D(0.366902, 0, 0, 0, 0.363975, 0, 0, 0, 0.476615, -1.29746, 2.4471, 0)
 mesh = SubResource("BoxMesh_d3l12")
 
 [node name="Area3D" type="Area3D" parent="."]

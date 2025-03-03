@@ -35,8 +35,6 @@ func checkForTeleport() -> void:
 		var relativePosition : Vector3 = bodyToTeleport.global_position - global_position
 		var dot : float = relativePosition.dot(global_basis.z)
 		var hasCrossedPortal : bool = previousDot != null and sign(dot) != sign(previousDot)
-		print(str(dot) + " : " + str(previousDot))
-		print(hasCrossedPortal)
 		if hasCrossedPortal:
 			teleport(bodyToTeleport)
 			pass
@@ -58,7 +56,6 @@ func setPortalCameraPositionAndRotation() -> void:
 	portalCamera.near = max(0.25, smallestDst)
 
 func teleport(body : Node3D) -> void:
-	print("teleported")
 	var newPosition : Vector3 = linkedPortal.to_global(to_local(body.global_position)*Vector3(-1,1,-1))
 	#var portalNormal : Vector3  = -linkedPortal.global_basis.z
 	#newPosition = newPosition + 2 * (portalNormal.dot(linkedPortal.global_position - newPosition)/(portalNormal.dot(portalNormal))) * (portalNormal)
