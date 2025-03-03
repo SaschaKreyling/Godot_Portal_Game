@@ -50,8 +50,8 @@ var move_speed : float = 0.0
 var freeflying : bool = false
 
 ## IMPORTANT REFERENCES
-@onready var head: Node3D = $Head
-@onready var collider: CollisionShape3D = $Collider
+@onready var head: Camera3D = $Camera3D
+@onready var collider: CollisionShape3D = $CollisionShape3D
 
 func _ready() -> void:
 	check_input_mappings()
