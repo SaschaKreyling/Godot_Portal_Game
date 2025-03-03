@@ -3,6 +3,7 @@ extends Control
 @onready var main = $"../../"
 
 func _on_resume_pressed() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	main.pauseMenu()
 
 func _on_exit_to_main_pressed() -> void:
