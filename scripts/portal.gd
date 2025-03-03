@@ -24,15 +24,19 @@ func _process(delta: float) -> void:
 	
 var previousDot 
 func _physics_process(delta: float) -> void:
-	if isBodyinsideArea:
-		var relativePosition : Vector3 = bodyToTeleport.global_position - global_position
-		previousDot = relativePosition.dot(global_basis.z)
+	return
+		#if isBodyinsideArea:
+		#var relativePosition : Vector3 = bodyToTeleport.global_position - global_position
+		#previousDot = relativePosition.dot(global_basis.z)
+	
 
 func checkForTeleport() -> void:
 	if isBodyinsideArea:
 		var relativePosition : Vector3 = bodyToTeleport.global_position - global_position
 		var dot : float = relativePosition.dot(global_basis.z)
-		var hasCrossedPortal : bool = previousDot and sign(dot) != sign(previousDot)
+		var hasCrossedPortal : bool = previousDot != null and sign(dot) != sign(previousDot)
+		print(str(dot) + " : " + str(previousDot))
+		print(hasCrossedPortal)
 		if hasCrossedPortal:
 			teleport(bodyToTeleport)
 			pass
@@ -54,21 +58,24 @@ func setPortalCameraPositionAndRotation() -> void:
 	portalCamera.near = max(0.25, smallestDst)
 
 func teleport(body : Node3D) -> void:
-	var newPosition : Vector3 = linkedPortal.to_global(to_local(body.global_position))
-	var portalNormal : Vector3  = -linkedPortal.global_basis.z
-	newPosition = newPosition + 2 * (portalNormal.dot(linkedPortal.global_position - newPosition)/(portalNormal.dot(portalNormal))) * (portalNormal)
+	print("teleported")
+	var newPosition : Vector3 = linkedPortal.to_global(to_local(body.global_position)*Vector3(-1,1,-1))
+	#var portalNormal : Vector3  = -linkedPortal.global_basis.z
+	#newPosition = newPosition + 2 * (portalNormal.dot(linkedPortal.global_position - newPosition)/(portalNormal.dot(portalNormal))) * (portalNormal)
 	body.global_position = newPosition
 	var relative_rotation_to_portal : Basis = global_transform.basis.inverse() * body.global_transform.basis
 	body.global_rotation = (linkedPortal.global_transform.basis * relative_rotation_to_portal.scaled(Vector3(-1,1,-1))).get_euler()
 	resetCheck()
 
 func resetCheck() -> void:
+	bodyToTeleport = null
 	isBodyinsideArea = false
 	previousDot = null
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	bodyToTeleport = body
 	isBodyinsideArea = true
+
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	resetCheck()
