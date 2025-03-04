@@ -38,10 +38,10 @@ JUMP_VELOCITY = 5.25
 [node name="pause_menu" parent="Player" instance=ExtResource("3_b32c5")]
 visible = false
 
-[node name="Portal" parent="." node_paths=PackedStringArray("linkedPortal", "button") instance=ExtResource("1_3tbpf")]
+[node name="Portal" parent="." node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("1_3tbpf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.0813, -0.0216791, 7.83602)
 linkedPortal = NodePath("../Portal2")
-button = NodePath("../Button")
+buttons = [NodePath("../Button")]
 
 [node name="Portal2" parent="." node_paths=PackedStringArray("linkedPortal") instance=ExtResource("1_3tbpf")]
 transform = Transform3D(-0.99951, 0, 0.0312887, 0, 1, 0, -0.0312887, 0, -0.99951, -0.505187, -0.0233947, -10.3382)

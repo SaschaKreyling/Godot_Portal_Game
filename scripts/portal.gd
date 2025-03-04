@@ -4,7 +4,7 @@ class_name Portal
 @export_category("PortalSettings")
 @export var linkedPortal: Portal
 #@export_color_no_alpha var linkColor: Color
-@export var button: FloorButton
+@export var buttons: Array[FloorButton]
 @export var activated : bool = true
 
 @onready var player: Node3D = %Player
@@ -27,8 +27,10 @@ func _on_viewport_resize() -> void:
 
 func _process(delta: float) -> void:
 	portalSurface.visible = activated
-	if(button):
-		activated = button.activated
+	if(!buttons.is_empty()):
+		activated = true
+		for button in buttons:
+			activated = activated and button.activated
 	if activated and linkedPortal.activated:
 		portalSurface.visible = true
 		setPortalCameraPositionAndRotation()
