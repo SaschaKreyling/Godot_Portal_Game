@@ -11,7 +11,7 @@ class_name Portal
 @onready var playerCamera: Camera3D = %Player/Camera3D
 
 @onready var portalCamera: Camera3D = $PortalViewport/PortalCamera
-@onready var ancors = $AncorPoints.get_children()
+@onready var ancors : Array = $AncorPoints.get_children()
 @onready var portalSurface: MeshInstance3D = $PortalSurface
 @onready var portalLight: MeshInstance3D = $PortalLight
 
