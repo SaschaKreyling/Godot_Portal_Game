@@ -3,7 +3,7 @@ class_name Portal
 
 @export_category("PortalSettings")
 @export var linkedPortal: Portal
-#@export_color_no_alpha var linkColor: Color
+@export_color_no_alpha var linkColor: Color
 @export var buttons: Array[FloorButton]
 @export var activated : bool = true
 
@@ -15,12 +15,16 @@ class_name Portal
 @onready var portalSurface: MeshInstance3D = $PortalSurface
 @onready var portalLight: MeshInstance3D = $PortalLight
 
+@onready var identfier : Identifier = $Identifier
+
+
 var isBodyinsideArea : bool = false
 var bodyToTeleport : Node3D
 
 func _ready() -> void:
 	playerCamera.get_viewport().connect("size_changed", _on_viewport_resize)
-	$PortalViewport.size = playerCamera.get_viewport().size * 0.33
+	_on_viewport_resize()
+	identfier.color = linkColor
 
 func _on_viewport_resize() -> void:
 	$PortalViewport.size = playerCamera.get_viewport().size * 0.33

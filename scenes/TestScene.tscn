@@ -35,14 +35,16 @@ JUMP_VELOCITY = 5.25
 [node name="Portal" parent="." node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("1_3tbpf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.0813, -0.0216791, 7.83602)
 linkedPortal = NodePath("../Portal2")
+linkColor = Color(0, 0, 1, 1)
 buttons = [NodePath("../Button")]
 
 [node name="Portal2" parent="." node_paths=PackedStringArray("linkedPortal") instance=ExtResource("1_3tbpf")]
 transform = Transform3D(-0.99951, 0, 0.0312887, 0, 1, 0, -0.0312887, 0, -0.99951, -0.505187, -0.0233947, -10.3382)
 linkedPortal = NodePath("../Portal")
+linkColor = Color(0, 0, 1, 1)
 
 [node name="Box" parent="." instance=ExtResource("5_v0u5p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.1384, 3.74744, 2.05213)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.1928, 3.74744, 2.05213)
 
 [node name="Box2" parent="." instance=ExtResource("5_v0u5p")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 49.1322, 1.02703, 7.75953)
@@ -67,3 +69,4 @@ mesh = SubResource("PlaneMesh_yddl3")
 
 [node name="Button" parent="." instance=ExtResource("6_iyfo4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5027, 0, 2.07846)
+linkColor = Color(0, 0, 1, 1)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsow8susscqvf"]
+[gd_scene load_steps=13 format=3 uid="uid://bsow8susscqvf"]
 
 [ext_resource type="Script" path="res://scripts/portal.gd" id="1_36t7s"]
 [ext_resource type="Shader" path="res://shaders/Portal.gdshader" id="2_u7x4l"]
 [ext_resource type="Environment" uid="uid://0ja3rgp6mlci" path="res://materials/WorldEnvoirment.tres" id="3_5we1s"]
 [ext_resource type="ArrayMesh" uid="uid://45a7pdtg1obi" path="res://assets/Portal.obj" id="4_68e08"]
+[ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/identifier.tscn" id="5_4oxvl"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_y5k7a"]
 viewport_path = NodePath("PortalViewport")
@@ -99,6 +100,9 @@ mesh = SubResource("BoxMesh_d3l12")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.606, 0)
 shape = SubResource("BoxShape3D_ik3yv")
+
+[node name="Identifier" parent="." instance=ExtResource("5_4oxvl")]
+transform = Transform3D(0.0457913, 0, -0.0889196, 0, 0.1, 0, 0.0889196, 0, 0.0457913, 0, 3.45091, 0)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
