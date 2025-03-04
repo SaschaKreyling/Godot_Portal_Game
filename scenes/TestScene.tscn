@@ -29,7 +29,7 @@ transform = Transform3D(0.524625, -0.288379, 0.801003, 0, 0.940881, 0.338738, -0
 
 [node name="Player" parent="." instance=ExtResource("1_0k6th")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.5833, 3.68674, 0.185064)
+transform = Transform3D(-0.710419, 0, 0.703779, 0, 1, 0, -0.703779, 0, -0.710419, 50.589, 3.68674, -0.337999)
 JUMP_VELOCITY = 5.25
 
 [node name="Portal" parent="." node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("1_3tbpf")]
