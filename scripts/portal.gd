@@ -3,25 +3,37 @@ class_name Portal
 
 @export_category("PortalSettings")
 @export var linkedPortal: Portal
+#@export_color_no_alpha var linkColor: Color
+@export var button: FloorButton
+@export var activated : bool = true
 
 @onready var player: Node3D = %Player
 @onready var playerCamera: Camera3D = %Player/Camera3D
 
 @onready var portalCamera: Camera3D = $PortalViewport/PortalCamera
 @onready var ancors = $AncorPoints.get_children()
-
+@onready var portalSurface: MeshInstance3D = $PortalSurface
+@onready var portalLight: MeshInstance3D = $PortalLight
 
 var isBodyinsideArea : bool = false
 var bodyToTeleport : Node3D
 
 func _ready() -> void:
-	$PortalViewport.size = playerCamera.get_viewport().size
+	playerCamera.get_viewport().connect("size_changed", _on_viewport_resize)
+	$PortalViewport.size = playerCamera.get_viewport().size * 0.33
 
+func _on_viewport_resize() -> void:
+	$PortalViewport.size = playerCamera.get_viewport().size * 0.33
 
 func _process(delta: float) -> void:
-	setPortalCameraPositionAndRotation()
-	checkForTeleport()
-	
+	portalSurface.visible = activated
+	if(button):
+		activated = button.activated
+	if activated and linkedPortal.activated:
+		portalSurface.visible = true
+		setPortalCameraPositionAndRotation()
+		checkForTeleport()
+
 var previousDot 
 func _physics_process(delta: float) -> void:
 	return
