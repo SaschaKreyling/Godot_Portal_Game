@@ -6,6 +6,9 @@ class_name Player extends CharacterBody3D
 
 @onready var camera: Camera3D = $Camera3D
 
+@onready var pause_menu: Control = $Camera3D/pause_menu
+var paused = false
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
@@ -32,3 +35,19 @@ func _process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	#Check for pause input
+	if Input.is_action_just_pressed("pause"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		pauseMenu()
+
+#pauseMenu stops time and shows menu on pause, reverse on resume
+func pauseMenu():
+	if paused:
+		pause_menu.hide()
+		Engine.time_scale = 1
+	else:
+		pause_menu.show()
+		Engine.time_scale = 0
+	
+	paused = !paused

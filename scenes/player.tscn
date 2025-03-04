@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4hom0ownjibx"]
+[gd_scene load_steps=6 format=3 uid="uid://c4hom0ownjibx"]
 
 [ext_resource type="Script" path="res://scripts/playerController.gd" id="1_0f4vj"]
 [ext_resource type="Environment" uid="uid://0ja3rgp6mlci" path="res://materials/WorldEnvoirment.tres" id="2_88xg0"]
 [ext_resource type="Script" path="res://scripts/ray_cast_3d.gd" id="3_g074f"]
+[ext_resource type="PackedScene" uid="uid://dhit0w3r7capu" path="res://menus/pause_menu.tscn" id="4_7orkh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ooojm"]
 height = 2.8
@@ -19,6 +20,9 @@ environment = ExtResource("2_88xg0")
 
 [node name="Hold" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -2)
+
+[node name="pause_menu" parent="Camera3D" instance=ExtResource("4_7orkh")]
+visible = false
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -2)
