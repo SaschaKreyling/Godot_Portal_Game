@@ -27,7 +27,7 @@ func _ready() -> void:
 	identfier.color = linkColor
 
 func _on_viewport_resize() -> void:
-	$PortalViewport.size = playerCamera.get_viewport().size * 0.33
+	$PortalViewport.size = playerCamera.get_viewport().size 
 
 func _process(delta: float) -> void:
 	portalSurface.visible = activated
@@ -39,6 +39,8 @@ func _process(delta: float) -> void:
 		portalSurface.visible = true
 		setPortalCameraPositionAndRotation()
 		checkForTeleport()
+	else:
+		portalSurface.visible = false
 
 var previousDot 
 func _physics_process(delta: float) -> void:

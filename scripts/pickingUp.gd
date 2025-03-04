@@ -4,7 +4,7 @@ extends RayCast3D
 @onready var camera: Camera3D = $".."
 
 var pickedUp : bool = false
-var collider : CollisionObject3D
+var collider
 
 func _process(_delta: float) -> void:
 	target_position = holdingPoint.position
