@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/playerController.gd" id="1_0f4vj"]
 [ext_resource type="Environment" uid="uid://0ja3rgp6mlci" path="res://materials/WorldEnvoirment.tres" id="2_88xg0"]
 [ext_resource type="Script" path="res://scripts/pickingUp.gd" id="3_g074f"]
-[ext_resource type="PackedScene" uid="uid://dhit0w3r7capu" path="res://Menus/pause_menu.tscn" id="4_7orkh"]
+[ext_resource type="PackedScene" uid="uid://dhit0w3r7capu" path="res://menus/pause_menu.tscn" id="4_7orkh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ooojm"]
 height = 2.8
