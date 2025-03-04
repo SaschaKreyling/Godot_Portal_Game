@@ -1,9 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddbwxh34wybcs"]
+[gd_scene load_steps=10 format=3 uid="uid://ddbwxh34wybcs"]
 
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/player.tscn" id="1_0k6th"]
-[ext_resource type="Script" path="res://scripts/test_scene.gd" id="1_2nycv"]
 [ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/portal.tscn" id="1_3tbpf"]
-[ext_resource type="PackedScene" uid="uid://dhit0w3r7capu" path="res://menus/pause_menu.tscn" id="3_b32c5"]
 [ext_resource type="PackedScene" uid="uid://cwdi26x82y0hu" path="res://scenes/box.tscn" id="5_v0u5p"]
 [ext_resource type="PackedScene" uid="uid://dycqntdf0o0jc" path="res://scenes/button.tscn" id="6_iyfo4"]
 
@@ -25,7 +23,6 @@ material = SubResource("StandardMaterial3D_u42gc")
 size = Vector2(25, 25)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_2nycv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.524625, -0.288379, 0.801003, 0, 0.940881, 0.338738, -0.851333, -0.17771, 0.49361, 0, 13.254, 0)
@@ -34,9 +31,6 @@ transform = Transform3D(0.524625, -0.288379, 0.801003, 0, 0.940881, 0.338738, -0
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.5833, 3.68674, 0.185064)
 JUMP_VELOCITY = 5.25
-
-[node name="pause_menu" parent="Player" instance=ExtResource("3_b32c5")]
-visible = false
 
 [node name="Portal" parent="." node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("1_3tbpf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.0813, -0.0216791, 7.83602)
