@@ -7,7 +7,7 @@ var speed : float = 4
 @onready var identifierLight: OmniLight3D = $IdentifierLight
 
 func updateColor(color : Color) -> void:
-	var material = identifierMesh.get_surface_override_material(0)
+	var material = StandardMaterial3D.new()
 	material.albedo_color = color
 	identifierLight.light_color = color
 	identifierMesh.set_surface_override_material(0, material)

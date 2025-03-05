@@ -13,13 +13,18 @@ class_name Portal
 @onready var portalCamera: Camera3D = $PortalViewport/PortalCamera
 @onready var ancors : Array = $AncorPoints.get_children()
 @onready var portalSurface: MeshInstance3D = $PortalSurface
-@onready var portalLight: MeshInstance3D = $PortalLight
 
 @onready var identfier : Identifier = $Identifier
 
+var activeLampColor: Color  = Color.GREEN
+var deactiveLampColor: Color = Color.RED
 
 var bodiesToTeleport : Array[Node3D]
 var previousDots : Dictionary
+
+@onready var portalLightMesh: MeshInstance3D = $PortalLight
+@onready var portalSpotLight1: SpotLight3D = $PortalLight/SpotLight3D
+@onready var portalSpotLight2: SpotLight3D = $PortalLight/SpotLight3D2
 
 func _ready() -> void:
 	playerCamera.get_viewport().connect("size_changed", _on_viewport_resize)
@@ -27,15 +32,25 @@ func _ready() -> void:
 	identfier.updateColor(linkColor)
 
 func _on_viewport_resize() -> void:
-	$PortalViewport.size = playerCamera.get_viewport().size * 0.3
+	$PortalViewport.size = playerCamera.get_viewport().size
 
 func _process(delta: float) -> void:
 	activated = areAllButtonsActive()
 	portalSurface.visible = shouldBeVisibleAndChecking()
+	
 	if shouldBeVisibleAndChecking():
 		setPortalCameraPositionAndRotation()
 		checkForTeleport()
+		setLampColor(activeLampColor)
+	else:
+		setLampColor(deactiveLampColor)
 
+func setLampColor(color : Color) -> void:
+	var material : StandardMaterial3D =  StandardMaterial3D.new()
+	material.albedo_color = color
+	portalLightMesh.set_surface_override_material(0 , material)
+	portalSpotLight1.light_color = color
+	portalSpotLight2.light_color = color
 
 func checkForTeleport() -> void:
 	for bodyToTeleport in bodiesToTeleport:
