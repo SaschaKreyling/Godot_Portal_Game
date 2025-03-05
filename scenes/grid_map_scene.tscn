@@ -5,7 +5,7 @@
 [ext_resource type="ArrayMesh" uid="uid://vpmjarlyceuv" path="res://assets/WallFloorCornerTile.obj" id="3_fr3hh"]
 [ext_resource type="ArrayMesh" uid="uid://ck74hcbnecfsk" path="res://assets/WallFloorTile.obj" id="4_uisei"]
 [ext_resource type="ArrayMesh" uid="uid://ctmm2p5qgpbcx" path="res://assets/WallTile.obj" id="5_nwlrx"]
-[ext_resource type="ArrayMesh" uid="uid://gx44m8heo8d0" path="res://assets/Door.obj" id="6_0ry6t"]
+[ext_resource type="ArrayMesh" uid="uid://gx44m8heo8d0" path="res://assets/DoorFrame.obj" id="6_0ry6t"]
 [ext_resource type="ArrayMesh" uid="uid://bvnqvvh6g5dkf" path="res://assets/Block.obj" id="7_mx1b3"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dhx7r"]
