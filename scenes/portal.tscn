@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsow8susscqvf"]
+[gd_scene load_steps=14 format=3 uid="uid://bsow8susscqvf"]
 
 [ext_resource type="Script" path="res://scripts/portal.gd" id="1_36t7s"]
 [ext_resource type="Shader" path="res://shaders/Portal.gdshader" id="2_u7x4l"]
 [ext_resource type="Environment" uid="uid://0ja3rgp6mlci" path="res://materials/WorldEnvoirment.tres" id="3_5we1s"]
 [ext_resource type="ArrayMesh" uid="uid://45a7pdtg1obi" path="res://assets/Portal.obj" id="4_68e08"]
 [ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/identifier.tscn" id="5_4oxvl"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3qlyh"]
+data = PackedVector3Array(-1, 1.5625, 0.05, 1, 1.5625, 0.05, -1, -1.5625, 0.05, 1, 1.5625, 0.05, 1, -1.5625, 0.05, -1, -1.5625, 0.05, 1, 1.5625, -0.05, -1, 1.5625, -0.05, 1, -1.5625, -0.05, -1, 1.5625, -0.05, -1, -1.5625, -0.05, 1, -1.5625, -0.05, 1, 1.5625, 0.05, 1, 1.5625, -0.05, 1, -1.5625, 0.05, 1, 1.5625, -0.05, 1, -1.5625, -0.05, 1, -1.5625, 0.05, -1, 1.5625, -0.05, -1, 1.5625, 0.05, -1, -1.5625, -0.05, -1, 1.5625, 0.05, -1, -1.5625, 0.05, -1, -1.5625, -0.05, 1, 1.5625, 0.05, -1, 1.5625, 0.05, 1, 1.5625, -0.05, -1, 1.5625, 0.05, -1, 1.5625, -0.05, 1, 1.5625, -0.05, -1, -1.5625, 0.05, 1, -1.5625, 0.05, -1, -1.5625, -0.05, 1, -1.5625, 0.05, 1, -1.5625, -0.05, -1, -1.5625, -0.05)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_y5k7a"]
 viewport_path = NodePath("PortalViewport")
@@ -39,10 +42,18 @@ size = Vector3(2.15, 3, 5)
 [node name="Portal" type="Node3D"]
 script = ExtResource("1_36t7s")
 
-[node name="PortalSurface" type="MeshInstance3D" parent="."]
+[node name="PortalSurface" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58113, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="PortalCollider" type="CollisionShape3D" parent="PortalSurface"]
+shape = SubResource("ConcavePolygonShape3D_3qlyh")
+
+[node name="PortalSurfaceMesh" type="MeshInstance3D" parent="PortalSurface"]
 layers = 2
 mesh = SubResource("BoxMesh_mmy8c")
+skeleton = NodePath("../..")
 
 [node name="PortalViewport" type="SubViewport" parent="."]
 debug_draw = 26
@@ -54,6 +65,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.951931)
 cull_mask = 1048573
 environment = ExtResource("3_5we1s")
 current = true
+
+[node name="Hold" type="Node3D" parent="PortalViewport/PortalCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+visible = false
 
 [node name="AncorPoints" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77271, 0)

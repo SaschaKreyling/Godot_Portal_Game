@@ -12,6 +12,10 @@ func _physics_process(delta: float) -> void:
 	if picked_object != null:
 		var a = picked_object.global_position
 		var b = holdingPoint.global_position
+		#var collider : Node3D = get_collider()
+		#if(collider != null and collider.name == "PortalSurface"):
+			#var portal : Portal = collider.get_parent_node_3d()
+			#b = portal.hold.global_position
 		picked_object.set_linear_velocity((b-a) * pull_power)
 
 func _process(_delta: float) -> void:
@@ -32,8 +36,7 @@ func pick_object():
 		picked_object = collider
 
 func remove_object():
-	if picked_object != null:
-		picked_object = null
+	picked_object = null
 
 func throw_object():
 	if picked_object == null:
