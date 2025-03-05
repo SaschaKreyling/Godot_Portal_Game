@@ -6,6 +6,7 @@
 size = Vector3(1.6, 1.6, 1.6)
 
 [node name="Box" type="RigidBody3D" groups=["holdables", "portable", "presser"]]
+angular_damp = 0.6
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.575, 0.1)
