@@ -27,7 +27,7 @@ func _ready() -> void:
 	identfier.updateColor(linkColor)
 
 func _on_viewport_resize() -> void:
-	$PortalViewport.size = playerCamera.get_viewport().size * 0.33
+	$PortalViewport.size = playerCamera.get_viewport().size * 0.3
 
 func _process(delta: float) -> void:
 	activated = areAllButtonsActive()

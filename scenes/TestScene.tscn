@@ -11,7 +11,6 @@
 [node name="Player" parent="." instance=ExtResource("1_0k6th")]
 unique_name_in_owner = true
 transform = Transform3D(-0.710419, 0, 0.703779, 0, 1, 0, -0.703779, 0, -0.710419, 0, 1.52, 0)
-JUMP_VELOCITY = 5.25
 
 [node name="Envoirment" type="Node3D" parent="."]
 
