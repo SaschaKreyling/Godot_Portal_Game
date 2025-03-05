@@ -13,31 +13,13 @@ transform = Transform3D(0.524625, -0.288379, 0.801003, 0, 0.940881, 0.338738, -0
 
 [node name="Player" parent="." instance=ExtResource("1_0k6th")]
 unique_name_in_owner = true
-transform = Transform3D(-0.710419, 0, 0.703779, 0, 1, 0, -0.703779, 0, -0.710419, 26.1598, 1.52003, -10.1828)
+transform = Transform3D(-0.710419, 0, 0.703779, 0, 1, 0, -0.703779, 0, -0.710419, 0, 1.52, 0)
 JUMP_VELOCITY = 5.25
 
-[node name="Portal" parent="." node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("1_3tbpf")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 36.188, 0.178169, 10.5337)
-linkedPortal = NodePath("../Portal2")
-linkColor = Color(0, 0, 1, 1)
-buttons = [NodePath("../Button")]
+[node name="Envoirment" type="Node3D" parent="."]
 
-[node name="Portal2" parent="." node_paths=PackedStringArray("linkedPortal") instance=ExtResource("1_3tbpf")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.2536, 0.0562929, -7.82561)
-linkedPortal = NodePath("../Portal")
-linkColor = Color(0, 0, 1, 1)
-
-[node name="Box" parent="." instance=ExtResource("5_v0u5p")]
-transform = Transform3D(0.995671, 0, 0.0929441, 0, 1, 0, -0.0929441, 0, 0.995671, 15.053, 0.9, 8.69507)
-
-[node name="Box2" parent="." instance=ExtResource("5_v0u5p")]
-transform = Transform3D(-0.495762, 0, 0.868459, 0, 1, 0, -0.868459, 0, -0.495762, 14.253, 0.9, 10.866)
-
-[node name="Button" parent="." instance=ExtResource("6_iyfo4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.0562, 0, 1.6204)
-linkColor = Color(0, 0, 1, 1)
-
-[node name="GridMap" type="GridMap" parent="."]
+[node name="GridMap" type="GridMap" parent="Envoirment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5037, 0, 0)
 mesh_library = ExtResource("5_f28g8")
 cell_size = Vector3(3.16, 3.16, 3.16)
 data = {
@@ -45,5 +27,26 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Box3" parent="." instance=ExtResource("5_v0u5p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2038, 2.50158, 9.5848)
+[node name="Portal" parent="Envoirment" node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("1_3tbpf")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 12.6843, 0.178169, 10.5337)
+linkedPortal = NodePath("../Portal2")
+linkColor = Color(0, 0, 1, 1)
+buttons = [NodePath("../Button")]
+
+[node name="Portal2" parent="Envoirment" node_paths=PackedStringArray("linkedPortal") instance=ExtResource("1_3tbpf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.2501, 0.0562929, -7.82561)
+linkedPortal = NodePath("../Portal")
+linkColor = Color(0, 0, 1, 1)
+
+[node name="Box2" parent="Envoirment" instance=ExtResource("5_v0u5p")]
+transform = Transform3D(-0.495762, 0, 0.868459, 0, 1, 0, -0.868459, 0, -0.495762, -9.25075, 0.9, 10.866)
+
+[node name="Button" parent="Envoirment" instance=ExtResource("6_iyfo4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55245, 0, 1.6204)
+linkColor = Color(0, 0, 1, 1)
+
+[node name="Box3" parent="Envoirment" instance=ExtResource("5_v0u5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.29995, 2.50158, 9.5848)
+
+[node name="Box" parent="Envoirment" instance=ExtResource("5_v0u5p")]
+transform = Transform3D(0.995671, 0, 0.0929441, 0, 1, 0, -0.0929441, 0, 0.995671, -8.45075, 0.9, 8.69507)
