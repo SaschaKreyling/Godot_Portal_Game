@@ -46,6 +46,7 @@ func pauseMenu():
 	if paused:
 		pause_menu.hide()
 		Engine.time_scale = 1
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		pause_menu.show()
 		Engine.time_scale = 0
