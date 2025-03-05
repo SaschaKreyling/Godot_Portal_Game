@@ -6,5 +6,5 @@ uniform float exposure = 1.0;
 
 void fragment() {
     vec3 color = texture(camTexture, SCREEN_UV.xy).rgb;
-    ALBEDO = color * exposure;     
+    ALBEDO = color * exposure;
 }

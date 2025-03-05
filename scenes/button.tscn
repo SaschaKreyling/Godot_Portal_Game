@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dycqntdf0o0jc"]
+[gd_scene load_steps=9 format=3 uid="uid://dycqntdf0o0jc"]
 
 [ext_resource type="ArrayMesh" uid="uid://ckvhkh5yw3kj" path="res://assets/button.obj" id="1_c1uwg"]
 [ext_resource type="Script" path="res://scripts/button.gd" id="1_o4m6b"]
@@ -14,6 +14,9 @@ data = PackedVector3Array(-3.2, 0, -2.3, -3.2, 0.5, 2.4, -3.2, 0, 2.4, -3.2, 0, 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dyumm"]
 height = 0.25
 radius = 0.75
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q2scd"]
+size = Vector3(0.75, 0.1, 1.58)
 
 [node name="Button" type="StaticBody3D"]
 script = ExtResource("1_o4m6b")
@@ -42,6 +45,22 @@ mesh = ExtResource("2_e5u0n")
 [node name="ActivationShape" type="CollisionShape3D" parent="ActivationArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.238209, 0)
 shape = SubResource("CylinderShape3D_dyumm")
+
+[node name="Ramp" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.95, -0.05, 0)
+shape = SubResource("BoxShape3D_q2scd")
+
+[node name="Ramp1" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.707107, -0.707107, -8.74228e-08, -0.707107, 0.707107, 0, 6.18172e-08, 6.18172e-08, -1, -0.95, -0.05, 0)
+shape = SubResource("BoxShape3D_q2scd")
+
+[node name="Ramp2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, -1, -0.707107, 0.707107, 0, 0.707107, 0.707107, -4.37114e-08, 0, -0.05, 0.95)
+shape = SubResource("BoxShape3D_q2scd")
+
+[node name="Ramp3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, 1, -0.707107, 0.707107, 0, -0.707107, -0.707107, -4.37114e-08, 0, -0.05, -0.95)
+shape = SubResource("BoxShape3D_q2scd")
 
 [connection signal="body_entered" from="ActivationArea" to="." method="_on_activation_area_body_entered"]
 [connection signal="body_exited" from="ActivationArea" to="." method="_on_activation_area_body_exited"]
