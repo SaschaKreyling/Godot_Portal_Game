@@ -15,3 +15,5 @@ script = ExtResource("2_08f5u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
 mesh = ExtResource("1_qg6th")
 surface_material_override/0 = SubResource("StandardMaterial3D_hoqrr")
+
+[node name="IdentifierLight" type="OmniLight3D" parent="."]

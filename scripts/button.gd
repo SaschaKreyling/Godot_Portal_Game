@@ -14,7 +14,7 @@ var activated: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	identfier.color = linkColor
+	identfier.updateColor(linkColor)
 	setDeactivated()
 
 func setActivated() -> void:
@@ -34,14 +34,14 @@ func setDeactivated() -> void:
 	button_active_mesh.visible = false
 
 func _on_activation_area_body_entered(body: Node3D) -> void:
-	if(body.is_in_group("ButtonPresser")):
+	if(body.is_in_group("presser")):
 		currentActivators.append(body)
 	activated = not currentActivators.is_empty()
 	if activated:
 		setActivated()
 
 func _on_activation_area_body_exited(body: Node3D) -> void:
-	if(body.is_in_group("ButtonPresser")):
+	if(body.is_in_group("presser")):
 		currentActivators.erase(body)
 	activated = not currentActivators.is_empty()
 	if not activated:

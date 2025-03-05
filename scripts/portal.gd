@@ -18,48 +18,35 @@ class_name Portal
 @onready var identfier : Identifier = $Identifier
 
 
-var isBodyinsideArea : bool = false
-var bodyToTeleport : Node3D
+var bodiesToTeleport : Array[Node3D]
+var previousDots : Dictionary
 
 func _ready() -> void:
 	playerCamera.get_viewport().connect("size_changed", _on_viewport_resize)
 	_on_viewport_resize()
-	identfier.color = linkColor
+	identfier.updateColor(linkColor)
 
 func _on_viewport_resize() -> void:
-	$PortalViewport.size = playerCamera.get_viewport().size 
+	$PortalViewport.size = playerCamera.get_viewport().size * 0.33
 
 func _process(delta: float) -> void:
-	portalSurface.visible = activated
-	if(!buttons.is_empty()):
-		activated = true
-		for button in buttons:
-			activated = activated and button.activated
-	if activated and linkedPortal.activated:
-		portalSurface.visible = true
+	activated = areAllButtonsActive()
+	portalSurface.visible = shouldBeVisibleAndChecking()
+	if shouldBeVisibleAndChecking():
 		setPortalCameraPositionAndRotation()
 		checkForTeleport()
-	else:
-		portalSurface.visible = false
 
-var previousDot 
-func _physics_process(delta: float) -> void:
-	return
-		#if isBodyinsideArea:
-		#var relativePosition : Vector3 = bodyToTeleport.global_position - global_position
-		#previousDot = relativePosition.dot(global_basis.z)
-	
 
 func checkForTeleport() -> void:
-	if isBodyinsideArea:
+	for bodyToTeleport in bodiesToTeleport:
 		var relativePosition : Vector3 = bodyToTeleport.global_position - global_position
 		var dot : float = relativePosition.dot(global_basis.z)
-		var hasCrossedPortal : bool = previousDot != null and sign(dot) != sign(previousDot)
+		var hasCrossedPortal : bool = previousDots.has(bodyToTeleport) and sign(dot) != sign(float(previousDots.get(bodyToTeleport)))
 		if hasCrossedPortal:
 			teleport(bodyToTeleport)
 			pass
-		previousDot = dot
-	
+		previousDots.erase(bodyToTeleport)
+		previousDots.get_or_add(bodyToTeleport, dot)
 
 func setPortalCameraPositionAndRotation() -> void:
 	portalCamera.position = linkedPortal.to_global(to_local(playerCamera.global_position)*(Vector3(-1,1,-1)))
@@ -71,28 +58,34 @@ func setPortalCameraPositionAndRotation() -> void:
 	
 	var smallestDst : float = portalCamera.far
 	for ancor : Node3D in linkedPortal.ancors:
-		var dst : float = abs((ancor.global_position - portalCamera.global_position).dot(cameraNormal) / cameraNormal.length())
-		smallestDst = min(smallestDst, dst)
-	portalCamera.near = max(0.25, smallestDst)
+		var dst : float = (ancor.global_position - portalCamera.global_position).dot(cameraNormal) / cameraNormal.length()
+		smallestDst = min(smallestDst, abs(dst))
+	portalCamera.near = max(0.5, smallestDst)
 
 func teleport(body : Node3D) -> void:
 	var newPosition : Vector3 = linkedPortal.to_global(to_local(body.global_position)*Vector3(-1,1,-1))
-	#var portalNormal : Vector3  = -linkedPortal.global_basis.z
-	#newPosition = newPosition + 2 * (portalNormal.dot(linkedPortal.global_position - newPosition)/(portalNormal.dot(portalNormal))) * (portalNormal)
 	body.global_position = newPosition
 	var relative_rotation_to_portal : Basis = global_transform.basis.inverse() * body.global_transform.basis
 	body.global_rotation = (linkedPortal.global_transform.basis * relative_rotation_to_portal.scaled(Vector3(-1,1,-1))).get_euler()
-	resetCheck()
+	removeBody(body)
 
-func resetCheck() -> void:
-	bodyToTeleport = null
-	isBodyinsideArea = false
-	previousDot = null
+func areAllButtonsActive() -> bool:
+	var active : bool = true
+	for button in buttons:
+		active = active and button.activated
+	return active
+	
+func shouldBeVisibleAndChecking() -> bool:
+	return activated and linkedPortal.activated
+
+func removeBody(body : Node3D) -> void:
+	if body.is_in_group("portable"):
+		bodiesToTeleport.erase(body)
+		previousDots.erase(body)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	bodyToTeleport = body
-	isBodyinsideArea = true
-
+	if body.is_in_group("portable"):
+		bodiesToTeleport.append(body)
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	resetCheck()
+	removeBody(body)

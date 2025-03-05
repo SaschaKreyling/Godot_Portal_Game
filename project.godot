@@ -16,8 +16,9 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [global_group]
 
-ButtonPresser=""
 holdables=""
+portable=""
+presser=""
 
 [input]
 

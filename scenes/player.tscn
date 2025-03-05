@@ -8,7 +8,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ooojm"]
 height = 2.8
 
-[node name="Player" type="CharacterBody3D" groups=["ButtonPresser"]]
+[node name="Player" type="CharacterBody3D" groups=["portable", "presser"]]
 script = ExtResource("1_0f4vj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
