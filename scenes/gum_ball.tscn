@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://veo3d7ysvncp"]
+
+[ext_resource type="Script" path="res://scripts/gum_ball.gd" id="1_ts4us"]
+[ext_resource type="ArrayMesh" uid="uid://dumvm4ewfma0e" path="res://assets/GumBall.obj" id="2_tr37a"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fobg7"]
+radius = 0.273177
+
+[node name="GumBall" type="RigidBody3D" groups=["holdables", "portable"]]
+collision_layer = 4
+collision_mask = 4
+gravity_scale = 0.0
+script = ExtResource("1_ts4us")
+
+[node name="GumBallMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.206, 0)
+mesh = ExtResource("2_tr37a")
+
+[node name="InteractCollider" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_fobg7")
+
+[node name="HitZone" type="Area3D" parent="."]
+
+[node name="HitZoneCollider" type="CollisionShape3D" parent="HitZone"]
+shape = SubResource("SphereShape3D_fobg7")
+
+[connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]

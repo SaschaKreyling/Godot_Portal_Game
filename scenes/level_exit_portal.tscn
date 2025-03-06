@@ -10,7 +10,7 @@ data = PackedVector3Array(-6, 9, -1.1, -6, 10.6, 1.1, -6, 9, 1.1, -6, 9, -1.1, -
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ov6f"]
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.11956, 0.122866, 2.40654e-08, 1)
+albedo_color = Color(0.41636, 0.42, 0.3108, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wnaj2"]
 resource_local_to_scene = true
@@ -71,11 +71,11 @@ spot_attenuation = 2.0
 spot_angle = 65.0
 
 [node name="ExitSign" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0, 3.059, -0.31)
+transform = Transform3D(-0.247358, -0.0362488, -2.16247e-08, -0.0362488, 0.247358, -3.16897e-09, 2.18557e-08, 0, -0.25, 0.0269192, 2.97818, -0.31)
 mesh = ExtResource("3_b64ha")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="ExitSign"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24899e-08, 0.853832, 0.486028)
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(-0.999903, 0.0139622, -8.74143e-08, 0.0139622, 0.999903, 1.22061e-09, 8.74228e-08, 0, -1, -0.0214141, 3.2501, -0.431507)
 light_color = Color(1, 1, 0, 1)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

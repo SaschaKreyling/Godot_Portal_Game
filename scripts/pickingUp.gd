@@ -44,7 +44,8 @@ func throw_object():
 	
 	var throw_direction = camera.global_transform.basis.z.normalized()
 	var throw_strength = -18.0
-	var upDirection = 5
+	#var upDirection = 5
+	var upDirection = 0
 	
 	pickedUp = false	#glaube der bumms ist unnötig?
 	picked_object.apply_impulse(throw_direction * throw_strength + Vector3(0, upDirection, 0))

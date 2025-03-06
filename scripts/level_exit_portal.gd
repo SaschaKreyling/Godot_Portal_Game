@@ -3,9 +3,23 @@ class_name ExitPortal
 
 @onready var player: Node3D = %Player
 @onready var area_3d: Area3D = $Area3D
+@onready var exitPortalLightMesh: MeshInstance3D = $ExitPortalLight
+@onready var exitPortalLight1: SpotLight3D = $ExitPortalLight/ExitSpotLight3D
+@onready var exitPortalLight2: SpotLight3D = $ExitPortalLight/ExitSpotLight3D2
+
+var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _process(delta: float) -> void:
 	checkForExit()
+	var changeRandom : float = random.randf()
+	if changeRandom < 0.1:
+		var colorRandom : float = random.randf()
+		if colorRandom < 0.5:
+			setPortalLight(Color.YELLOW)
+		elif colorRandom < 0.75:
+			setPortalLight(Color.GREEN)
+		else:
+			setPortalLight(Color.RED) 
 
 var playerInArea: bool
 var previousDot 
@@ -22,6 +36,15 @@ func checkForExit() -> void:
 func exitLevel():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
+
+func setPortalLight(color : Color) -> void:
+	var material = StandardMaterial3D.new()
+	material.emission_enabled = true
+	material.emission = color
+	material.albedo_color = color
+	exitPortalLightMesh.mesh.surface_set_material(0,material)
+	exitPortalLight1.light_color = color
+	exitPortalLight2.light_color = color
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body == player:
