@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddbwxh34wybcs"]
+[gd_scene load_steps=8 format=3 uid="uid://ddbwxh34wybcs"]
 
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/player.tscn" id="1_0k6th"]
 [ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/portal.tscn" id="1_3tbpf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cwdi26x82y0hu" path="res://scenes/box.tscn" id="5_v0u5p"]
 [ext_resource type="PackedScene" uid="uid://dkf418jeykrkf" path="res://scenes/door.tscn" id="6_b3c62"]
 [ext_resource type="PackedScene" uid="uid://dycqntdf0o0jc" path="res://scenes/button.tscn" id="6_iyfo4"]
+[ext_resource type="PackedScene" uid="uid://shgwkgqjj7x1" path="res://scenes/level_exit_portal.tscn" id="7_8agqx"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -56,3 +57,6 @@ transform = Transform3D(0.995671, 0, 0.0929441, 0, 1, 0, -0.0929441, 0, 0.995671
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.36, 0, 12.644)
 buttons = [NodePath("../Button2")]
 linkColor = Color(1, 1, 0, 1)
+
+[node name="LevelExitPortal" parent="." instance=ExtResource("7_8agqx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.37083, 0.0600004, 20.6312)

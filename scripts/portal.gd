@@ -13,8 +13,9 @@ class_name Portal
 @onready var portalCamera: Camera3D = $PortalViewport/PortalCamera
 @onready var ancors : Array = $AncorPoints.get_children()
 @onready var portalSurface: MeshInstance3D = $PortalSurface/PortalSurfaceMesh
-@onready var PossibleRay: RayCast3D = $PortalViewport/PortalCamera/Interact
+@onready var portalViewport: Viewport = $PortalViewport
 
+#@onready var PossibleRay: RayCast3D
 @onready var hold: Node3D = $PortalViewport/PortalCamera/Hold
 
 
@@ -22,6 +23,7 @@ class_name Portal
 
 var activeLampColor: Color  = Color.GREEN
 var deactiveLampColor: Color = Color.RED
+var actvieLampColorSet : bool
 
 var bodiesToTeleport : Array[Node3D]
 var previousDots : Dictionary
@@ -34,9 +36,12 @@ func _ready() -> void:
 	playerCamera.get_viewport().connect("size_changed", _on_viewport_resize)
 	_on_viewport_resize()
 	identfier.updateColor(linkColor)
+	setLampColor(activeLampColor)
+	actvieLampColorSet = true
 
 func _on_viewport_resize() -> void:
-	$PortalViewport.size = playerCamera.get_viewport().size
+	portalViewport.size = playerCamera.get_viewport().size * 0.25
+
 
 func _process(delta: float) -> void:
 	activated = areAllButtonsActive()
@@ -45,9 +50,15 @@ func _process(delta: float) -> void:
 	if shouldBeVisibleAndChecking():
 		setPortalCameraPositionAndRotation()
 		checkForTeleport()
-		setLampColor(activeLampColor)
+		if not actvieLampColorSet:
+			setLampColor(activeLampColor)
+			actvieLampColorSet = true
+		portalViewport.render_target_update_mode = portalViewport.UPDATE_ALWAYS
 	else:
-		setLampColor(deactiveLampColor)
+		portalViewport.render_target_update_mode = portalViewport.UPDATE_DISABLED
+		if actvieLampColorSet:
+			setLampColor(deactiveLampColor)
+			actvieLampColorSet = false
 
 func setLampColor(color : Color) -> void:
 	var material : StandardMaterial3D =  StandardMaterial3D.new()
@@ -95,7 +106,7 @@ func areAllButtonsActive() -> bool:
 	return active
 	
 func shouldBeVisibleAndChecking() -> bool:
-	return activated and linkedPortal.activated
+	return activated and linkedPortal.activated 
 
 func removeBody(body : Node3D) -> void:
 	if body.is_in_group("portable"):

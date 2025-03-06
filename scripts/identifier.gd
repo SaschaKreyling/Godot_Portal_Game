@@ -13,4 +13,4 @@ func updateColor(color : Color) -> void:
 	identifierMesh.set_surface_override_material(0, material)
 
 func _process(delta: float) -> void:
-	rotate_y(speed * delta)
+	rotate_object_local(Vector3(0,1,0),speed * delta)

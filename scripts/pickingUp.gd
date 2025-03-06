@@ -4,7 +4,7 @@ extends RayCast3D
 @onready var camera: Camera3D = $".."
 
 var pickedUp : bool = false
-var picked_object
+var picked_object : Node3D
 var collidor
 var pull_power = 4
 
@@ -12,14 +12,14 @@ func _physics_process(delta: float) -> void:
 	if picked_object != null:
 		var a = picked_object.global_position
 		var b = holdingPoint.global_position
-		#var collider : Node3D = get_collider()
-		#if(collider != null and collider.name == "PortalSurface"):
-			#var portal : Portal = collider.get_parent_node_3d()
-			#b = portal.hold.global_position
+		var collider : Node3D = get_collider()
+		if(collider != null and collider.name == "PortalSurface"):
+			var portal : Portal = collider.get_parent_node_3d()
+			b = portal.hold.global_position
 		picked_object.set_linear_velocity((b-a) * pull_power)
 
 func _process(_delta: float) -> void:
-	target_position = holdingPoint.position
+	#target_position = holdingPoint.position
 	
 	if Input.is_action_just_pressed("Interact"):
 		if picked_object == null:
