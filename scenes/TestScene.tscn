@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddbwxh34wybcs"]
+[gd_scene load_steps=9 format=3 uid="uid://ddbwxh34wybcs"]
 
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/player.tscn" id="1_0k6th"]
 [ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/portal.tscn" id="1_3tbpf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cwdi26x82y0hu" path="res://scenes/box.tscn" id="5_v0u5p"]
 [ext_resource type="PackedScene" uid="uid://dkf418jeykrkf" path="res://scenes/door.tscn" id="6_b3c62"]
 [ext_resource type="PackedScene" uid="uid://dycqntdf0o0jc" path="res://scenes/button.tscn" id="6_iyfo4"]
+[ext_resource type="PackedScene" uid="uid://c68u36b6ggbkq" path="res://scenes/gravity.tscn" id="7_1fc2k"]
 [ext_resource type="PackedScene" uid="uid://shgwkgqjj7x1" path="res://scenes/level_exit_portal.tscn" id="7_8agqx"]
 
 [node name="Node3D" type="Node3D"]
@@ -60,3 +61,6 @@ linkColor = Color(1, 1, 0, 1)
 
 [node name="LevelExitPortal" parent="." instance=ExtResource("7_8agqx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.37083, 0.0600004, 20.6312)
+
+[node name="gravity" parent="." instance=ExtResource("7_1fc2k")]
+transform = Transform3D(10, 0, 0, 0, 3.03, 0, 0, 0, 10.474, -2.26755, 4.4587, 5.36741)
