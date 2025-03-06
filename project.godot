@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 holdables=""
 portable=""
 presser=""
+gluable=""
 
 [input]
 

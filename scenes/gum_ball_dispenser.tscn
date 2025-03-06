@@ -4,15 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://veo3d7ysvncp" path="res://scenes/gum_ball.tscn" id="1_x2o8t"]
 [ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/identifier.tscn" id="3_bbn2b"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_d3l7u"]
-height = 0.8
-radius = 0.426
+[sub_resource type="BoxShape3D" id="BoxShape3D_n2usd"]
+size = Vector3(0.804, 1.60172, 0.804)
 
 [node name="GumBallDispenser" type="StaticBody3D"]
 
 [node name="GumBallCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.394288, 0)
-shape = SubResource("CylinderShape3D_d3l7u")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000305176, 0.800679, 0.000442505)
+shape = SubResource("BoxShape3D_n2usd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
