@@ -39,13 +39,13 @@ func remove_object():
 	picked_object = null
 
 func throw_object():
-	if picked_object == null:
+	if picked_object == null or Engine.time_scale == 0 :
 		return
 	
 	var throw_direction = camera.global_transform.basis.z.normalized()
 	var throw_strength = -18.0
 	var upDirection = 5
 	
-	pickedUp = false
+	pickedUp = false	#glaube der bumms ist unnötig?
 	picked_object.apply_impulse(throw_direction * throw_strength + Vector3(0, upDirection, 0))
 	picked_object = null

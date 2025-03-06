@@ -45,10 +45,10 @@ func _process(delta: float) -> void:
 func pauseMenu():
 	if paused:
 		pause_menu.hide()
-		Engine.time_scale = 1
+		get_tree().paused = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		pause_menu.show()
-		Engine.time_scale = 0
-	
+		get_tree().paused = true
+		pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
 	paused = !paused

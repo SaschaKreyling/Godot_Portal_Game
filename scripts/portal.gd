@@ -13,7 +13,6 @@ class_name Portal
 @onready var portalCamera: Camera3D = $PortalViewport/PortalCamera
 @onready var ancors : Array = $AncorPoints.get_children()
 @onready var portalSurface: MeshInstance3D = $PortalSurface/PortalSurfaceMesh
-@onready var PossibleRay: RayCast3D = $PortalViewport/PortalCamera/Interact
 
 @onready var hold: Node3D = $PortalViewport/PortalCamera/Hold
 
