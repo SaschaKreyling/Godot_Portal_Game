@@ -32,9 +32,7 @@ func _process(delta: float) -> void:
 func setGlued(gumBall : GumBall) -> bool:
 	if(not activated or glued):
 		return false
-	
-	print("setting glued")
-		
+			
 	glued = true
 	activated = true
 	currentGumBall = gumBall
@@ -60,8 +58,6 @@ func setActivated() -> void:
 	glued = false
 	activated = true
 
-	print("setting active")
-
 	active_collider.set_deferred("disable", false) 
 	button_active_mesh.visible = true
 	
@@ -73,9 +69,7 @@ func setActivated() -> void:
 func setDeactivated() -> void:
 	glued = false
 	activated = false
-	
-	print("setting deactive")
-	
+		
 	deactive_collider.set_deferred("disable", false)
 	button_deactive_mesh.visible = true
 	
@@ -86,7 +80,6 @@ func setDeactivated() -> void:
 
 func updateState():
 	activated = not currentActivators.is_empty() or glued
-	print("UpdateState: " + str(activated) + " Glued? " + str(glued))
 	if not glued:
 		if activated:
 			setActivated()

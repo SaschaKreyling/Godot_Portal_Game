@@ -27,6 +27,8 @@ func onGlueableObjectHit(gluableObject) -> void:
 		inUse = true
 		interactCollider.set_deferred("disabled", true) 
 		hitZoneCollider.set_deferred("disabled", true) 
+		global_position = Vector3(-1000,-1000,-1000)
+		linear_velocity = Vector3(0,0,0)
 		gluedObject = gluableObject
 		gumBallMesh.visible = false
 	else:

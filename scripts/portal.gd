@@ -48,12 +48,12 @@ func _process(delta: float) -> void:
 	portalSurface.visible = shouldBeVisibleAndChecking()
 	
 	if shouldBeVisibleAndChecking():
+		portalViewport.render_target_update_mode = portalViewport.UPDATE_ALWAYS
 		setPortalCameraPositionAndRotation()
 		checkForTeleport()
 		if not actvieLampColorSet:
 			setLampColor(activeLampColor)
 			actvieLampColorSet = true
-		portalViewport.render_target_update_mode = portalViewport.UPDATE_ALWAYS
 	else:
 		portalViewport.render_target_update_mode = portalViewport.UPDATE_DISABLED
 		if actvieLampColorSet:
@@ -90,7 +90,7 @@ func setPortalCameraPositionAndRotation() -> void:
 	for ancor : Node3D in linkedPortal.ancors:
 		var dst : float = (ancor.global_position - portalCamera.global_position).dot(cameraNormal) / cameraNormal.length()
 		smallestDst = min(smallestDst, abs(dst))
-	portalCamera.near = max(0.5, smallestDst)
+	portalCamera.near = max(0.25, smallestDst)
 
 func teleport(body : Node3D) -> void:
 	var newPosition : Vector3 = linkedPortal.to_global(to_local(body.global_position)*Vector3(-1,1,-1))
