@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://6r8u0w7svar6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0bd5a"]
+font_size = 64
+font_color = Color(0.440979, 0.440979, 0.440979, 1)
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading"
+label_settings = SubResource("LabelSettings_0bd5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.321569, 0.321569, 0.321569, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.321569, 0.321569, 0.239216, 1)
