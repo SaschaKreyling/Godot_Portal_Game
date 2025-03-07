@@ -33,6 +33,22 @@ shape = SubResource("ConcavePolygonShape3D_fxyb7")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_seruc")
 
+[node name="RampCollider1" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.95, -0.05, 0)
+shape = SubResource("BoxShape3D_q2scd")
+
+[node name="RampCollider2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.707107, -0.707107, -8.74228e-08, -0.707107, 0.707107, 0, 6.18172e-08, 6.18172e-08, -1, -0.95, -0.05, 0)
+shape = SubResource("BoxShape3D_q2scd")
+
+[node name="RampCollider3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, -1, -0.707107, 0.707107, 0, 0.707107, 0.707107, -4.37114e-08, 0, -0.05, 0.95)
+shape = SubResource("BoxShape3D_q2scd")
+
+[node name="RampCollider4" type="CollisionShape3D" parent="."]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, 1, -0.707107, 0.707107, 0, -0.707107, -0.707107, -4.37114e-08, 0, -0.05, -0.95)
+shape = SubResource("BoxShape3D_q2scd")
+
 [node name="ButtonActive" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = ExtResource("2_e5u0n")
@@ -44,22 +60,6 @@ mesh = ExtResource("1_c1uwg")
 [node name="ButtonGlued" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = ExtResource("5_76y1l")
-
-[node name="Ramp" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.95, -0.05, 0)
-shape = SubResource("BoxShape3D_q2scd")
-
-[node name="Ramp1" type="CollisionShape3D" parent="."]
-transform = Transform3D(-0.707107, -0.707107, -8.74228e-08, -0.707107, 0.707107, 0, 6.18172e-08, 6.18172e-08, -1, -0.95, -0.05, 0)
-shape = SubResource("BoxShape3D_q2scd")
-
-[node name="Ramp2" type="CollisionShape3D" parent="."]
-transform = Transform3D(-3.09086e-08, -3.09086e-08, -1, -0.707107, 0.707107, 0, 0.707107, 0.707107, -4.37114e-08, 0, -0.05, 0.95)
-shape = SubResource("BoxShape3D_q2scd")
-
-[node name="Ramp3" type="CollisionShape3D" parent="."]
-transform = Transform3D(-3.09086e-08, -3.09086e-08, 1, -0.707107, 0.707107, 0, -0.707107, -0.707107, -4.37114e-08, 0, -0.05, -0.95)
-shape = SubResource("BoxShape3D_q2scd")
 
 [node name="ActivationArea" type="Area3D" parent="."]
 

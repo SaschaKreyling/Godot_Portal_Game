@@ -12,15 +12,24 @@ var gluedObject
 
 func _ready() -> void:
 	startPosition = global_position
+	reset()
 
 func reset() -> void:
+	gravity_scale = 0
 	gluedObject = null
 	inUse = false
 	gumBallMesh.visible = true
 	interactCollider.set_deferred("disabled", false) 
 	hitZoneCollider.set_deferred("disabled", false) 
 	linear_velocity = Vector3(0,0,0)
+	angular_velocity = Vector3(0,1,0)
 	global_position = startPosition
+
+func _process(delta: float) -> void:
+	if(global_position == startPosition):
+		gravity_scale = 0
+	else: 
+		gravity_scale = 1
 
 func onGlueableObjectHit(gluableObject) -> void:
 	if gluableObject.setGlued(self):
@@ -37,5 +46,3 @@ func onGlueableObjectHit(gluableObject) -> void:
 func _on_hit_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("gluable"):
 		onGlueableObjectHit(body)
-	else:
-		reset()
