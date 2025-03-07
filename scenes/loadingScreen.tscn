@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://6r8u0w7svar6"]
+
+[ext_resource type="Texture2D" uid="uid://drkg7mp81w4k7" path="res://assets/PlaceHolderLoadingImage.jpg" id="1_y2050"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1156.0
+offset_bottom = 657.0
+texture = ExtResource("1_y2050")
+expand_mode = 2

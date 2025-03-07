@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://d2f8rmvy2kdhf"]
 
-[ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/player.tscn" id="1_3rsea"]
+[ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/character/player.tscn" id="1_3rsea"]
 [ext_resource type="MeshLibrary" uid="uid://cst44q6losibq" path="res://assets/MeshLibrarySurroundings.tres" id="1_ypd3k"]
-[ext_resource type="PackedScene" uid="uid://cwdi26x82y0hu" path="res://scenes/box.tscn" id="2_tfxtw"]
-[ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/portal.tscn" id="3_xaqut"]
-[ext_resource type="PackedScene" uid="uid://dycqntdf0o0jc" path="res://scenes/button.tscn" id="4_ic7lc"]
-[ext_resource type="PackedScene" uid="uid://dkf418jeykrkf" path="res://scenes/door.tscn" id="6_gsqe4"]
-[ext_resource type="PackedScene" uid="uid://shgwkgqjj7x1" path="res://scenes/level_exit_portal.tscn" id="7_fu7wk"]
+[ext_resource type="PackedScene" uid="uid://cwdi26x82y0hu" path="res://scenes/asset_scenes/box.tscn" id="2_tfxtw"]
+[ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/asset_scenes/portal.tscn" id="3_xaqut"]
+[ext_resource type="PackedScene" uid="uid://dycqntdf0o0jc" path="res://scenes/asset_scenes/button.tscn" id="4_ic7lc"]
+[ext_resource type="PackedScene" uid="uid://dkf418jeykrkf" path="res://scenes/asset_scenes/door.tscn" id="6_gsqe4"]
+[ext_resource type="PackedScene" uid="uid://shgwkgqjj7x1" path="res://scenes/asset_scenes/level_exit_portal.tscn" id="7_fu7wk"]
 
 [node name="level_1" type="Node3D"]
 

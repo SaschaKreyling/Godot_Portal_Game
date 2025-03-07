@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="GameStudioProject"
-run/main_scene="res://scenes/TestScene.tscn"
+run/main_scene="res://scenes/level/level_testing.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+
+[autoload]
+
+SceneController="*res://scripts/scene_controller.gd"
 
 [global_group]
 

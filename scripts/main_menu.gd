@@ -3,7 +3,7 @@ extends Control
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/TestScene.tscn")
+	SceneController.goto_scene("res://scenes/level/level_testing.tscn")
 
 
 func _on_options_pressed() -> void:
