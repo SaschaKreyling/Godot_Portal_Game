@@ -6,8 +6,8 @@ class_name Player extends CharacterBody3D
 
 @onready var camera: Camera3D = $Camera3D
 
-@onready var hud: CanvasLayer = $Camera3D/UI/HUD
-@onready var pause_menu: Control = $Camera3D/UI/pause_menu
+@onready var ui: Node = $Camera3D/UI
+
 var paused = false
 var gravity_normal = 1
 var gravity_switched = false
@@ -52,22 +52,7 @@ func _process(delta) -> void:
 	#Check for pause input
 	if Input.is_action_just_pressed("pause"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		pauseMenu()
-
-#pauseMenu stops time and shows menu on pause, reverse on resume
-func pauseMenu():
-	if paused:
-		pause_menu.hide()
-		hud.show()
-		get_tree().paused = false
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	else:
-		hud.hide()
-		pause_menu.show()
-		get_tree().paused = true
-		pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
-	paused = !paused
-
+		ui.togglePauseMenu()
 
 func _on_gravity_gravity_turned(gravity: int) -> void:
 	gravity_normal = gravity

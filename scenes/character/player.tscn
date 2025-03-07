@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4hom0ownjibx"]
+[gd_scene load_steps=8 format=3 uid="uid://c4hom0ownjibx"]
 
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_0f4vj"]
 [ext_resource type="Environment" uid="uid://0ja3rgp6mlci" path="res://materials/WorldEnvoirment.tres" id="2_88xg0"]
 [ext_resource type="Script" path="res://scripts/picking_up.gd" id="3_g074f"]
+[ext_resource type="Script" path="res://scripts/ui_controller.gd" id="3_m3llk"]
 [ext_resource type="PackedScene" uid="uid://dhit0w3r7capu" path="res://menus/pause_menu.tscn" id="4_7orkh"]
 [ext_resource type="Texture2D" uid="uid://b41ocqh83k7gk" path="res://assets/crosshair.png" id="4_shkf2"]
 
@@ -20,6 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 environment = ExtResource("2_88xg0")
 
 [node name="UI" type="Node" parent="Camera3D"]
+script = ExtResource("3_m3llk")
 
 [node name="HUD" type="CanvasLayer" parent="Camera3D/UI"]
 
@@ -42,7 +44,7 @@ size_flags_vertical = 3
 texture = ExtResource("4_shkf2")
 expand_mode = 1
 
-[node name="pause_menu" parent="Camera3D/UI" instance=ExtResource("4_7orkh")]
+[node name="PauseMenu" parent="Camera3D/UI" instance=ExtResource("4_7orkh")]
 visible = false
 
 [node name="HoldingAncor" type="Node3D" parent="Camera3D"]
