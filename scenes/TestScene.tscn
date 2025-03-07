@@ -68,3 +68,5 @@ transform = Transform3D(10, 0, 0, 0, 3.03, 0, 0, 0, 10.474, -2.26755, 4.4587, 5.
 
 [node name="GumBallDispenser" parent="." instance=ExtResource("9_3yjst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8092, 0.0345229, -1.64118)
+
+[connection signal="gravity_turned" from="gravity" to="Player" method="_on_gravity_gravity_turned"]
