@@ -11,7 +11,7 @@ func _ready():
 	loading_screen_scene = load("res://scenes/loadingScreen.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
 	if loading:

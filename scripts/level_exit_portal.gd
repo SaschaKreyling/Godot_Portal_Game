@@ -9,7 +9,7 @@ class_name ExitPortal
 
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	checkForExit()
 	var changeRandom : float = random.randf()
 	if changeRandom < 0.1:

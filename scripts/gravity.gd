@@ -8,7 +8,7 @@ var gravity_normal: bool = true
 var up = Vector3(0, 1, 0)
 var down = Vector3(0, -1, 0)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("gravity"):
 		if(gravity_normal == true):
 			gravity(up)

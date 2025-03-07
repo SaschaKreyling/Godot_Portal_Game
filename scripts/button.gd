@@ -24,7 +24,7 @@ func _ready() -> void:
 	identfier.updateColor(linkColor)
 	setDeactivated()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if unglue:
 		unglue = false
 		setUnglued()

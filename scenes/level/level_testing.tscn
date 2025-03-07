@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddbwxh34wybcs"]
+[gd_scene load_steps=11 format=3 uid="uid://ddbwxh34wybcs"]
 
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/character/player.tscn" id="1_p0cyg"]
 [ext_resource type="PackedScene" uid="uid://dycqntdf0o0jc" path="res://scenes/asset_scenes/button.tscn" id="2_tw0vy"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://shgwkgqjj7x1" path="res://scenes/asset_scenes/level_exit_portal.tscn" id="7_d85wk"]
 [ext_resource type="PackedScene" uid="uid://c68u36b6ggbkq" path="res://scenes/gravity.tscn" id="8_v5gi6"]
 [ext_resource type="PackedScene" uid="uid://yfx0554bq3xa" path="res://scenes/asset_scenes/gum_ball_dispenser.tscn" id="9_yjlsh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s04ej"]
+size = Vector3(33, 12, 36)
 
 [node name="Level1" type="Node3D"]
 
@@ -64,7 +67,11 @@ linkColor = Color(1, 1, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.37083, 0.0600004, 20.6312)
 
 [node name="gravity" parent="." instance=ExtResource("8_v5gi6")]
-transform = Transform3D(10, 0, 0, 0, 3.03, 0, 0, 0, 10.474, -2.26755, 4.4587, 5.36741)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26755, 4.4587, 5.36741)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="gravity"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.944519, 0.256836, -0.766601)
+shape = SubResource("BoxShape3D_s04ej")
 
 [node name="GumBallDispenser" parent="." instance=ExtResource("9_yjlsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8092, 0.0345229, -1.64118)
