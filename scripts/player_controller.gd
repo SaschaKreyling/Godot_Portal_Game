@@ -20,7 +20,7 @@ func _input(event):
 		camera.rotate_x(-event.relative.y * 0.001)
 		camera.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _process(delta) -> void:

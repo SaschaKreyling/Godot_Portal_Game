@@ -9,7 +9,7 @@ var collidor
 var pull_power : float = 4
 var dropDistance : float = 3
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if picked_object != null:
 		var a : Vector3 = picked_object.global_position
 		var b : Vector3 = holdingPoint.global_position

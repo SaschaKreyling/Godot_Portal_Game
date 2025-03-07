@@ -43,7 +43,7 @@ func _on_viewport_resize() -> void:
 	portalViewport.size = playerCamera.get_viewport().size * 0.25
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	activated = areAllButtonsActive()
 	portalSurface.visible = shouldBeVisibleAndChecking()
 	

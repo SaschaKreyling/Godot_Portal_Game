@@ -25,7 +25,7 @@ func reset() -> void:
 	angular_velocity = Vector3(0,1,0)
 	global_position = startPosition
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(global_position == startPosition):
 		gravity_scale = 0
 	else: 
