@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
-	if not is_on_floor():
+	if not is_on_floor() or gravity_normal == -1:
 		velocity += get_gravity() * delta
 		
 	if Input.is_action_just_pressed("Up") and is_on_floor() :
@@ -54,8 +54,6 @@ func pauseMenu():
 		get_tree().paused = true
 		pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
 	paused = !paused
-
-
 
 
 func _on_gravity_gravity_turned(gravity: int) -> void:
