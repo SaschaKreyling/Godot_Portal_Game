@@ -7,7 +7,7 @@ func _on_play_pressed() -> void:
 
 
 func _on_options_pressed() -> void:
-	get_tree().change_scene_to_file("res://Menus/options_menu.tscn")
+	SceneController.goto_scene("res://Menus/options_menu.tscn")
 
 
 func _on_exit_pressed() -> void:

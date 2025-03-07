@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dkf418jeykrkf" path="res://scenes/asset_scenes/door.tscn" id="6_gsqe4"]
 [ext_resource type="PackedScene" uid="uid://shgwkgqjj7x1" path="res://scenes/asset_scenes/level_exit_portal.tscn" id="7_fu7wk"]
 
-[node name="level_1" type="Node3D"]
+[node name="Level1" type="Node3D"]
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_ypd3k")

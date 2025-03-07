@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c68u36b6ggbkq" path="res://scenes/gravity.tscn" id="8_v5gi6"]
 [ext_resource type="PackedScene" uid="uid://yfx0554bq3xa" path="res://scenes/asset_scenes/gum_ball_dispenser.tscn" id="9_yjlsh"]
 
-[node name="Level1" type="Node3D"]
+[node name="LevelTesting" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_p0cyg")]
 unique_name_in_owner = true
