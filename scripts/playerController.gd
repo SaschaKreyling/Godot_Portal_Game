@@ -9,6 +9,7 @@ class_name Player extends CharacterBody3D
 @onready var pause_menu: Control = $Camera3D/pause_menu
 var paused = false
 var gravity_normal = 1
+var gravity_switched = false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -23,11 +24,20 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
-	if not is_on_floor() or gravity_normal == -1:
+	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
+	
+	if gravity_normal == -1 and not gravity_switched:
+		velocity += get_gravity() * delta
+		gravity_switched = true
+		up_direction = Vector3(0, -1, 0)
+	
+	if gravity_normal == 1:
+		gravity_switched = false
+		up_direction = Vector3(0, 1, 0)
+	
 	if Input.is_action_just_pressed("Up") and is_on_floor() :
-		velocity.y = JUMP_VELOCITY
+		velocity.y = JUMP_VELOCITY * gravity_normal
 		
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
