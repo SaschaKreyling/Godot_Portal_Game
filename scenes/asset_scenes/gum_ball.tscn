@@ -16,12 +16,16 @@ script = ExtResource("1_ts4us")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.206, 0)
 mesh = ExtResource("2_tr37a")
 
-[node name="InteractCollider" type="CollisionShape3D" parent="."]
+[node name="PhysicCollider" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_fobg7")
 
 [node name="HitZone" type="Area3D" parent="."]
 
-[node name="HitZoneCollider" type="CollisionShape3D" parent="HitZone"]
+[node name="InteractCollider" type="CollisionShape3D" parent="HitZone"]
 shape = SubResource("SphereShape3D_uor2p")
 
+[node name="ResetTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]
+[connection signal="timeout" from="ResetTimer" to="." method="_on_timer_timeout"]

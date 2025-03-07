@@ -1,48 +1,82 @@
 extends RigidBody3D
 class_name GumBall
 
-@onready var interactCollider: CollisionShape3D = $InteractCollider
-@onready var hitZoneCollider: CollisionShape3D = $HitZone/HitZoneCollider
+@onready var physicCollider: CollisionShape3D = $PhysicCollider
+@onready var interactCollider: CollisionShape3D = $HitZone/InteractCollider
 @onready var gumBallMesh: MeshInstance3D = $GumBallMesh
-@onready var hitZone: Area3D = $HitZone
+@onready var resetTimer : Timer = $ResetTimer
 
 var startPosition : Vector3
+
 var inUse : bool = false
 var gluedObject
+
+var pickedUp : bool = false
+
+var idle : bool = true
 
 func _ready() -> void:
 	startPosition = global_position
 	reset()
 
 func reset() -> void:
-	gravity_scale = 0
+	showAndEnable()
+	setIdling()
+	
 	gluedObject = null
 	inUse = false
+
+func _process(_delta: float) -> void:
+	if(global_position != startPosition):
+		cancelIdle()
+
+	if isDropped() and resetTimer.is_stopped():
+		resetTimer.start()
+	elif not resetTimer.is_stopped() and pickedUp:
+		resetTimer.stop()
+		resetTimer.wait_time = 5
+
+func togglePickedUp() -> void:
+	pickedUp = !pickedUp
+
+func isDropped() -> bool:
+	return not pickedUp and not inUse and not idle
+	
+func hideAndDisable() -> void:
+	physicCollider.set_deferred("disabled", true) 
+	interactCollider.set_deferred("disabled", true) 
+	global_position = Vector3(-1000,-1000,-1000)
+	linear_velocity = Vector3(0,0,0)
+	gumBallMesh.visible = false
+
+func showAndEnable() -> void:
 	gumBallMesh.visible = true
+	physicCollider.set_deferred("disabled", false) 
 	interactCollider.set_deferred("disabled", false) 
-	hitZoneCollider.set_deferred("disabled", false) 
+
+func setIdling() -> void:
+	resetTimer.wait_time = 5
+	idle = true
 	linear_velocity = Vector3(0,0,0)
 	angular_velocity = Vector3(0,1,0)
 	global_position = startPosition
+	gravity_scale = 0
 
-func _process(_delta: float) -> void:
-	if(global_position == startPosition):
-		gravity_scale = 0
-	else: 
-		gravity_scale = 1
+func cancelIdle() -> void:
+	gravity_scale = 1
+	idle = false
 
 func onGlueableObjectHit(gluableObject) -> void:
 	if gluableObject.setGlued(self):
 		inUse = true
-		interactCollider.set_deferred("disabled", true) 
-		hitZoneCollider.set_deferred("disabled", true) 
-		global_position = Vector3(-1000,-1000,-1000)
-		linear_velocity = Vector3(0,0,0)
 		gluedObject = gluableObject
-		gumBallMesh.visible = false
+		hideAndDisable()
 	else:
 		reset()
 
 func _on_hit_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("gluable"):
 		onGlueableObjectHit(body)
+
+func _on_timer_timeout() -> void:
+	reset()
