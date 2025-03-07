@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddbwxh34wybcs"]
+[gd_scene load_steps=12 format=3 uid="uid://ddbwxh34wybcs"]
 
+[ext_resource type="PackedScene" uid="uid://bk7ix6d50gba1" path="res://scenes/link_group.tscn" id="1_dmtr2"]
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/character/player.tscn" id="1_p0cyg"]
 [ext_resource type="PackedScene" uid="uid://dycqntdf0o0jc" path="res://scenes/asset_scenes/button.tscn" id="2_tw0vy"]
 [ext_resource type="MeshLibrary" uid="uid://cst44q6losibq" path="res://assets/MeshLibrarySurroundings.tres" id="3_eotbv"]
@@ -15,17 +16,7 @@ size = Vector3(33, 12, 36)
 
 [node name="LevelTesting" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_p0cyg")]
-unique_name_in_owner = true
-transform = Transform3D(-0.710419, 0, 0.703779, 0, 1, 0, -0.703779, 0, -0.710419, 0, 1.52, 0)
-
-[node name="Envoirment" type="Node3D" parent="."]
-
-[node name="Button2" parent="Envoirment" instance=ExtResource("2_tw0vy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06029, 0.0600004, 10.8579)
-linkColor = Color(1, 1, 0, 1)
-
-[node name="GridMap" type="GridMap" parent="Envoirment"]
+[node name="GridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5037, 0, 0)
 mesh_library = ExtResource("3_eotbv")
 cell_size = Vector3(3.16, 3.16, 3.16)
@@ -34,38 +25,6 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 2, 0)
 
-[node name="Portal" parent="Envoirment" node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("4_6dpqo")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 12.6843, 0.178169, 10.5337)
-linkedPortal = NodePath("../Portal2")
-linkColor = Color(0, 0, 1, 1)
-buttons = [NodePath("../Button")]
-
-[node name="Portal2" parent="Envoirment" node_paths=PackedStringArray("linkedPortal") instance=ExtResource("4_6dpqo")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.0444, 3.15915, -7.82561)
-linkedPortal = NodePath("../Portal")
-linkColor = Color(0, 0, 1, 1)
-
-[node name="Box2" parent="Envoirment" instance=ExtResource("5_5hmyh")]
-transform = Transform3D(-0.495762, 0, 0.868459, 0, 1, 0, -0.868459, 0, -0.495762, -9.25075, 0.9, 10.866)
-
-[node name="Button" parent="Envoirment" instance=ExtResource("2_tw0vy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55245, 0, 1.6204)
-linkColor = Color(0, 0, 1, 1)
-
-[node name="Box3" parent="Envoirment" instance=ExtResource("5_5hmyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95636, 0.982673, 7.78439)
-
-[node name="Box" parent="Envoirment" instance=ExtResource("5_5hmyh")]
-transform = Transform3D(0.995671, 0, 0.0929441, 0, 1, 0, -0.0929441, 0, 0.995671, -8.45075, 0.9, 8.69507)
-
-[node name="Door" parent="Envoirment" node_paths=PackedStringArray("buttons") instance=ExtResource("6_8ua48")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.36, 0, 12.644)
-buttons = [NodePath("../Button2")]
-linkColor = Color(1, 1, 0, 1)
-
-[node name="LevelExitPortal" parent="." instance=ExtResource("7_d85wk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.37083, 0.0600004, 20.6312)
-
 [node name="gravity" parent="." instance=ExtResource("8_v5gi6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26755, 4.4587, 5.36741)
 
@@ -73,7 +32,57 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26755, 4.4587, 5.36741)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.944519, 0.256836, -0.766601)
 shape = SubResource("BoxShape3D_s04ej")
 
+[node name="LinkGroup" parent="." instance=ExtResource("1_dmtr2")]
+linkColor = Color(0.94902, 1, 0, 1)
+
+[node name="Button2" parent="LinkGroup" instance=ExtResource("2_tw0vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06029, 0.0600004, 10.8579)
+
+[node name="Button3" parent="LinkGroup" instance=ExtResource("2_tw0vy")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -6.06, 9.42, 10.858)
+
+[node name="Door" parent="LinkGroup" node_paths=PackedStringArray("buttons") instance=ExtResource("6_8ua48")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.36, 0, 12.644)
+buttons = [NodePath("../Button2"), NodePath("../Button3")]
+
+[node name="LinkGroup2" parent="." instance=ExtResource("1_dmtr2")]
+linkColor = Color(1, 0, 1, 1)
+
+[node name="Portal2" parent="LinkGroup2" node_paths=PackedStringArray("linkedPortal") instance=ExtResource("4_6dpqo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.0444, 3.15915, -7.82561)
+linkedPortal = NodePath("../Portal")
+
+[node name="Portal" parent="LinkGroup2" node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("4_6dpqo")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 12.6843, 0.178169, 10.5337)
+linkedPortal = NodePath("../Portal2")
+buttons = [NodePath("../Button")]
+
+[node name="Button" parent="LinkGroup2" instance=ExtResource("2_tw0vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55245, 0, 1.6204)
+
+[node name="Player" parent="." instance=ExtResource("1_p0cyg")]
+unique_name_in_owner = true
+transform = Transform3D(-0.710419, 0, 0.703779, 0, 1, 0, -0.703779, 0, -0.710419, 0, 1.52, 0)
+
+[node name="Box" parent="." instance=ExtResource("5_5hmyh")]
+transform = Transform3D(0.995671, 0, 0.0929441, 0, 1, 0, -0.0929441, 0, 0.995671, -8.45075, 0.9, 8.69507)
+
+[node name="Box2" parent="." instance=ExtResource("5_5hmyh")]
+transform = Transform3D(-0.495762, 0, 0.868459, 0, 1, 0, -0.868459, 0, -0.495762, -9.25075, 0.9, 10.866)
+
+[node name="Box3" parent="." instance=ExtResource("5_5hmyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95636, 0.982673, 7.78439)
+
+[node name="LevelExitPortal" parent="." instance=ExtResource("7_d85wk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.37083, 0.0600004, 20.6312)
+
 [node name="GumBallDispenser" parent="." instance=ExtResource("9_yjlsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8092, 0.0345229, -1.64118)
+
+[node name="GumBallDispenser2" parent="." instance=ExtResource("9_yjlsh")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -10.3232, 9.42455, 4.85692)
+
+[node name="GumBallDispenser3" parent="." instance=ExtResource("9_yjlsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4116, 3.18, -12.0527)
 
 [connection signal="gravity_turned" from="gravity" to="Player" method="_on_gravity_gravity_turned"]

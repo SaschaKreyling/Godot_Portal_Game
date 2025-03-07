@@ -39,7 +39,7 @@ material = SubResource("StandardMaterial3D_h22of")
 [sub_resource type="BoxShape3D" id="BoxShape3D_ik3yv"]
 size = Vector3(2.15, 3, 5)
 
-[node name="Portal" type="Node3D"]
+[node name="Portal" type="Node3D" groups=["linkable"]]
 script = ExtResource("1_36t7s")
 
 [node name="PortalSurface" type="StaticBody3D" parent="."]

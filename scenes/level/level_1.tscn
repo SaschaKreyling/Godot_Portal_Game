@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2f8rmvy2kdhf"]
+[gd_scene load_steps=9 format=3 uid="uid://d2f8rmvy2kdhf"]
 
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/character/player.tscn" id="1_3rsea"]
+[ext_resource type="PackedScene" uid="uid://bk7ix6d50gba1" path="res://scenes/link_group.tscn" id="1_hwujs"]
 [ext_resource type="MeshLibrary" uid="uid://cst44q6losibq" path="res://assets/MeshLibrarySurroundings.tres" id="1_ypd3k"]
 [ext_resource type="PackedScene" uid="uid://cwdi26x82y0hu" path="res://scenes/asset_scenes/box.tscn" id="2_tfxtw"]
 [ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/asset_scenes/portal.tscn" id="3_xaqut"]
@@ -10,6 +11,35 @@
 
 [node name="Level1" type="Node3D"]
 
+[node name="LinkGroup" parent="." instance=ExtResource("1_hwujs")]
+linkColor = Color(1, 1, 0, 1)
+
+[node name="Door" parent="LinkGroup" node_paths=PackedStringArray("buttons") instance=ExtResource("6_gsqe4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.32, 0, -3.16)
+buttons = [NodePath("../Button2"), NodePath("../Button3")]
+openOtherDirection = true
+
+[node name="Button2" parent="LinkGroup" instance=ExtResource("4_ic7lc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.57266, 0.0599995, 1.54874)
+
+[node name="Button3" parent="LinkGroup" instance=ExtResource("4_ic7lc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67403, 0.0600014, -7.76825)
+
+[node name="LinkGroup2" parent="." instance=ExtResource("1_hwujs")]
+linkColor = Color(0, 1, 0, 1)
+
+[node name="Portal" parent="LinkGroup2" node_paths=PackedStringArray("linkedPortal") instance=ExtResource("3_xaqut")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32, 6.316, 13.25)
+linkedPortal = NodePath("../Portal2")
+
+[node name="Portal2" parent="LinkGroup2" node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("3_xaqut")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -3, 0.036, 6.5)
+linkedPortal = NodePath("../Portal")
+buttons = [NodePath("../Button")]
+
+[node name="Button" parent="LinkGroup2" instance=ExtResource("4_ic7lc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58, 0.06, 7.9)
+
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_ypd3k")
 cell_size = Vector3(3.16, 3.16, 3.16)
@@ -18,44 +48,15 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Portal" parent="." node_paths=PackedStringArray("linkedPortal") instance=ExtResource("3_xaqut")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32, 6.316, 13.25)
-linkedPortal = NodePath("../Portal2")
-linkColor = Color(0.878431, 0, 0.819608, 1)
-
 [node name="Box" parent="." instance=ExtResource("2_tfxtw")]
 transform = Transform3D(0.901651, 0, 0.432463, 0, 1, 0, -0.432463, 0, 0.901651, 7.85761, 0.972196, 6.91966)
 
 [node name="Box2" parent="." instance=ExtResource("2_tfxtw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.16909, 7.13529, 10.6936)
 
-[node name="Portal2" parent="." node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("3_xaqut")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -3, 0.036, 6.5)
-linkedPortal = NodePath("../Portal")
-linkColor = Color(0.878431, 0, 0.819608, 1)
-buttons = [NodePath("../Button")]
-
-[node name="Button" parent="." instance=ExtResource("4_ic7lc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58, 0.06, 7.9)
-linkColor = Color(0.879526, 0.000353665, 0.819936, 1)
-
-[node name="Button2" parent="." instance=ExtResource("4_ic7lc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.57266, 0.0599995, 1.54874)
-linkColor = Color(1, 1, 0, 1)
-
-[node name="Button3" parent="." instance=ExtResource("4_ic7lc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67403, 0.0600014, -7.76825)
-linkColor = Color(1, 1, 0, 1)
-
 [node name="Player" parent="." instance=ExtResource("1_3rsea")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.46098, 1.67301, 1.97164)
-
-[node name="Door" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("6_gsqe4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.32, 0, -3.16)
-buttons = [NodePath("../Button2"), NodePath("../Button3")]
-openOtherDirection = true
-linkColor = Color(1, 1, 0, 1)
 
 [node name="LevelExitPortal" parent="." instance=ExtResource("7_fu7wk")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13.75, 0.036, -3.183)

@@ -1,9 +1,6 @@
 extends StaticBody3D
 class_name FloorButton
 
-@export_color_no_alpha var linkColor : Color
-@export var unglue : bool = false
-
 @onready var active_collider: CollisionShape3D = $ActiveCollider
 @onready var deactive_collider: CollisionShape3D = $DeactiveCollider
 
@@ -13,6 +10,8 @@ class_name FloorButton
 
 @onready var identfier : Identifier = $Identifier
 
+var linkColor : Color
+
 var currentActivators : Array = []
 var activated: bool = false
 
@@ -21,13 +20,11 @@ var currentGumBall: GumBall
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	identfier.updateColor(linkColor)
 	setDeactivated()
 
-func _process(_delta: float) -> void:
-	if unglue:
-		unglue = false
-		setUnglued()
+func setLinkColor(color : Color) -> void:
+	linkColor = color
+	identfier.updateColor(linkColor)
 
 func setGlued(gumBall : GumBall) -> bool:
 	if(not activated or glued):

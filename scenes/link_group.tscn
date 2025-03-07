@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk7ix6d50gba1"]
+
+[ext_resource type="Script" path="res://link_group.gd" id="1_y1wpk"]
+
+[node name="LinkGroup" type="Node3D"]
+script = ExtResource("1_y1wpk")

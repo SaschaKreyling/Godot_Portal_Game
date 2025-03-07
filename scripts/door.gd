@@ -3,7 +3,6 @@ extends StaticBody3D
 
 @export var buttons : Array[FloorButton]
 @export var openOtherDirection: bool
-@export_color_no_alpha var linkColor : Color
 
 @onready var frontIdentifier: Identifier = $FrontIdentifier
 @onready var backIdentifier: Identifier = $BackIdentifier
@@ -11,6 +10,7 @@ extends StaticBody3D
 @onready var doorCollider: CollisionShape3D = $DoorCollider
 @onready var movableDoor: MeshInstance3D = $MovableDoor
 
+var linkColor : Color
 
 var activated : bool = true
 var openedTarget : float = 3.025 
@@ -18,8 +18,6 @@ var openTime : float = 2;
 var direction : int
 
 func _ready() -> void:
-	frontIdentifier.updateColor(linkColor)
-	backIdentifier.updateColor(linkColor)
 	direction = 1 if openOtherDirection else -1 
 
 func _process(delta: float) -> void:
@@ -36,6 +34,10 @@ func _process(delta: float) -> void:
 		if abs(movableDoor.position.z) > 0:
 			movableDoor.position.z -= direction * min(delta * openedTarget / openTime , abs(movableDoor.position.z))
 
+func setLinkColor(color : Color) -> void:
+	linkColor = color
+	frontIdentifier.updateColor(linkColor)
+	backIdentifier.updateColor(linkColor)
 
 func areAllButtonsActive() -> bool:
 	var active : bool = true

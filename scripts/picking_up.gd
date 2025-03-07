@@ -1,6 +1,6 @@
 extends RayCast3D
 
-@onready var holdingPoint: Node3D = $"../Hold"
+@onready var holdingPoint: Node3D = $"../HoldingAncor"
 @onready var camera: Camera3D = $".."
 
 var pickedUp : bool = false
@@ -24,8 +24,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func _process(_delta: float) -> void:
-	#target_position = holdingPoint.position
-	
 	if Input.is_action_just_pressed("Interact"):
 		if picked_object == null:
 			pick_object()

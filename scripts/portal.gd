@@ -3,7 +3,6 @@ class_name Portal
 
 @export_category("PortalSettings")
 @export var linkedPortal: Portal
-@export_color_no_alpha var linkColor: Color
 @export var buttons: Array[FloorButton]
 @export var activated : bool = true
 
@@ -25,6 +24,8 @@ var activeLampColor: Color  = Color.GREEN
 var deactiveLampColor: Color = Color.RED
 var actvieLampColorSet : bool
 
+var linkColor: Color
+
 var bodiesToTeleport : Array[Node3D]
 var previousDots : Dictionary
 
@@ -35,9 +36,12 @@ var previousDots : Dictionary
 func _ready() -> void:
 	playerCamera.get_viewport().connect("size_changed", _on_viewport_resize)
 	_on_viewport_resize()
-	identfier.updateColor(linkColor)
 	setLampColor(activeLampColor)
 	actvieLampColorSet = true
+	
+func setLinkColor(color : Color) -> void:
+	linkColor = color
+	identfier.updateColor(linkColor)
 
 func _on_viewport_resize() -> void:
 	portalViewport.size = playerCamera.get_viewport().size * 0.25
@@ -63,6 +67,7 @@ func _process(_delta: float) -> void:
 func setLampColor(color : Color) -> void:
 	var material : StandardMaterial3D =  StandardMaterial3D.new()
 	material.albedo_color = color
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	portalLightMesh.set_surface_override_material(0 , material)
 	portalSpotLight1.light_color = color
 	portalSpotLight2.light_color = color

@@ -9,6 +9,7 @@ var speed : float = 4
 func updateColor(color : Color) -> void:
 	var material = StandardMaterial3D.new()
 	material.albedo_color = color
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	identifierLight.light_color = color
 	identifierMesh.set_surface_override_material(0, material)
 

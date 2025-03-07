@@ -6,7 +6,8 @@ class_name Player extends CharacterBody3D
 
 @onready var camera: Camera3D = $Camera3D
 
-@onready var pause_menu: Control = $Camera3D/pause_menu
+@onready var hud: CanvasLayer = $Camera3D/UI/HUD
+@onready var pause_menu: Control = $Camera3D/UI/pause_menu
 var paused = false
 var gravity_normal = 1
 var gravity_switched = false
@@ -57,9 +58,11 @@ func _process(delta) -> void:
 func pauseMenu():
 	if paused:
 		pause_menu.hide()
+		hud.show()
 		get_tree().paused = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
+		hud.hide()
 		pause_menu.show()
 		get_tree().paused = true
 		pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
