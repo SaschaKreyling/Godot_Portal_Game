@@ -23,10 +23,19 @@ func _physics_process(_delta: float) -> void:
 		var objectPosition : Vector3 = picked_object.global_position
 		var holdPosition : Vector3 = holdingAncor.global_position
 		
+		var behindPortal = false
 		if throughPortal:
+			
 			holdPosition = throughPortal.alternateholdingAncor.global_position
 			
+			var directionToPortalSurface = throughPortal.portalCamera.global_basis.z
+			var dot : float = directionToPortalSurface.dot(throughPortal.linkedPortal.global_basis.z)
+			behindPortal = 1 > sign(dot)
+			
 		var distanceToBeClosed = objectPosition.distance_to(holdPosition)
+		if(distanceToBeClosed > dropDistance or behindPortal):
+			drop_object()
+			return
 		picked_object.set_linear_velocity(objectPosition.direction_to(holdPosition) * distanceToBeClosed * pull_power)
 
 
