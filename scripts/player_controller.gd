@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * 0.001 * gravity_normal)
+		rotate(Vector3.UP,-event.relative.x * 0.001 * gravity_normal)
 		camera.rotate_x(-event.relative.y * 0.001)
 		camera.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 

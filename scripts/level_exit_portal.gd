@@ -35,7 +35,7 @@ func checkForExit() -> void:
 
 func exitLevel():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	SceneController.goto_scene("res://menus/main_menu.tscn")
+	SceneController.goto_scene("res://menus/level_select_menu.tscn")
 
 func setPortalLight(color : Color) -> void:
 	var material = StandardMaterial3D.new()
