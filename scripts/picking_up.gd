@@ -63,9 +63,11 @@ func is_pickupable(object) -> bool:
 func throw_object():
 	if picked_object == null: 
 		return
+	var throw_direction = camera.global_basis.z.normalized()
 	
-	var throw_direction = camera.global_transform.basis.z.normalized()
-	
+	if throughPortal:
+		throw_direction = throughPortal.portalCamera.global_basis.z.normalized()
+		
 	picked_object.apply_impulse(throw_direction * throw_strength)
 	drop_object()
 
@@ -73,9 +75,9 @@ func toggleThroughPortal(portal : Portal) -> void:
 	throughPortal = portal
 
 func _on_object_teleported(object : Node3D, destination : Portal) -> void:
-		if(object == picked_object and throughPortal == null):
-			toggleThroughPortal(destination.linkedPortal)
-		elif(object is Player and throughPortal == null):
-			toggleThroughPortal(destination)
-		else:
+		if(throughPortal):
 			toggleThroughPortal(null)
+		elif(object == picked_object):
+			toggleThroughPortal(destination.linkedPortal)
+		elif(object is Player):
+			toggleThroughPortal(destination)
