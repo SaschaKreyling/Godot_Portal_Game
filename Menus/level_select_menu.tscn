@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd2fquruo5eu6"]
+[gd_scene load_steps=8 format=3 uid="uid://bd2fquruo5eu6"]
 
 [ext_resource type="Texture2D" uid="uid://cxe30hlfin1l5" path="res://MenuBackground.PNG" id="1_dtgjw"]
 [ext_resource type="Script" path="res://scripts/level_select_menu.gd" id="2_pvwml"]
@@ -6,6 +6,12 @@
 
 [sub_resource type="Theme" id="Theme_3at6r"]
 default_font = ExtResource("2_wptmp")
+
+[sub_resource type="Theme" id="Theme_6kwad"]
+default_font_size = 70
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8u5g"]
+bg_color = Color(0.6, 0.6, 0.6, 0.498039)
 
 [sub_resource type="Theme" id="Theme_1s8lj"]
 
@@ -43,23 +49,49 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+[node name="BoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+
+[node name="Container" type="BoxContainer" parent="MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/BoxContainer/Container"]
+custom_minimum_size = Vector2(554.985, 110)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = SubResource("Theme_6kwad")
+text = "Level Select
+"
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_r8u5g")
 current_tab = 0
 
-[node name="Introduction" type="GridContainer" parent="MarginContainer/TabContainer"]
+[node name="Introduction" type="GridContainer" parent="MarginContainer/BoxContainer/TabContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_1s8lj")
 columns = 4
 metadata/_tab_index = 0
 
-[node name="Testing" type="GridContainer" parent="MarginContainer/TabContainer"]
+[node name="Testing" type="GridContainer" parent="MarginContainer/BoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 columns = 4
 metadata/_tab_index = 1
+
+[node name="Button" type="Button" parent="MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Main Menu"
+
+[connection signal="pressed" from="MarginContainer/BoxContainer/Button" to="." method="_on_button_pressed"]

@@ -3,8 +3,8 @@ extends Control
 @export var indtroductionLevelPath : String
 @export var testingLevelPath : String
 
-@onready var introductionContainer: GridContainer = $MarginContainer/TabContainer/Introduction
-@onready var testingContainer: GridContainer = $MarginContainer/TabContainer/Testing
+@onready var introductionContainer: GridContainer = $MarginContainer/BoxContainer/TabContainer/Introduction
+@onready var testingContainer: GridContainer = $MarginContainer/BoxContainer/TabContainer/Testing
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,3 +23,7 @@ func createNewButton() -> Button:
 	var button = Button.new()
 	button.custom_minimum_size = Vector2(200,100)
 	return button
+
+
+func _on_button_pressed() -> void:
+	SceneController.goto_scene_no_loading("res://menus/main_menu.tscn")

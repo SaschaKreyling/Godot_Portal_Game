@@ -57,31 +57,28 @@ text = "WarpFrame
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 3
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(425, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 30
 
 [node name="play" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 text = "Play"
 
 [node name="options" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 text = "Options"
 
 [node name="exit" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 text = "Exit"
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/play" to="." method="_on_play_pressed"]

@@ -29,9 +29,17 @@ func goto_scene_deferred():
 	setScene(loading_screen_scene)
 	loading = true
 	
+func goto_scene_no_loading_deffered():
+	ResourceLoader.load_threaded_request(loading_path)
+	loading = true
+	
 func goto_scene(path : String):
 	loading_path = path
 	call_deferred("goto_scene_deferred")
+
+func goto_scene_no_loading(path : String):
+	loading_path = path
+	call_deferred("goto_scene_no_loading_deffered")
 
 func setScene(scene : PackedScene):
 	current_scene.free()
