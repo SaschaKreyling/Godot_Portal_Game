@@ -65,6 +65,7 @@ func drop_object():
 	if picked_object.has_method("togglePickedUp"):
 			picked_object.togglePickedUp()
 	picked_object = null
+	throughPortal = null
 
 func is_pickupable(object) -> bool:
 	return object != null and not picked_object and object.is_in_group("holdables")
