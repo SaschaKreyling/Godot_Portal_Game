@@ -1,32 +1,32 @@
 extends RayCast3D
 
-@onready var holdingPoint: Node3D = $"../HoldingAncor"
+@onready var holdingAncor: Node3D = $"../HoldingAncor"
 @onready var camera: Camera3D = $".."
 
 var throw_strength = -18.0
-var pull_power : float = 4
+var pull_power : float = 10
 var dropDistance : float = 3
 
 
 var picked_object : Node3D
-var collidor
+
+var throughPortal : Portal
+
+var active_ray : RayCast3D = self
+var activeHoldingPoint : Node3D = holdingAncor
+
+func _ready() -> void:
+	SignalBus.teleported_object.connect(_on_object_teleported)
 
 func _physics_process(_delta: float) -> void:
 	if picked_object != null:
-		
 		var objectPosition : Vector3 = picked_object.global_position
-		var holdPosition : Vector3 = holdingPoint.global_position
-		var collider : Node3D = get_collider()
+		var holdPosition : Vector3 = holdingAncor.global_position
 		
-		if(collider != null and collider.name == "PortalSurface"):
-			var portal : Portal = collider.get_parent_node_3d()
-			holdPosition = portal.hold.global_position
+		if throughPortal:
+			holdPosition = throughPortal.alternateholdingAncor.global_position
 			
 		var distanceToBeClosed = objectPosition.distance_to(holdPosition)
-		if distanceToBeClosed > dropDistance:
-			drop_object()
-			return
-			
 		picked_object.set_linear_velocity(objectPosition.direction_to(holdPosition) * distanceToBeClosed * pull_power)
 
 
@@ -41,11 +41,17 @@ func _process(delta: float) -> void:
 
 func pick_object():
 	var object  = get_collider()
+	throughPortal = null
+	if(object != null and object.name == "PortalSurface"):
+		var portal : Portal = object.get_parent_node_3d()
+		object = portal.alternateInteractRayCast.get_collider()
+		throughPortal = portal
 	if is_pickupable(object):
 		picked_object = object
 		if object.has_method("togglePickedUp"):
 			object.togglePickedUp()
 
+		
 func drop_object():
 	if picked_object.has_method("togglePickedUp"):
 			picked_object.togglePickedUp()
@@ -61,4 +67,15 @@ func throw_object():
 	var throw_direction = camera.global_transform.basis.z.normalized()
 	
 	picked_object.apply_impulse(throw_direction * throw_strength)
-	picked_object = null
+	drop_object()
+
+func toggleThroughPortal(portal : Portal) -> void:
+	throughPortal = portal
+
+func _on_object_teleported(object : Node3D, destination : Portal) -> void:
+		if(object == picked_object and throughPortal == null):
+			toggleThroughPortal(destination.linkedPortal)
+		elif(object is Player and throughPortal == null):
+			toggleThroughPortal(destination)
+		else:
+			toggleThroughPortal(null)

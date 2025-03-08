@@ -3,7 +3,7 @@ class_name Identifier
 
 var speed : float = 4
 
-@onready var identifierMesh: MeshInstance3D = $MeshInstance3D
+@onready var identifierMesh: MeshInstance3D = $IdentifierMesh
 @onready var identifierLight: OmniLight3D = $IdentifierLight
 
 func updateColor(color : Color) -> void:

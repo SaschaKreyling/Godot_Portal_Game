@@ -22,25 +22,21 @@ func _ready() -> void:
 func reset() -> void:
 	showAndEnable()
 	setIdling()
-	
+	resetTimer.stop()
 	gluedObject = null
 	inUse = false
 
 func _process(_delta: float) -> void:
 	if(global_position != startPosition):
 		cancelIdle()
-
-	if isDropped() and resetTimer.is_stopped():
-		resetTimer.start()
-	elif not resetTimer.is_stopped() and pickedUp:
-		resetTimer.stop()
-		resetTimer.wait_time = 5
+	if isNotOnGround():
+		resetTimer.start(5)
 
 func togglePickedUp() -> void:
 	pickedUp = !pickedUp
 
-func isDropped() -> bool:
-	return not pickedUp and not inUse and not idle
+func isNotOnGround() -> bool:
+	return pickedUp or inUse or idle
 	
 func hideAndDisable() -> void:
 	physicCollider.set_deferred("disabled", true) 
@@ -55,7 +51,6 @@ func showAndEnable() -> void:
 	interactCollider.set_deferred("disabled", false) 
 
 func setIdling() -> void:
-	resetTimer.wait_time = 5
 	idle = true
 	linear_velocity = Vector3(0,0,0)
 	angular_velocity = Vector3(0,1,0)
@@ -79,4 +74,5 @@ func _on_hit_zone_body_entered(body: Node3D) -> void:
 		onGlueableObjectHit(body)
 
 func _on_timer_timeout() -> void:
+	"reset"
 	reset()

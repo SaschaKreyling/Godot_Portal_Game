@@ -13,20 +13,22 @@ class_name Portal
 @onready var ancors : Array = $AncorPoints.get_children()
 @onready var portalSurface: MeshInstance3D = $PortalSurface/PortalSurfaceMesh
 @onready var portalViewport: Viewport = $PortalViewport
+@onready var portalCollider: CollisionShape3D = $PortalSurface/PortalCollider
 
-#@onready var PossibleRay: RayCast3D
-@onready var hold: Node3D = $PortalViewport/PortalCamera/Hold
+@onready var alternateInteractRayCast: RayCast3D = $PortalViewport/PortalCamera/AlternateInteractRayCast
+@onready var alternateholdingAncor: Node3D = $PortalViewport/PortalCamera/AlternateHoldingAncor
 
 
 @onready var identfier : Identifier = $Identifier
 
 var activeLampColor: Color  = Color.GREEN
 var deactiveLampColor: Color = Color.RED
+
 var actvieLampColorSet : bool
 
 var linkColor: Color
 
-var bodiesToTeleport : Array[Node3D]
+var bodiesToCheck : Array[Node3D]
 var previousDots : Dictionary
 
 @onready var portalLightMesh: MeshInstance3D = $PortalLight
@@ -44,9 +46,9 @@ func setLinkColor(color : Color) -> void:
 	identfier.updateColor(linkColor)
 
 func _on_viewport_resize() -> void:
-	portalViewport.size = playerCamera.get_viewport().size * 0.25
+	portalViewport.size = playerCamera.get_viewport().size 
 
-
+	
 func _process(_delta: float) -> void:
 	activated = areAllButtonsActive()
 	portalSurface.visible = shouldBeVisibleAndChecking()
@@ -55,11 +57,13 @@ func _process(_delta: float) -> void:
 		portalViewport.render_target_update_mode = portalViewport.UPDATE_ALWAYS
 		setPortalCameraPositionAndRotation()
 		checkForTeleport()
+		portalCollider.disabled = false
 		if not actvieLampColorSet:
 			setLampColor(activeLampColor)
 			actvieLampColorSet = true
 	else:
 		portalViewport.render_target_update_mode = portalViewport.UPDATE_DISABLED
+		portalCollider.disabled = true
 		if actvieLampColorSet:
 			setLampColor(deactiveLampColor)
 			actvieLampColorSet = false
@@ -73,15 +77,15 @@ func setLampColor(color : Color) -> void:
 	portalSpotLight2.light_color = color
 
 func checkForTeleport() -> void:
-	for bodyToTeleport in bodiesToTeleport:
-		var relativePosition : Vector3 = bodyToTeleport.global_position - global_position
+	for bodyToCheck in bodiesToCheck:
+		var relativePosition : Vector3 = bodyToCheck.global_position - global_position
 		var dot : float = relativePosition.dot(global_basis.z)
-		var hasCrossedPortal : bool = previousDots.has(bodyToTeleport) and sign(dot) != sign(float(previousDots.get(bodyToTeleport)))
+		var hasCrossedPortal : bool = previousDots.has(bodyToCheck) and sign(dot) != sign(float(previousDots.get(bodyToCheck)))
 		if hasCrossedPortal:
-			teleport(bodyToTeleport)
-			pass
-		previousDots.erase(bodyToTeleport)
-		previousDots.get_or_add(bodyToTeleport, dot)
+			removeBody(bodyToCheck)
+			teleport(bodyToCheck)
+		previousDots.erase(bodyToCheck)
+		previousDots.get_or_add(bodyToCheck, dot)
 
 func setPortalCameraPositionAndRotation() -> void:
 	portalCamera.position = linkedPortal.to_global(to_local(playerCamera.global_position)*(Vector3(-1,1,-1)))
@@ -100,8 +104,29 @@ func setPortalCameraPositionAndRotation() -> void:
 func teleport(body : Node3D) -> void:
 	var newPosition : Vector3 = linkedPortal.to_global(to_local(body.global_position)*Vector3(-1,1,-1))
 	body.global_position = newPosition
+	
 	var relative_rotation_to_portal : Basis = global_transform.basis.inverse() * body.global_transform.basis
 	body.global_rotation = (linkedPortal.global_transform.basis * relative_rotation_to_portal.scaled(Vector3(-1,1,-1))).get_euler()
+	
+	if body is Player or body is RigidBody3D:
+		var vel_in : Vector3 = body.velocity if body is Player else body.linear_velocity
+		var portal_x : Vector3 = basis.x
+		var portal_y : Vector3 = basis.y
+		var portal_z : Vector3 = basis.z
+		
+		var linkPortal_x = -linkedPortal.basis.x
+		var linkPortal_y = linkedPortal.basis.y
+		var linkPortal_z = -linkedPortal.basis.z
+		
+		var vel_parallel_out_x = (vel_in.dot(portal_x)) * linkPortal_x
+		var vel_parallel_out_y = (vel_in.dot(portal_y)) * linkPortal_y
+		var vel_parallel_out_z = (vel_in.dot(portal_z)) * linkPortal_z
+		var vel_out = vel_parallel_out_x + vel_parallel_out_y + vel_parallel_out_z
+		if body is Player:
+			body.velocity = vel_out
+		else:
+			body.set_linear_velocity(vel_out)
+		SignalBus.teleported_object.emit(body, linkedPortal)
 	removeBody(body)
 
 func areAllButtonsActive() -> bool:
@@ -115,12 +140,12 @@ func shouldBeVisibleAndChecking() -> bool:
 
 func removeBody(body : Node3D) -> void:
 	if body.is_in_group("portable"):
-		bodiesToTeleport.erase(body)
+		bodiesToCheck.erase(body)
 		previousDots.erase(body)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("portable"):
-		bodiesToTeleport.append(body)
+		bodiesToCheck.append(body)
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	removeBody(body)

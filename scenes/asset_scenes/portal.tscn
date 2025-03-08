@@ -62,14 +62,16 @@ use_hdr_2d = true
 render_target_update_mode = 4
 
 [node name="PortalCamera" type="Camera3D" parent="PortalViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.951931)
 cull_mask = 1048573
 environment = ExtResource("3_5we1s")
 current = true
 
-[node name="Hold" type="Node3D" parent="PortalViewport/PortalCamera"]
+[node name="AlternateHoldingAncor" type="Node3D" parent="PortalViewport/PortalCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-visible = false
+
+[node name="AlternateInteractRayCast" type="RayCast3D" parent="PortalViewport/PortalCamera"]
+target_position = Vector3(0, 0, -3)
+collision_mask = 65533
 
 [node name="AncorPoints" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77271, 0)
