@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bd2fquruo5eu6"]
+[gd_scene load_steps=12 format=3 uid="uid://bd2fquruo5eu6"]
 
 [ext_resource type="Texture2D" uid="uid://cxe30hlfin1l5" path="res://MenuBackground.PNG" id="1_dtgjw"]
 [ext_resource type="Script" path="res://scripts/level_select_menu.gd" id="2_pvwml"]
@@ -13,7 +13,19 @@ default_font_size = 70
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8u5g"]
 bg_color = Color(0.6, 0.6, 0.6, 0.498039)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyeu7"]
+bg_color = Color(0.6, 0.6, 0.6, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_071ef"]
+bg_color = Color(0.6, 0.6, 0.6, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mduhw"]
+bg_color = Color(0.325441, 0.325441, 0.325441, 0.498039)
+
 [sub_resource type="Theme" id="Theme_1s8lj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dx2li"]
+bg_color = Color(0.6, 0.6, 0.6, 0.498039)
 
 [node name="LevelSelectMenu" type="Control"]
 layout_mode = 3
@@ -73,7 +85,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_r8u5g")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_kyeu7")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_071ef")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_mduhw")
 current_tab = 0
+all_tabs_in_front = true
 
 [node name="Introduction" type="GridContainer" parent="MarginContainer/BoxContainer/TabContainer"]
 layout_mode = 2
@@ -92,6 +108,7 @@ metadata/_tab_index = 1
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_dx2li")
 text = "Main Menu"
 
 [connection signal="pressed" from="MarginContainer/BoxContainer/Button" to="." method="_on_button_pressed"]

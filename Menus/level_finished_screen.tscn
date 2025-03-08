@@ -1,29 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://y7jt45lgx6gs"]
+[gd_scene load_steps=7 format=3 uid="uid://cpubartiu8mv7"]
 
-[ext_resource type="FontFile" uid="uid://bg5hh6emi7q6" path="res://assets/Minercraftory.ttf" id="1_ofkig"]
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_xc0eh"]
-[ext_resource type="Texture2D" uid="uid://cxe30hlfin1l5" path="res://MenuBackground.PNG" id="3_chyft"]
+[ext_resource type="FontFile" uid="uid://bg5hh6emi7q6" path="res://assets/Minercraftory.ttf" id="1_i8wx4"]
+[ext_resource type="Texture2D" uid="uid://cxe30hlfin1l5" path="res://MenuBackground.PNG" id="2_k5wrx"]
+[ext_resource type="Script" path="res://scripts/level_finished_screen.gd" id="2_ljok6"]
 
-[sub_resource type="Theme" id="Theme_gtpnq"]
-default_font = ExtResource("1_ofkig")
+[sub_resource type="Theme" id="Theme_xj8at"]
+default_font = ExtResource("1_i8wx4")
 
-[sub_resource type="Theme" id="Theme_y2o4r"]
+[sub_resource type="Theme" id="Theme_8dq8l"]
 default_font_size = 70
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vnj4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mb5tt"]
 bg_color = Color(0.6, 0.6, 0.6, 0.498039)
 
-[node name="main_menu" type="Control"]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = SubResource("Theme_gtpnq")
-script = ExtResource("1_xc0eh")
+theme = SubResource("Theme_xj8at")
+script = ExtResource("2_ljok6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -32,7 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_chyft")
+texture = ExtResource("2_k5wrx")
 expand_mode = 2
 stretch_mode = 6
 
@@ -50,11 +48,11 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Container"]
-custom_minimum_size = Vector2(535, 110)
+custom_minimum_size = Vector2(650, 110)
 layout_mode = 2
 size_flags_horizontal = 6
-theme = SubResource("Theme_y2o4r")
-text = "WarpFrame
+theme = SubResource("Theme_8dq8l")
+text = "Level Finished
 "
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
@@ -74,19 +72,7 @@ theme_override_constants/separation = 30
 
 [node name="play" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_4vnj4")
-text = "Play"
-
-[node name="options" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_4vnj4")
-text = "Options"
-
-[node name="exit" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_4vnj4")
-text = "Exit"
+theme_override_styles/normal = SubResource("StyleBoxFlat_mb5tt")
+text = "Level Select"
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/exit" to="." method="_on_exit_pressed"]

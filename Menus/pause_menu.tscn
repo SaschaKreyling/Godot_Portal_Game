@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhit0w3r7capu"]
+[gd_scene load_steps=7 format=3 uid="uid://dhit0w3r7capu"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_obsqm"]
 [ext_resource type="FontFile" uid="uid://bg5hh6emi7q6" path="res://assets/Minercraftory.ttf" id="1_vmolr"]
@@ -10,6 +10,9 @@ default_font = ExtResource("1_vmolr")
 default_font_size = 70
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bhr1"]
+bg_color = Color(0.321569, 0.321569, 0.321569, 0.698039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twicr"]
 bg_color = Color(0.6, 0.6, 0.6, 0.498039)
 
 [node name="pause_menu" type="Control"]
@@ -74,15 +77,18 @@ theme_override_constants/separation = 30
 
 [node name="resume" type="Button" parent="VBoxContainer2/MarginContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_twicr")
 text = "Resume
 "
 
 [node name="exit_to_main" type="Button" parent="VBoxContainer2/MarginContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_twicr")
 text = "Main Menu"
 
 [node name="quit" type="Button" parent="VBoxContainer2/MarginContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_twicr")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer2/MarginContainer2/MarginContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
