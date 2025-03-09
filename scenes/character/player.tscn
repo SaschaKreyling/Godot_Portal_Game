@@ -14,10 +14,10 @@ height = 2.8
 script = ExtResource("1_0f4vj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.826392, 0)
 shape = SubResource("CapsuleShape3D_ooojm")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 environment = ExtResource("2_88xg0")
 
 [node name="UI" type="Node" parent="Camera3D"]

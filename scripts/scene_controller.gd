@@ -8,7 +8,7 @@ var loading_path
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
-	loading_screen_scene = load("res://scenes/loading_screen.tscn")
+	loading_screen_scene = load("res://menus/loading_screen.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -29,9 +29,17 @@ func goto_scene_deferred():
 	setScene(loading_screen_scene)
 	loading = true
 	
+func goto_scene_no_loading_deffered():
+	ResourceLoader.load_threaded_request(loading_path)
+	loading = true
+	
 func goto_scene(path : String):
 	loading_path = path
 	call_deferred("goto_scene_deferred")
+
+func goto_scene_no_loading(path : String):
+	loading_path = path
+	call_deferred("goto_scene_no_loading_deffered")
 
 func setScene(scene : PackedScene):
 	current_scene.free()

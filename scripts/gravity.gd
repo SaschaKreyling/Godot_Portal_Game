@@ -31,4 +31,4 @@ func gravity(direction):
 	
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(player, "rotation_degrees:z", target_rotation, 0.6)
+	tween.tween_property(player, "rotation_degrees:z", target_rotation, 0.8)
