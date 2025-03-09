@@ -28,7 +28,3 @@ func gravity(direction):
 	else:
 		target_rotation = 0
 		emit_signal("gravity_turned", 1)
-	
-	
-	var tween = get_tree().create_tween()
-	tween.tween_property(player, "rotation_degrees:z", target_rotation, 0.8)

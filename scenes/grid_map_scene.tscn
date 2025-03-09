@@ -34,9 +34,11 @@ data = PackedVector3Array(-6.4, 0, -6.4, -6.4, 0.2, 6.2, -6.4, 0, 6.4, -6.4, 0, 
 data = PackedVector3Array(-6.4, 0, -6.4, -6.4, 0.3, 6.4, -6.4, 0, 6.4, -6.4, 0, -6.4, -6.4, 0.3, -6.4, -6.4, 0.3, 6.4, -6.4, 0.3, -6.4, -6.4, 0.4, 6.4, -6.4, 0.3, 6.4, -6.4, 0.3, -6.4, -6.4, 0.4, -6.4, -6.4, 0.4, 6.4, -5.9, 0.3, -5.9, -5.9, 0.4, 5.9, -5.9, 0.3, 5.9, -5.9, 0.3, -5.9, -5.9, 0.4, -5.9, -5.9, 0.4, 5.9, 6.2, 0.3, -6.2, 6.2, 0.4, 6.2, 6.2, 0.3, 6.2, 6.2, 0.3, -6.2, 6.2, 0.4, -6.2, 6.2, 0.4, 6.2, -6.2, 0.3, -6.2, -6.2, 0.3, 6.2, -6.2, 0.4, 6.2, -6.2, 0.3, -6.2, -6.2, 0.4, 6.2, -6.2, 0.4, -6.2, 5.9, 0.3, -5.9, 5.9, 0.3, 5.9, 5.9, 0.4, 5.9, 5.9, 0.3, -5.9, 5.9, 0.4, 5.9, 5.9, 0.4, -5.9, 6.4, 0, -6.4, 6.4, 0, 6.4, 6.4, 0.3, 6.4, 6.4, 0, -6.4, 6.4, 0.3, 6.4, 6.4, 0.3, -6.4, 6.4, 0.3, -6.4, 6.4, 0.3, 6.4, 6.4, 0.4, 6.4, 6.4, 0.3, -6.4, 6.4, 0.4, 6.4, 6.4, 0.4, -6.4, -6.4, 0.3, 6.4, 6.4, 0, 6.4, -6.4, 0, 6.4, -6.4, 0.4, 6.4, 6.4, 0.3, 6.4, -6.4, 0.3, 6.4, -6.4, 0.3, 6.4, 6.4, 0.3, 6.4, 6.4, 0, 6.4, -6.4, 0.4, 6.4, 6.4, 0.4, 6.4, 6.4, 0.3, 6.4, -5.9, 0.4, 5.9, 5.9, 0.3, 5.9, -5.9, 0.3, 5.9, -5.9, 0.4, 5.9, 5.9, 0.4, 5.9, 5.9, 0.3, 5.9, -6.2, 0.4, -6.2, 6.2, 0.3, -6.2, -6.2, 0.3, -6.2, -6.2, 0.4, -6.2, 6.2, 0.4, -6.2, 6.2, 0.3, -6.2, -6.2, 0.4, 6.2, -6.2, 0.3, 6.2, 6.2, 0.3, 6.2, -6.2, 0.4, 6.2, 6.2, 0.3, 6.2, 6.2, 0.4, 6.2, -5.9, 0.4, -5.9, -5.9, 0.3, -5.9, 5.9, 0.3, -5.9, -5.9, 0.4, -5.9, 5.9, 0.3, -5.9, 5.9, 0.4, -5.9, -6.4, 0.3, -6.4, -6.4, 0, -6.4, 6.4, 0, -6.4, -6.4, 0.4, -6.4, -6.4, 0.3, -6.4, 6.4, 0.3, -6.4, -6.4, 0.3, -6.4, 6.4, 0, -6.4, 6.4, 0.3, -6.4, -6.4, 0.4, -6.4, 6.4, 0.3, -6.4, 6.4, 0.4, -6.4, 6.4, 0, 6.4, -5.8, 0, 5.9, -6.4, 0, 6.4, 6.4, 0, 6.4, 5.8, 0, 5.9, -5.8, 0, 5.9, -5.8, 0, 5.9, -5.9, 0, 5.8, -6.4, 0, 6.4, 5.8, 0, 5.9, -5.8, 0, 5.8, -5.8, 0, 5.9, -5.8, 0, 5.9, -5.8, 0, 5.8, -5.9, 0, 5.8, 6.4, 0, 6.4, 5.8, 0, 5.8, 5.8, 0, 5.9, 5.8, 0, 5.9, 5.8, 0, 5.8, -5.8, 0, 5.8, 6.4, 0, 6.4, 5.9, 0, 5.8, 5.8, 0, 5.8, -5.8, 0, 5.8, -5.9, 0, -5.8, -5.9, 0, 5.8, -5.9, 0, 5.8, -5.9, 0, -5.8, -6.4, 0, 6.4, 5.9, 0, 5.8, -5.9, 0, -5.8, 5.8, 0, 5.8, 5.8, 0, 5.8, -5.9, 0, -5.8, -5.8, 0, 5.8, 5.9, 0, 5.8, -5.8, 0, -5.8, -5.9, 0, -5.8, 5.9, 0, 5.8, 5.8, 0, -5.8, -5.8, 0, -5.8, 6.4, 0, 6.4, 5.9, 0, -5.8, 5.9, 0, 5.8, 5.9, 0, 5.8, 5.9, 0, -5.8, 5.8, 0, -5.8, 5.8, 0, -5.8, -5.8, 0, -5.9, -5.8, 0, -5.8, -5.8, 0, -5.8, -5.8, 0, -5.9, -5.9, 0, -5.8, 5.9, 0, -5.8, 5.8, 0, -5.9, 5.8, 0, -5.8, 5.8, 0, -5.8, 5.8, 0, -5.9, -5.8, 0, -5.9, -5.9, 0, -5.8, -6.4, 0, -6.4, -6.4, 0, 6.4, -5.8, 0, -5.9, -6.4, 0, -6.4, -5.9, 0, -5.8, 5.8, 0, -5.9, -6.4, 0, -6.4, -5.8, 0, -5.9, 6.4, 0, 6.4, 6.4, 0, -6.4, 5.9, 0, -5.8, 5.8, 0, -5.9, 6.4, 0, -6.4, -6.4, 0, -6.4, 5.9, 0, -5.8, 6.4, 0, -6.4, 5.8, 0, -5.9, 6.2, 0.3, 6.2, -6.2, 0.3, 6.2, -5.9, 0.3, 5.9, 6.2, 0.3, 6.2, -5.9, 0.3, 5.9, 5.9, 0.3, 5.9, -5.9, 0.3, 5.9, -6.2, 0.3, 6.2, -5.9, 0.3, -5.9, 6.2, 0.3, 6.2, 5.9, 0.3, 5.9, 5.9, 0.3, -5.9, -5.9, 0.3, -5.9, -6.2, 0.3, 6.2, -6.2, 0.3, -6.2, 5.9, 0.3, -5.9, -5.9, 0.3, -5.9, -6.2, 0.3, -6.2, 6.2, 0.3, 6.2, 5.9, 0.3, -5.9, 6.2, 0.3, -6.2, 5.9, 0.3, -5.9, -6.2, 0.3, -6.2, 6.2, 0.3, -6.2, 6.4, 0.4, 6.4, -6.4, 0.4, 6.4, -6.2, 0.4, 6.2, 6.4, 0.4, 6.4, -6.2, 0.4, 6.2, 6.2, 0.4, 6.2, 5.9, 0.4, 5.9, -5.9, 0.4, 5.9, -5.9, 0.4, -5.9, 5.9, 0.4, 5.9, -5.9, 0.4, -5.9, 5.9, 0.4, -5.9, -6.2, 0.4, 6.2, -6.4, 0.4, 6.4, -6.2, 0.4, -6.2, 6.4, 0.4, 6.4, 6.2, 0.4, 6.2, 6.2, 0.4, -6.2, -6.2, 0.4, -6.2, -6.4, 0.4, 6.4, -6.4, 0.4, -6.4, 6.2, 0.4, -6.2, -6.2, 0.4, -6.2, -6.4, 0.4, -6.4, 6.4, 0.4, 6.4, 6.2, 0.4, -6.2, 6.4, 0.4, -6.4, 6.2, 0.4, -6.2, -6.4, 0.4, -6.4, 6.4, 0.4, -6.4)
 
 [node name="GridMapScene" type="Node3D"]
+visible = false
 
 [node name="FloorTile" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.62, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.6, 0)
+visible = false
 mesh = ExtResource("1_64if1")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="FloorTile"]
@@ -45,7 +47,8 @@ mesh = ExtResource("1_64if1")
 shape = SubResource("ConcavePolygonShape3D_dhx7r")
 
 [node name="WallCornerTile" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.62, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.6, 0)
+visible = false
 mesh = ExtResource("2_1dfvm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="WallCornerTile"]
@@ -54,7 +57,8 @@ mesh = ExtResource("2_1dfvm")
 shape = SubResource("ConcavePolygonShape3D_4y3db")
 
 [node name="WallFloorCornerTile" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.62, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.6, 0)
+visible = false
 mesh = ExtResource("3_fr3hh")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="WallFloorCornerTile"]
@@ -63,7 +67,8 @@ mesh = ExtResource("3_fr3hh")
 shape = SubResource("ConcavePolygonShape3D_s4w2u")
 
 [node name="WallFloorTile" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.62, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.6, 0)
+visible = false
 mesh = ExtResource("4_uisei")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="WallFloorTile"]
@@ -72,7 +77,8 @@ mesh = ExtResource("4_uisei")
 shape = SubResource("ConcavePolygonShape3D_kdu0w")
 
 [node name="WallTile" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.248446, 0, 0, 0, 0.248446, 0, 0, 0, 0.248446, 0, -1.62, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.6, 0)
+visible = false
 mesh = ExtResource("5_nwlrx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="WallTile"]
@@ -82,6 +88,7 @@ shape = SubResource("ConcavePolygonShape3D_4kk4p")
 
 [node name="Door" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 1.6, -1.6, 1.6)
+visible = false
 mesh = ExtResource("6_0ry6t")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Door"]
@@ -91,6 +98,7 @@ shape = SubResource("ConcavePolygonShape3D_lbj6r")
 
 [node name="Block" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.6, 0)
+visible = false
 mesh = ExtResource("7_mx1b3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Block"]
@@ -99,7 +107,8 @@ mesh = ExtResource("7_mx1b3")
 shape = SubResource("ConcavePolygonShape3D_ifbrk")
 
 [node name="FloorTileDark" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.62, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.6, 0)
+visible = false
 mesh = ExtResource("8_pxw40")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="FloorTileDark"]

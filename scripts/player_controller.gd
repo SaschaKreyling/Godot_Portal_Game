@@ -56,3 +56,5 @@ func _process(delta) -> void:
 
 func _on_gravity_gravity_turned(gravity: int) -> void:
 	gravity_normal = gravity
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "rotation_degrees:z", 180 + gravity_normal * 180, 0.8)
