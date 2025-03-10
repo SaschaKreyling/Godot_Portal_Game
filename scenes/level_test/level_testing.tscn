@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddbwxh34wybcs"]
+[gd_scene load_steps=13 format=3 uid="uid://ddbwxh34wybcs"]
 
 [ext_resource type="PackedScene" uid="uid://bk7ix6d50gba1" path="res://scenes/link_group.tscn" id="1_dmtr2"]
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/character/player.tscn" id="1_p0cyg"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://shgwkgqjj7x1" path="res://scenes/asset_scenes/level_exit_portal.tscn" id="7_d85wk"]
 [ext_resource type="PackedScene" uid="uid://c68u36b6ggbkq" path="res://scenes/gravity.tscn" id="8_v5gi6"]
 [ext_resource type="PackedScene" uid="uid://yfx0554bq3xa" path="res://scenes/asset_scenes/gum_ball_dispenser.tscn" id="9_yjlsh"]
+[ext_resource type="PackedScene" uid="uid://b47wbhhtgso8d" path="res://scenes/asset_scenes/standing_button.tscn" id="11_va04a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s04ej"]
 size = Vector3(52.2817, 22.8641, 47.1221)
@@ -47,7 +48,7 @@ buttons = [NodePath("../Button")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8, 0.08, 7.83739)
 
 [node name="Portal2" parent="LinkGroup" node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("4_6dpqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.28, 23.7)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 3.28, 23.7)
 linkedPortal = NodePath("../Portal3")
 buttons = [NodePath("../Button")]
 
@@ -116,3 +117,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51566, 4.07965, 17.2154)
 
 [node name="Box7" parent="." instance=ExtResource("5_5hmyh")]
 transform = Transform3D(0.918522, 0, 0.395369, 0, 1, 0, -0.395369, 0, 0.918522, 0.682628, 5.95694, 17.6387)
+
+[node name="StandingButton" parent="." instance=ExtResource("11_va04a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.05155, 0.0799999, -4.75947)

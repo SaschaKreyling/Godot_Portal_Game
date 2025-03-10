@@ -26,6 +26,7 @@ portable=""
 presser=""
 gluable=""
 linkable=""
+interactable=""
 
 [input]
 

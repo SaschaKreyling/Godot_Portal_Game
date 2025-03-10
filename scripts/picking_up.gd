@@ -28,38 +28,47 @@ func _physics_process(_delta: float) -> void:
 			
 			holdPosition = throughPortal.alternateholdingAncor.global_position
 			
-			var directionToPortalSurface = throughPortal.portalCamera.global_basis.z
-			var dot : float = directionToPortalSurface.dot(throughPortal.linkedPortal.global_basis.z)
-			behindPortal = 1 > sign(dot)
+			var objectToPortalDirection = throughPortal.portalCamera.global_basis.z
+			var dotObject : float = objectToPortalDirection.dot(throughPortal.global_basis.z)
+			
+			behindPortal = 1 == sign(dotObject)
 			
 		var distanceToBeClosed = objectPosition.distance_to(holdPosition)
+		
 		if(distanceToBeClosed > dropDistance or behindPortal):
 			drop_object()
 			return
+			
 		picked_object.set_linear_velocity(objectPosition.direction_to(holdPosition) * distanceToBeClosed * pull_power)
 
 
 func _process(delta: float) -> void:
+	
 	if Input.is_action_just_pressed("Interact"):
 		if picked_object == null:
 			pick_object()
 		elif picked_object != null:
 			drop_object()
+			
 	if Input.is_action_just_pressed("throw"):
 		throw_object()
 
 func pick_object():
 	var object  = get_collider()
 	throughPortal = null
+	
 	if(object != null and object.name == "PortalSurface"):
 		var portal : Portal = object.get_parent_node_3d()
 		object = portal.alternateInteractRayCast.get_collider()
 		throughPortal = portal
+		
 	if is_pickupable(object):
 		picked_object = object
 		if object.has_method("togglePickedUp"):
 			object.togglePickedUp()
-
+	
+	if object != null and object.is_in_group("interactable"):
+		object.interact()
 		
 func drop_object():
 	if picked_object.has_method("togglePickedUp"):
@@ -81,13 +90,10 @@ func throw_object():
 	picked_object.apply_impulse(throw_direction * throw_strength)
 	drop_object()
 
-func toggleThroughPortal(portal : Portal) -> void:
-	throughPortal = portal
-
 func _on_object_teleported(object : Node3D, destination : Portal) -> void:
 		if(throughPortal):
-			toggleThroughPortal(null)
+			throughPortal = null
 		elif(object == picked_object):
-			toggleThroughPortal(destination.linkedPortal)
+			throughPortal = destination.linkedPortal
 		elif(object is Player):
-			toggleThroughPortal(destination)
+			throughPortal = destination
