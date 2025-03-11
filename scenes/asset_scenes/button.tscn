@@ -19,7 +19,7 @@ size = Vector3(0.75, 0.1, 1.58)
 height = 0.25
 radius = 0.75
 
-[node name="Button" type="StaticBody3D" groups=["gluable", "linkable"]]
+[node name="Button" type="StaticBody3D" groups=["gluable", "interactable", "linkable"]]
 script = ExtResource("1_o4m6b")
 
 [node name="Identifier" parent="." instance=ExtResource("4_y7b7o")]

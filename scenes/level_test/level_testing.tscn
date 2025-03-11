@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://shgwkgqjj7x1" path="res://scenes/asset_scenes/level_exit_portal.tscn" id="7_d85wk"]
 [ext_resource type="PackedScene" uid="uid://c68u36b6ggbkq" path="res://scenes/gravity.tscn" id="8_v5gi6"]
 [ext_resource type="PackedScene" uid="uid://yfx0554bq3xa" path="res://scenes/asset_scenes/gum_ball_dispenser.tscn" id="9_yjlsh"]
-[ext_resource type="PackedScene" uid="uid://b47wbhhtgso8d" path="res://scenes/asset_scenes/standing_button.tscn" id="11_va04a"]
+[ext_resource type="PackedScene" uid="uid://daoyla3i11tg7" path="res://scenes/asset_scenes/standing_button.tscn" id="11_va04a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s04ej"]
 size = Vector3(52.2817, 22.8641, 47.1221)
@@ -25,8 +25,10 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="gravity" parent="." instance=ExtResource("8_v5gi6")]
+[node name="gravity" parent="." node_paths=PackedStringArray("upButton", "downButton") instance=ExtResource("8_v5gi6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26755, 4.4587, 5.36741)
+upButton = NodePath("../StandingButton")
+downButton = NodePath("../StandingButton2")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="gravity"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.69635, 5.6889, 4.79443)
@@ -120,3 +122,6 @@ transform = Transform3D(0.918522, 0, 0.395369, 0, 1, 0, -0.395369, 0, 0.918522, 
 
 [node name="StandingButton" parent="." instance=ExtResource("11_va04a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.05155, 0.0799999, -4.75947)
+
+[node name="StandingButton2" parent="." instance=ExtResource("11_va04a")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -2.54677, 12.544, -1.92658)

@@ -1,4 +1,6 @@
 extends StaticBody3D
+class_name StandingButton
+
 signal standing_button_pushed
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

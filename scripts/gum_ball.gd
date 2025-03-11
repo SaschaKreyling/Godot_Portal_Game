@@ -8,12 +8,11 @@ class_name GumBall
 
 var startPosition : Vector3
 
-var inUse : bool = false
+var	isUsedAsGlue : bool = false
 var gluedObject
 
-var pickedUp : bool = false
-
-var idle : bool = true
+var isPickedUp : bool = false
+var isIdling : bool = true
 
 func _ready() -> void:
 	startPosition = global_position
@@ -24,7 +23,7 @@ func reset() -> void:
 	setIdling()
 	resetTimer.stop()
 	gluedObject = null
-	inUse = false
+	isUsedAsGlue = false
 
 func _process(_delta: float) -> void:
 	if(global_position != startPosition):
@@ -33,10 +32,10 @@ func _process(_delta: float) -> void:
 		resetTimer.start(5)
 
 func togglePickedUp() -> void:
-	pickedUp = !pickedUp
+	isPickedUp = !isPickedUp
 
 func isNotOnGround() -> bool:
-	return pickedUp or inUse or idle
+	return isPickedUp or isUsedAsGlue or isPickedUp
 	
 func hideAndDisable() -> void:
 	physicCollider.set_deferred("disabled", true) 
@@ -51,7 +50,7 @@ func showAndEnable() -> void:
 	interactCollider.set_deferred("disabled", false) 
 
 func setIdling() -> void:
-	idle = true
+	isIdling = true
 	linear_velocity = Vector3(0,0,0)
 	angular_velocity = Vector3(0,1,0)
 	global_position = startPosition
@@ -59,15 +58,13 @@ func setIdling() -> void:
 
 func cancelIdle() -> void:
 	gravity_scale = 1
-	idle = false
+	isIdling = false
 
 func onGlueableObjectHit(gluableObject) -> void:
 	if gluableObject.setGlued(self):
-		inUse = true
+		isUsedAsGlue = true
 		gluedObject = gluableObject
 		hideAndDisable()
-	else:
-		reset()
 
 func _on_hit_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("gluable"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://b47wbhhtgso8d"]
+[gd_scene load_steps=12 format=4 uid="uid://daoyla3i11tg7"]
 
 [ext_resource type="Script" path="res://scripts/standing_button.gd" id="1_dd1ad"]
 [ext_resource type="Texture2D" uid="uid://b2cijj4axv0ws" path="res://assets/StandingButtonActivated.png" id="2_3uq5a"]
