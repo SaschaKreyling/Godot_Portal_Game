@@ -5,6 +5,10 @@ extends Node
 
 var paused: bool = false
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		togglePauseMenu()
+
 func togglePauseMenu():
 	if paused:
 		hud.show()

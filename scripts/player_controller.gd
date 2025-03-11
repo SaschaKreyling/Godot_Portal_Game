@@ -3,6 +3,7 @@ class_name Player extends CharacterBody3D
 @export_category("PlayerOptions")
 @export var SPEED : float = 5
 @export var JUMP_VELOCITY : float = 5.3
+@export var ROTATION_SPEED : float = 0.05
 
 @onready var camera: Camera3D = $Camera3D
 
@@ -24,14 +25,16 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 var gravityTurned = false
+
 func _process(delta) -> void:
-	if updateUp():
+	if updateUpDirection():
 		gravityTurned = true
 
 	turnToGravity()
+	handleMovement(delta)
 	
+func handleMovement(delta):
 	var localVelocity = global_basis.inverse() * velocity
-	
 	if !gravityTurned:
 		if Input.is_action_just_pressed("Up") and is_on_floor() :
 			localVelocity.y = JUMP_VELOCITY 
@@ -53,27 +56,19 @@ func _process(delta) -> void:
 	elif gravityTurned and not turning:
 			gravityTurned = false 
 		
-	#Check for pause input
-	if Input.is_action_just_pressed("pause"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		ui.togglePauseMenu()
-		
 	velocity = global_basis * localVelocity
 
-const rotationSpeed = 0.05
-
-func updateUp() -> bool:
+func updateUpDirection() -> bool:
 	var newUp = -get_gravity().normalized()
 	var changed = up_direction != newUp
 	up_direction = newUp
 	return changed
 	
 func turnToGravity() -> void:
-	
 	var targetUp = up_direction
 	var currentUp = global_basis.y
 	
-	var angle : float = min(rotationSpeed, acos(currentUp.dot(up_direction)))
+	var angle : float = min(ROTATION_SPEED, acos(currentUp.dot(up_direction)))
 	if angle != 0:
 		turning = true
 		var ortho = currentUp.cross(targetUp).normalized()
