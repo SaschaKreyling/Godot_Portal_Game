@@ -5,7 +5,7 @@ extends RayCast3D
 
 const throw_strength : float = -18.0
 const pull_power : float = 10
-const dropDistance : float = 3
+const dropDistance : float = 4
 
 var picked_object : Node3D
 var throughPortal : Portal
@@ -24,10 +24,7 @@ func _physics_process(_delta: float) -> void:
 			
 			var directionToOtherPortalSurface = throughPortal.portalCamera.global_basis.z
 			var dotObject : float = directionToOtherPortalSurface.dot(throughPortal.linkedPortal.global_basis.z)
-			var directionToPortalSurface = throughPortal.linkedPortal.playerCamera.global_basis.z
-			var dotPlayer : float = directionToPortalSurface.dot(throughPortal.global_basis.z)
-			
-			outOfReach = sign(dotPlayer) == sign(dotObject)
+			outOfReach = sign(dotObject) > 1
 			
 		var distanceToBeClosed : float = objectPosition.distance_to(holdPosition)
 		if(distanceToBeClosed > dropDistance or outOfReach):
@@ -38,16 +35,8 @@ func _physics_process(_delta: float) -> void:
 
 func _process(delta: float) -> void:
 	var object = get_collider()
-	
-	if(object != null):
-		if is_interactable(object):
-			var material = ShaderMaterial.new()
-			material.shader = load("res://shaders/outline.gdshader")
-			material.set_shader_parameter("outline_color", Color.RED)
-			object.setHighlighted(material)
-		
+	if(object != null):		
 		if Input.is_action_just_pressed("Interact"):
-			print(object.name)
 			if(object.name == "PortalSurface"):
 				var portal : Portal = object.get_parent_node_3d()
 				object = portal.alternateInteractRayCast.get_collider()

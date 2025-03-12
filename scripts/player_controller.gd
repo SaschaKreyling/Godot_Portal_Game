@@ -21,17 +21,18 @@ func _input(event):
 		camera.rotate_x(-event.relative.y * 0.001)
 		camera.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if updateUpDirection():
+		gravityTurned = true
+		
+	turnToGravity()
+	handleMovement(delta)
+
 	move_and_slide()
 
 var gravityTurned = false
 
-func _process(delta) -> void:
-	if updateUpDirection():
-		gravityTurned = true
-
-	turnToGravity()
-	handleMovement(delta)
+#func _process(delta) -> void:
 	
 func handleMovement(delta):
 	var localVelocity = global_basis.inverse() * velocity
@@ -61,7 +62,8 @@ func handleMovement(delta):
 func updateUpDirection() -> bool:
 	var newUp = -get_gravity().normalized()
 	var changed = up_direction != newUp
-	up_direction = newUp
+	if newUp:
+		up_direction = newUp
 	return changed
 	
 func turnToGravity() -> void:

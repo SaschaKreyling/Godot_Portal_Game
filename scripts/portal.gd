@@ -46,7 +46,7 @@ func setLinkColor(color : Color) -> void:
 	identfier.updateColor(linkColor)
 
 func _on_viewport_resize() -> void:
-	portalViewport.size = playerCamera.get_viewport().size 
+	portalViewport.size = playerCamera.get_viewport().size * 0.33
 
 	
 func _process(_delta: float) -> void:
