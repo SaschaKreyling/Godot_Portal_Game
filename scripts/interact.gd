@@ -35,8 +35,10 @@ func _physics_process(_delta: float) -> void:
 
 func _process(delta: float) -> void:
 	var object = get_collider()
-	if(object != null):		
+	
+	if(object != null):
 		if Input.is_action_just_pressed("Interact"):
+			
 			if(object.name == "PortalSurface"):
 				var portal : Portal = object.get_parent_node_3d()
 				object = portal.alternateInteractRayCast.get_collider()
@@ -69,7 +71,7 @@ func drop_object():
 	throughPortal = null
 
 func is_pickupable(object) -> bool:
-	return not picked_object and object.is_in_group("holdable")
+	return object.is_in_group("holdable")
 	
 func is_interactable(object) -> bool:
 	return object.is_in_group("interactable")
