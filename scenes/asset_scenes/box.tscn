@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwdi26x82y0hu"]
+[gd_scene load_steps=5 format=3 uid="uid://cwdi26x82y0hu"]
 
 [ext_resource type="ArrayMesh" uid="uid://bwj2llsam8vie" path="res://assets/Box.obj" id="1_0qm42"]
+[ext_resource type="Script" path="res://scripts/box.gd" id="1_lcevr"]
+[ext_resource type="AudioStream" uid="uid://p011y4gthg5j" path="res://assets/hit-by-a-wood-230542.mp3" id="3_6ebcd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_to8it"]
 size = Vector3(1.6, 1.6, 1.6)
 
 [node name="Box" type="RigidBody3D" groups=["holdables", "portable", "presser"]]
 can_sleep = false
+contact_monitor = true
+max_contacts_reported = 1
 angular_damp = 0.6
+script = ExtResource("1_lcevr")
 
 [node name="BoxMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.575, 0.1)
@@ -17,3 +22,10 @@ mesh = ExtResource("1_0qm42")
 [node name="BoxCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0102241, 0.0267873, 0.0380322)
 shape = SubResource("BoxShape3D_to8it")
+
+[node name="CollisionStreamer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_6ebcd")
+unit_size = 2.0
+pitch_scale = 0.8
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

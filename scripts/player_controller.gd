@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate(global_basis.y, -event.relative.x * 0.001)
+		rotate(global_basis.y.normalized(), -event.relative.x * 0.001)
 		camera.rotate_x(-event.relative.y * 0.001)
 		camera.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 
@@ -31,8 +31,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 var gravityTurned = false
-
-#func _process(delta) -> void:
 	
 func handleMovement(delta):
 	var localVelocity = global_basis.inverse() * velocity

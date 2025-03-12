@@ -8,6 +8,11 @@ class_name FloorButton
 @onready var button_active_mesh: MeshInstance3D = $ButtonActive
 @onready var button_glued_mesh: MeshInstance3D = $ButtonGlued
 
+@onready var on_activartion_streamer: AudioStreamPlayer3D = $OnActivartionStreamer
+const activation_sound = preload("res://assets/button-click-289742.mp3")
+const deactivation_sound = preload("res://assets/button-click-289742 (mp3cut.net).mp3")
+const squish_sound = preload("res://assets/gooey-squish-14820.mp3")
+
 @onready var identfier : Identifier = $Identifier
 
 var linkColor : Color
@@ -17,6 +22,7 @@ var activated: bool = false
 
 var glued: bool = false
 var currentGumBall: GumBall
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,6 +36,9 @@ func setGlued(gumBall : GumBall) -> bool:
 	if(not activated or glued):
 		return false
 			
+	on_activartion_streamer.stream = squish_sound
+	on_activartion_streamer.play()
+	
 	glued = true
 	activated = true
 	currentGumBall = gumBall
@@ -49,9 +58,14 @@ func setUnglued() -> void:
 		glued = false
 		currentGumBall.reset()
 		currentGumBall = null
+		on_activartion_streamer.stream = squish_sound
+		on_activartion_streamer.play()
 		updateState()
 
 func setActivated() -> void:
+	on_activartion_streamer.stream = activation_sound 
+	on_activartion_streamer.play()
+	
 	glued = false
 	activated = true
 
@@ -64,6 +78,9 @@ func setActivated() -> void:
 	button_glued_mesh.visible = false
 
 func setDeactivated() -> void:
+	on_activartion_streamer.stream = deactivation_sound
+	on_activartion_streamer.play()
+	
 	glued = false
 	activated = false
 		
