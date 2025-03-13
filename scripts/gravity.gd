@@ -6,8 +6,10 @@ extends Node3D
 @export var downButton : StandingButton
 
 func _ready() -> void:
-	upButton.standing_button_pushed.connect(setUp)
-	downButton.standing_button_pushed.connect(setDown)
+	if upButton:
+		upButton.standing_button_pushed.connect(setUp)
+	if downButton:
+		downButton.standing_button_pushed.connect(setDown)
 
 func setGravity(direction) -> void:
 	area.set_gravity_direction(direction)

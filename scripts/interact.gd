@@ -46,8 +46,7 @@ func _process(delta: float) -> void:
 				
 			if is_interactable(object):
 				object.interact()
-			else:
-				toggle_pick_up(object)
+			toggle_pick_up(object)
 				
 	if Input.is_action_just_pressed("throw"):
 		throw_object()

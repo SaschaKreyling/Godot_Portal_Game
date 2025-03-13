@@ -28,6 +28,7 @@ func reset() -> void:
 func _process(_delta: float) -> void:
 	if(global_position != startPosition):
 		cancelIdle()
+		
 	if isNotOnGround():
 		resetTimer.start(5)
 
