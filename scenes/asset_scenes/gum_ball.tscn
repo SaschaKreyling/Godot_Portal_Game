@@ -9,7 +9,7 @@ radius = 0.219802
 [sub_resource type="SphereShape3D" id="SphereShape3D_uor2p"]
 radius = 0.344196
 
-[node name="GumBall" type="RigidBody3D" groups=["holdables", "portable"]]
+[node name="GumBall" type="RigidBody3D" groups=["holdable", "portable"]]
 script = ExtResource("1_ts4us")
 
 [node name="GumBallMesh" type="MeshInstance3D" parent="."]

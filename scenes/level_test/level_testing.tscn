@@ -99,25 +99,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87445, 0.0800004, -10.9504
 [node name="GumBallDispenser7" parent="." instance=ExtResource("9_yjlsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.64541, 0.0800004, -10.9035)
 
-[node name="Box" parent="." instance=ExtResource("5_5hmyh")]
+[node name="Box" parent="." groups=["holdable"] instance=ExtResource("5_5hmyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47517, 1.15871, -10.866)
 
-[node name="Box2" parent="." instance=ExtResource("5_5hmyh")]
+[node name="Box2" parent="." groups=["holdable"] instance=ExtResource("5_5hmyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56347, 1.16396, -10.7086)
 
-[node name="Box3" parent="." instance=ExtResource("5_5hmyh")]
+[node name="Box3" parent="." groups=["holdable"] instance=ExtResource("5_5hmyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.79834, 1.00903, -10.8386)
 
-[node name="Box4" parent="." instance=ExtResource("5_5hmyh")]
+[node name="Box4" parent="." groups=["holdable"] instance=ExtResource("5_5hmyh")]
 transform = Transform3D(0.988568, 0, -0.150778, 0, 1, 0, 0.150778, 0, 0.988568, 1.16874, 4.05299, 19.0077)
 
-[node name="Box5" parent="." instance=ExtResource("5_5hmyh")]
+[node name="Box5" parent="." groups=["holdable"] instance=ExtResource("5_5hmyh")]
 transform = Transform3D(0.915859, 0, 0.4015, 0, 1, 0, -0.4015, 0, 0.915859, -0.399624, 3.99776, 17.3062)
 
-[node name="Box6" parent="." instance=ExtResource("5_5hmyh")]
+[node name="Box6" parent="." groups=["holdable"] instance=ExtResource("5_5hmyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51566, 4.07965, 17.2154)
 
-[node name="Box7" parent="." instance=ExtResource("5_5hmyh")]
+[node name="Box7" parent="." groups=["holdable"] instance=ExtResource("5_5hmyh")]
 transform = Transform3D(0.918522, 0, 0.395369, 0, 1, 0, -0.395369, 0, 0.918522, 0.682628, 5.95694, 17.6387)
 
 [node name="StandingButton" parent="." instance=ExtResource("11_va04a")]

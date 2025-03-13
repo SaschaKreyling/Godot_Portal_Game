@@ -21,12 +21,12 @@ SignalBus="*res://scripts/signal_bus.gd"
 
 [global_group]
 
-holdables=""
 portable=""
 presser=""
 gluable=""
 linkable=""
 interactable=""
+holdable=""
 
 [input]
 
