@@ -95,7 +95,7 @@ all_tabs_in_front = true
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_1s8lj")
-columns = 4
+columns = 5
 metadata/_tab_index = 0
 
 [node name="Testing" type="GridContainer" parent="MarginContainer/BoxContainer/TabContainer"]
