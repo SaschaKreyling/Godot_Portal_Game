@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c68u36b6ggbkq"]
 
-[ext_resource type="Script" path="res://scripts/gravity.gd" id="1_6ydb0"]
+[ext_resource type="Script" path="res://scripts/object_scripts/gravity.gd" id="1_6ydb0"]
 
 [node name="Gravity_area" type="Area3D"]
 gravity_space_override = 3

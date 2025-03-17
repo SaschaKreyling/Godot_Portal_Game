@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bsow8susscqvf"]
 
-[ext_resource type="Script" path="res://scripts/portal.gd" id="1_36t7s"]
+[ext_resource type="Script" path="res://scripts/object_scripts/portal.gd" id="1_36t7s"]
 [ext_resource type="Shader" path="res://shaders/portal_shader.gdshader" id="2_u7x4l"]
 [ext_resource type="Environment" uid="uid://0ja3rgp6mlci" path="res://materials/WorldEnvoirment.tres" id="3_5we1s"]
 [ext_resource type="ArrayMesh" uid="uid://45a7pdtg1obi" path="res://assets/Portal.obj" id="4_68e08"]

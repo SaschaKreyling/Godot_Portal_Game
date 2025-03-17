@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dhit0w3r7capu"]
 
-[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_obsqm"]
+[ext_resource type="Script" path="res://scripts/menu_scripts/pause_menu.gd" id="1_obsqm"]
 [ext_resource type="FontFile" uid="uid://bg5hh6emi7q6" path="res://assets/Minercraftory.ttf" id="1_vmolr"]
 
 [sub_resource type="Theme" id="Theme_y25fd"]

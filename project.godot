@@ -16,8 +16,8 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-SceneController="*res://scripts/scene_controller.gd"
-SignalBus="*res://scripts/signal_bus.gd"
+SceneController="*res://scripts/controll_scripts/scene_controller.gd"
+SignalBus="*res://scripts/controll_scripts/signal_bus.gd"
 
 [global_group]
 

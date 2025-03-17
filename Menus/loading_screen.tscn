@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://6r8u0w7svar6"]
 
 [ext_resource type="FontFile" uid="uid://bg5hh6emi7q6" path="res://assets/Minercraftory.ttf" id="1_lwlvt"]
-[ext_resource type="Script" path="res://scripts/loading_screen.gd" id="2_edxsu"]
+[ext_resource type="Script" path="res://scripts/menu_scripts/loading_screen.gd" id="2_edxsu"]
 
 [sub_resource type="Theme" id="Theme_x2qx1"]
 default_font = ExtResource("1_lwlvt")

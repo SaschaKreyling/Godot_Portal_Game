@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdks8j1gl68ry"]
 
 [ext_resource type="FontFile" uid="uid://bg5hh6emi7q6" path="res://assets/Minercraftory.ttf" id="1_castn"]
-[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_s44ue"]
-[ext_resource type="Texture2D" uid="uid://cxe30hlfin1l5" path="res://MenuBackground.PNG" id="3_ab00y"]
+[ext_resource type="Script" path="res://scripts/menu_scripts/options_menu.gd" id="1_s44ue"]
+[ext_resource type="Texture2D" uid="uid://cxe30hlfin1l5" path="res://assets/MenuBackground.PNG" id="3_ab00y"]
 
 [sub_resource type="Theme" id="Theme_m0jo7"]
 default_font = ExtResource("1_castn")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://veo3d7ysvncp"]
 
-[ext_resource type="Script" path="res://scripts/gum_ball.gd" id="1_ts4us"]
+[ext_resource type="Script" path="res://scripts/object_scripts/gum_ball.gd" id="1_ts4us"]
 [ext_resource type="ArrayMesh" uid="uid://dumvm4ewfma0e" path="res://assets/GumBall.obj" id="2_tr37a"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fobg7"]

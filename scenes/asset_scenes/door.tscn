@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkf418jeykrkf"]
 
-[ext_resource type="Script" path="res://scripts/door.gd" id="1_7blwi"]
+[ext_resource type="Script" path="res://scripts/object_scripts/door.gd" id="1_7blwi"]
 [ext_resource type="ArrayMesh" uid="uid://db8v6vrlqol4s" path="res://assets/MovableDoor.obj" id="1_cju28"]
 [ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/identifier.tscn" id="1_grac4"]
 

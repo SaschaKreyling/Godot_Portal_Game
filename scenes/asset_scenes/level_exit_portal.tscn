@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://shgwkgqjj7x1"]
 
-[ext_resource type="Script" path="res://scripts/level_exit_portal.gd" id="1_51yx3"]
+[ext_resource type="Script" path="res://scripts/object_scripts/level_exit_portal.gd" id="1_51yx3"]
 [ext_resource type="ArrayMesh" uid="uid://45a7pdtg1obi" path="res://assets/Portal.obj" id="2_hbohm"]
 [ext_resource type="ArrayMesh" uid="uid://dk4rmh76cowcv" path="res://assets/ExitSign.obj" id="3_b64ha"]
 

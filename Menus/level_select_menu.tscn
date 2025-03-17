@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bd2fquruo5eu6"]
 
-[ext_resource type="Texture2D" uid="uid://cxe30hlfin1l5" path="res://MenuBackground.PNG" id="1_dtgjw"]
-[ext_resource type="Script" path="res://scripts/level_select_menu.gd" id="2_pvwml"]
+[ext_resource type="Texture2D" uid="uid://cxe30hlfin1l5" path="res://assets/MenuBackground.PNG" id="1_dtgjw"]
+[ext_resource type="Script" path="res://scripts/menu_scripts/level_select_menu.gd" id="2_pvwml"]
 [ext_resource type="FontFile" uid="uid://bg5hh6emi7q6" path="res://assets/Minercraftory.ttf" id="2_wptmp"]
 
 [sub_resource type="Theme" id="Theme_3at6r"]
