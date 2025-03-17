@@ -107,7 +107,7 @@ linkColor = Color(0.980392, 0.929412, 0.152941, 1)
 
 [node name="Door" parent="LinkGroup exit" node_paths=PackedStringArray("buttons") instance=ExtResource("7_n0yiu")]
 transform = Transform3D(4.37114e-08, 8.74228e-08, 1, 3.82137e-15, -1, 8.74228e-08, 1, 0, -4.37114e-08, 2.64887, 2.18901, -0.1)
-buttons = [NodePath("../Button")]
+buttons = [NodePath("../Button"), NodePath("../Button2"), NodePath("../Button3"), NodePath("../Button4")]
 
 [node name="Button" parent="LinkGroup exit" instance=ExtResource("8_3b55q")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 61.8733, -1.09299, 11.0706)
