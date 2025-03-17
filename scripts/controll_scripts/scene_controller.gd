@@ -20,13 +20,13 @@ func _process(_delta: float) -> void:
 		var progress : float = tempArray[0]
 		if progress == 1:
 			var scene : PackedScene  = ResourceLoader.load_threaded_get(loading_path)
-			setScene(scene)
+			set_scene(scene)
 			loading = false
 			loading_path = null
 
 func goto_scene_deferred():
 	ResourceLoader.load_threaded_request(loading_path)
-	setScene(loading_screen_scene)
+	set_scene(loading_screen_scene)
 	loading = true
 	
 func goto_scene_no_loading_deffered():
@@ -41,7 +41,7 @@ func goto_scene_no_loading(path : String):
 	loading_path = path
 	call_deferred("goto_scene_no_loading_deffered")
 
-func setScene(scene : PackedScene):
+func set_scene(scene : PackedScene):
 	current_scene.free()
 	current_scene = scene.instantiate()
 	get_tree().get_root().add_child(current_scene)

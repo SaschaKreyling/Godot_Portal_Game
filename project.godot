@@ -19,6 +19,7 @@ config/icon="res://assets/icon.png"
 
 SceneController="*res://scripts/controll_scripts/scene_controller.gd"
 SignalBus="*res://scripts/controll_scripts/signal_bus.gd"
+SettingsManager="*res://scripts/controll_scripts/setting_manager.gd"
 
 [editor]
 
