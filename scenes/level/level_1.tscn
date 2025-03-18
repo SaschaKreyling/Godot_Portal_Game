@@ -12,7 +12,7 @@
 [node name="Level1" type="Node3D"]
 
 [node name="LinkGroup" parent="." instance=ExtResource("1_hwujs")]
-linkColor = Color(1, 1, 0, 1)
+link_color = Color(1, 1, 0, 1)
 
 [node name="Door" parent="LinkGroup" node_paths=PackedStringArray("buttons") instance=ExtResource("6_gsqe4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 0, -3.2)
@@ -25,7 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.57266, 0.0599995, 1.54874)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67403, 0.0600014, -7.76825)
 
 [node name="LinkGroup2" parent="." instance=ExtResource("1_hwujs")]
-linkColor = Color(0, 1, 0, 1)
+link_color = Color(0, 0, 1, 1)
 
 [node name="Portal" parent="LinkGroup2" node_paths=PackedStringArray("linked_portal") instance=ExtResource("3_xaqut")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32, 6.47993, 13.25)

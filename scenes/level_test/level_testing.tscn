@@ -30,7 +30,6 @@ unique_name_in_owner = true
 transform = Transform3D(-0.735234, 0, -0.677813, 0, 1, 0, 0.677813, 0, -0.735234, -10.2045, 2.30617, -10.6302)
 
 [node name="LinkGroup" parent="." instance=ExtResource("1_dmtr2")]
-linkColor = Color(0, 0, 1, 1)
 
 [node name="Portal3" parent="LinkGroup" node_paths=PackedStringArray("buttons") instance=ExtResource("4_6dpqo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.8, 0.08, 8)
@@ -44,7 +43,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 3.
 buttons = [NodePath("../Button")]
 
 [node name="LinkGroup2" parent="." instance=ExtResource("1_dmtr2")]
-linkColor = Color(0, 1, 0, 1)
 
 [node name="Portal" parent="LinkGroup2" instance=ExtResource("4_6dpqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.28, 23.7)
@@ -53,7 +51,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.28, 23.7)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.8, 0.08, 8)
 
 [node name="LinkGroup3" parent="." instance=ExtResource("1_dmtr2")]
-linkColor = Color(1, 1, 0, 1)
 
 [node name="Door" parent="LinkGroup3" node_paths=PackedStringArray("buttons") instance=ExtResource("6_8ua48")]
 transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, -28.462, 9.52233, 12.6402)
