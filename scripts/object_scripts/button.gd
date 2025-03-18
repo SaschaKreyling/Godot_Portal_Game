@@ -92,12 +92,12 @@ func set_deactivated() -> void:
 	button_glued_mesh_instance.visible = false
 
 func update_state():
-	activated = not current_activators.is_empty() or glued
-	if not glued:
-		if activated:
-			set_activated()
-		else:
-			set_deactivated()
+	var new_activated = not current_activators.is_empty() or glued
+	if new_activated and not activated:
+		set_activated()
+	elif not new_activated and activated:
+		set_deactivated()
+	activated = new_activated
 
 func interact():
 	set_unglued()

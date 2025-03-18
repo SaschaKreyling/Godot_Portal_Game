@@ -19,6 +19,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.826392, 0)
 shape = SubResource("CapsuleShape3D_ooojm")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+cull_mask = 1048063
 environment = ExtResource("2_88xg0")
 
 [node name="UI" type="Node" parent="Camera3D"]
