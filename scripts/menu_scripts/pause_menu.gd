@@ -4,7 +4,7 @@ extends Control
 
 func _on_resume_pressed() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	ui.togglePauseMenu()
+	ui.toggle_pause_menu()
 
 func _on_exit_to_main_pressed() -> void:
 	get_tree().paused = false

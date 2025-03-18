@@ -2,42 +2,42 @@ extends StaticBody3D
 
 
 @export var buttons : Array[FloorButton]
-@export var openOtherDirection: bool
+@export var open_other_direction: bool
 
-@onready var frontIdentifier: Identifier = $FrontIdentifier
-@onready var backIdentifier: Identifier = $BackIdentifier
+@onready var front_identifier: Identifier = $FrontIdentifier
+@onready var back_identifier: Identifier = $BackIdentifier
 
-@onready var doorCollider: CollisionShape3D = $DoorCollider
-@onready var movableDoor: MeshInstance3D = $MovableDoor
+@onready var door_collider: CollisionShape3D = $DoorCollider
+@onready var movable_door_mesh_instance: MeshInstance3D = $MovableDoor
 
-var linkColor : Color
+var link_color : Color
 
 var activated : bool = true
-var openedTarget : float = 3.025 
-var openTime : float = 2;
+var opened_target : float = 3.025 
+var open_time : float = 2
 var direction : int
 
 func _ready() -> void:
-	direction = 1 if openOtherDirection else -1 
+	direction = 1 if open_other_direction else -1 
 
 func _process(delta: float) -> void:
 	activated = areAllButtonsActive()
 	if activated:
-		doorCollider.disabled = true
-		if abs(movableDoor.position.z) <= openedTarget:
-			movableDoor.position.z += direction * max(delta * openedTarget / openTime, abs(movableDoor.position.z) - openedTarget)
+		door_collider.disabled = true
+		if abs(movable_door_mesh_instance.position.z) <= opened_target:
+			movable_door_mesh_instance.position.z += direction * max(delta * opened_target / open_time, abs(movable_door_mesh_instance.position.z) - opened_target)
 		else:
-			movableDoor.visible = false
+			movable_door_mesh_instance.visible = false
 	else:
-		movableDoor.visible = true
-		doorCollider.disabled = false
-		if abs(movableDoor.position.z) > 0:
-			movableDoor.position.z -= direction * min(delta * openedTarget / openTime , abs(movableDoor.position.z))
+		movable_door_mesh_instance.visible = true
+		door_collider.disabled = false
+		if abs(movable_door_mesh_instance.position.z) > 0:
+			movable_door_mesh_instance.position.z -= direction * min(delta * opened_target / open_time , abs(movable_door_mesh_instance.position.z))
 
-func setLinkColor(color : Color) -> void:
-	linkColor = color
-	frontIdentifier.updateColor(linkColor)
-	backIdentifier.updateColor(linkColor)
+func set_link_color(color : Color) -> void:
+	link_color = color
+	front_identifier.update_color(link_color)
+	back_identifier.update_color(link_color)
 
 func areAllButtonsActive() -> bool:
 	var active : bool = true

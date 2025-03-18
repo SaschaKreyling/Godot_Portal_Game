@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/object_scripts/standing_button.gd" id="1_dd1ad"]
 [ext_resource type="ArrayMesh" uid="uid://b3iu06db4xtfb" path="res://assets/StandingButtonActivated.obj" id="2_3utvq"]
 [ext_resource type="ArrayMesh" uid="uid://djalbgdmotap0" path="res://assets/StandingButtonDeactivated.obj" id="3_yjcpg"]
-[ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/identifier.tscn" id="4_uthud"]
+[ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/asset_scenes/part/identifier.tscn" id="4_uthud"]
 [ext_resource type="AudioStream" uid="uid://c2nefp5senivt" path="res://assets/button-click-289742.mp3" id="5_awotw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5tbfd"]

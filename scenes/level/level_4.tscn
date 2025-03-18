@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://4f6qel255njb"]
 
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/character/player.tscn" id="1_f7asx"]
-[ext_resource type="PackedScene" uid="uid://bk7ix6d50gba1" path="res://scenes/link_group.tscn" id="1_pwcto"]
-[ext_resource type="MeshLibrary" uid="uid://cfgh1ubvucgx4" path="res://assets/MeshLibrarySurroundings.tres" id="2_jpegq"]
-[ext_resource type="PackedScene" uid="uid://c68u36b6ggbkq" path="res://scenes/gravity.tscn" id="3_3giap"]
+[ext_resource type="PackedScene" uid="uid://bk7ix6d50gba1" path="res://scenes/tools_and_helper/link_group.tscn" id="1_pwcto"]
+[ext_resource type="MeshLibrary" uid="uid://by3r76rudmg34" path="res://assets/MeshLibrarySurroundings.tres" id="2_jpegq"]
+[ext_resource type="PackedScene" uid="uid://c68u36b6ggbkq" path="res://scenes/custom_area/gravity.tscn" id="3_3giap"]
 [ext_resource type="PackedScene" uid="uid://daoyla3i11tg7" path="res://scenes/asset_scenes/standing_button.tscn" id="4_2nnsu"]
 [ext_resource type="PackedScene" uid="uid://dycqntdf0o0jc" path="res://scenes/asset_scenes/button.tscn" id="6_k2ma8"]
 [ext_resource type="PackedScene" uid="uid://yfx0554bq3xa" path="res://scenes/asset_scenes/gum_ball_dispenser.tscn" id="6_vuskr"]

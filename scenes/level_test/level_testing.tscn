@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://ddbwxh34wybcs"]
 
-[ext_resource type="PackedScene" uid="uid://bk7ix6d50gba1" path="res://scenes/link_group.tscn" id="1_dmtr2"]
+[ext_resource type="PackedScene" uid="uid://bk7ix6d50gba1" path="res://scenes/tools_and_helper/link_group.tscn" id="1_dmtr2"]
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/character/player.tscn" id="1_p0cyg"]
 [ext_resource type="PackedScene" uid="uid://dycqntdf0o0jc" path="res://scenes/asset_scenes/button.tscn" id="2_tw0vy"]
 [ext_resource type="MeshLibrary" uid="uid://by3r76rudmg34" path="res://assets/MeshLibrarySurroundings.tres" id="3_eotbv"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cwdi26x82y0hu" path="res://scenes/asset_scenes/box.tscn" id="5_5hmyh"]
 [ext_resource type="PackedScene" uid="uid://dkf418jeykrkf" path="res://scenes/asset_scenes/door.tscn" id="6_8ua48"]
 [ext_resource type="PackedScene" uid="uid://shgwkgqjj7x1" path="res://scenes/asset_scenes/level_exit_portal.tscn" id="7_d85wk"]
-[ext_resource type="PackedScene" uid="uid://c68u36b6ggbkq" path="res://scenes/gravity.tscn" id="8_v5gi6"]
+[ext_resource type="PackedScene" uid="uid://c68u36b6ggbkq" path="res://scenes/custom_area/gravity.tscn" id="8_v5gi6"]
 [ext_resource type="PackedScene" uid="uid://yfx0554bq3xa" path="res://scenes/asset_scenes/gum_ball_dispenser.tscn" id="9_yjlsh"]
 [ext_resource type="PackedScene" uid="uid://daoyla3i11tg7" path="res://scenes/asset_scenes/standing_button.tscn" id="11_va04a"]
 
@@ -25,15 +25,6 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="gravity" parent="." node_paths=PackedStringArray("upButton", "downButton") instance=ExtResource("8_v5gi6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26755, 4.4587, 5.36741)
-upButton = NodePath("../StandingButton")
-downButton = NodePath("../StandingButton2")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="gravity"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.69635, 5.6889, 4.79443)
-shape = SubResource("BoxShape3D_s04ej")
-
 [node name="Player" parent="." instance=ExtResource("1_p0cyg")]
 unique_name_in_owner = true
 transform = Transform3D(-0.735234, 0, -0.677813, 0, 1, 0, 0.677813, 0, -0.735234, -10.2045, 2.30617, -10.6302)
@@ -41,29 +32,25 @@ transform = Transform3D(-0.735234, 0, -0.677813, 0, 1, 0, 0.677813, 0, -0.735234
 [node name="LinkGroup" parent="." instance=ExtResource("1_dmtr2")]
 linkColor = Color(0, 0, 1, 1)
 
-[node name="Portal3" parent="LinkGroup" node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("4_6dpqo")]
+[node name="Portal3" parent="LinkGroup" node_paths=PackedStringArray("buttons") instance=ExtResource("4_6dpqo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.8, 0.08, 8)
-linkedPortal = NodePath("../Portal2")
 buttons = [NodePath("../Button")]
 
 [node name="Button" parent="LinkGroup" instance=ExtResource("2_tw0vy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8, 0.08, 7.83739)
 
-[node name="Portal2" parent="LinkGroup" node_paths=PackedStringArray("linkedPortal", "buttons") instance=ExtResource("4_6dpqo")]
+[node name="Portal2" parent="LinkGroup" node_paths=PackedStringArray("buttons") instance=ExtResource("4_6dpqo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 3.28, 23.7)
-linkedPortal = NodePath("../Portal3")
 buttons = [NodePath("../Button")]
 
 [node name="LinkGroup2" parent="." instance=ExtResource("1_dmtr2")]
 linkColor = Color(0, 1, 0, 1)
 
-[node name="Portal" parent="LinkGroup2" node_paths=PackedStringArray("linkedPortal") instance=ExtResource("4_6dpqo")]
+[node name="Portal" parent="LinkGroup2" instance=ExtResource("4_6dpqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.28, 23.7)
-linkedPortal = NodePath("../Portal4")
 
-[node name="Portal4" parent="LinkGroup2" node_paths=PackedStringArray("linkedPortal") instance=ExtResource("4_6dpqo")]
+[node name="Portal4" parent="LinkGroup2" instance=ExtResource("4_6dpqo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.8, 0.08, 8)
-linkedPortal = NodePath("../Portal")
 
 [node name="LinkGroup3" parent="." instance=ExtResource("1_dmtr2")]
 linkColor = Color(1, 1, 0, 1)
@@ -77,6 +64,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.133, 3.25142, 10.9218)
 
 [node name="LevelExitPortal" parent="LinkGroup3" instance=ExtResource("7_d85wk")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -28.5265, 9.37152, 20.4822)
+
+[node name="LinkGroup4" parent="." instance=ExtResource("1_dmtr2")]
+
+[node name="gravity" parent="LinkGroup4" node_paths=PackedStringArray("up_button", "down_button") instance=ExtResource("8_v5gi6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26755, 4.4587, 5.36741)
+up_button = NodePath("../StandingButton")
+down_button = NodePath("../StandingButton2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LinkGroup4/gravity"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.69635, 5.6889, 4.79443)
+shape = SubResource("BoxShape3D_s04ej")
+
+[node name="StandingButton" parent="LinkGroup4" instance=ExtResource("11_va04a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.05155, 0.0799999, -4.75947)
+
+[node name="StandingButton2" parent="LinkGroup4" instance=ExtResource("11_va04a")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -2.54677, 12.544, -1.92658)
 
 [node name="GumBallDispenser" parent="." instance=ExtResource("9_yjlsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76293, 3.24, 26.6558)
@@ -119,9 +123,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51566, 4.07965, 17.2154)
 
 [node name="Box7" parent="." instance=ExtResource("5_5hmyh")]
 transform = Transform3D(0.918522, 0, 0.395369, 0, 1, 0, -0.395369, 0, 0.918522, 0.682628, 5.95694, 17.6387)
-
-[node name="StandingButton" parent="." instance=ExtResource("11_va04a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.05155, 0.0799999, -4.75947)
-
-[node name="StandingButton2" parent="." instance=ExtResource("11_va04a")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -2.54677, 12.544, -1.92658)

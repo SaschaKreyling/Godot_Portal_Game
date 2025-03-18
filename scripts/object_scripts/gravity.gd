@@ -2,20 +2,20 @@ extends Node3D
 
 @onready var area: Area3D = $"."
 
-@export var upButton : StandingButton
-@export var downButton : StandingButton
+@export var up_button : StandingButton
+@export var down_button : StandingButton
 
 func _ready() -> void:
-	if upButton:
-		upButton.standing_button_pushed.connect(setUp)
-	if downButton:
-		downButton.standing_button_pushed.connect(setDown)
+	if up_button:
+		up_button.standing_button_pushed.connect(set_gravity_up)
+	if down_button:
+		down_button.standing_button_pushed.connect(set_gravity_down)
 
-func setGravity(direction) -> void:
+func set_gravity(direction) -> void:
 	area.set_gravity_direction(direction)
 		
-func setUp():
-	setGravity(Vector3.UP)
+func set_gravity_up():
+	set_gravity(Vector3.UP)
 
-func setDown():
-	setGravity(Vector3.DOWN)
+func set_gravity_down():
+	set_gravity(Vector3.DOWN)

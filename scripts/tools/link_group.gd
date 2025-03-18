@@ -5,5 +5,5 @@ extends Node3D
 func _ready() -> void:
 	var children = get_children()
 	for child : Object in children:
-		if child.has_method("setLinkColor"):
-			child.setLinkColor(linkColor)
+		if child.has_method("set_link_color"):
+			child.set_link_color(linkColor)

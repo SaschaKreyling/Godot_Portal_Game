@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://e5ptb80ju1r3" path="res://assets/GumBallDispenser.obj" id="1_nu070"]
 [ext_resource type="PackedScene" uid="uid://veo3d7ysvncp" path="res://scenes/asset_scenes/gum_ball.tscn" id="1_x2o8t"]
-[ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/identifier.tscn" id="3_bbn2b"]
+[ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/asset_scenes/part/identifier.tscn" id="3_bbn2b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n2usd"]
 size = Vector3(0.804, 1.60172, 0.804)

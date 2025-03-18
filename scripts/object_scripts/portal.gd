@@ -2,162 +2,162 @@ extends Node3D
 class_name Portal
 
 @export_category("PortalSettings")
-@export var linkedPortal: Portal
+@export var linked_portal: Portal
 @export var buttons: Array[FloorButton]
 
 @onready var player: Node3D = %Player
-@onready var playerCamera: Camera3D = %Player/Camera3D
+@onready var player_camera: Camera3D = %Player/Camera3D
 
-@onready var portalCamera: Camera3D = $PortalViewport/PortalCamera
+@onready var portal_camera: Camera3D = $PortalViewport/PortalCamera
 @onready var ancors : Array = $AncorPoints.get_children()
-@onready var portalSurface: MeshInstance3D = $PortalSurface/PortalSurfaceMesh
-@onready var portalViewport: Viewport = $PortalViewport
-@onready var portalCollider: CollisionShape3D = $PortalSurface/PortalCollider
+@onready var portal_surface_mesh_instance: MeshInstance3D = $PortalSurface/PortalSurfaceMesh
+@onready var portal_camera_target_viewport: Viewport = $PortalViewport
+@onready var portal_surface_collider: CollisionShape3D = $PortalSurface/PortalCollider
 
-@onready var alternateInteractRayCast: RayCast3D = $PortalViewport /PortalCamera/AlternateInteractRayCast
-@onready var alternateholdingAncor: Node3D = $PortalViewport/PortalCamera/AlternateHoldingAncor
+@onready var alternate_interact_ray_cast: RayCast3D = $PortalViewport /PortalCamera/AlternateInteractRayCast
+@onready var alternate_holding_ancor: Node3D = $PortalViewport/PortalCamera/AlternateHoldingAncor
 
 @onready var identfier : Identifier = $Identifier
 
-@onready var portalLightMesh: MeshInstance3D = $PortalLight
-@onready var portalSpotLight1: SpotLight3D = $PortalLight/SpotLight3D
-@onready var portalSpotLight2: SpotLight3D = $PortalLight/SpotLight3D2
+@onready var portal_light_mesh_instance: MeshInstance3D = $PortalLight
+@onready var portal_spot_light_one: SpotLight3D = $PortalLight/SpotLight3D
+@onready var portal_spot_light_two: SpotLight3D = $PortalLight/SpotLight3D2
 
-var activated : bool = true
-var activeLampColor: Color  = Color.GREEN
-var deactiveLampColor: Color = Color.RED
+var activated : bool
+var active_lamp_color: Color  = Color.GREEN
+var deactive_lamp_color: Color = Color.RED
 
-var linkColor: Color
+var link_color: Color
 
-var bodiesToCheck : Array[Node3D]
-var previousDots : Dictionary
+var portable_bodies_in_area : Array[Node3D]
+var previous_dot_products : Dictionary
 
 
 func _ready() -> void:
-	playerCamera.get_viewport().connect("size_changed", _on_viewport_resize)
+	player_camera.get_viewport().connect("size_changed", _on_viewport_resize)
 	_on_viewport_resize()
-	set_lamp_color(activeLampColor)
-	
-func setLinkColor(color : Color) -> void:
-	linkColor = color
-	identfier.updateColor(linkColor)
+	set_deactivated()
+
+func set_link_color(color : Color) -> void:
+	link_color = color
+	identfier.update_color(link_color)
 
 func _on_viewport_resize() -> void:
-	portalViewport.size = playerCamera.get_viewport().size * SettingsManager.portal_quality
+	portal_camera_target_viewport.size = player_camera.get_viewport().size * SettingsManager.portal_quality
 
 func _process(_delta: float) -> void:
 	if are_all_buttons_activated() and not activated:
 		set_activated()
-	elif not activated:
+	elif not are_all_buttons_activated():
 		set_deactivated()
-	
+
 	if both_portals_activated():
-		portalSurface.visible = true
+		portal_surface_mesh_instance.visible = true
 		update_portal_camera()
-		checkForTeleport()
+		check_for_cross_and_teleport()
 	else:
-		portalSurface.visible = false
+		portal_surface_mesh_instance.visible = false
 
 func set_activated():
 	activated = true
-	portalCollider.disabled = false
-	set_lamp_color(activeLampColor)
-	portalViewport.render_target_update_mode = portalViewport.UPDATE_ALWAYS
+	portal_surface_collider.disabled = false
+	set_lamp_color(active_lamp_color)
+	portal_camera_target_viewport.render_target_update_mode = portal_camera_target_viewport.UPDATE_ALWAYS
 	
 func set_deactivated():
 	activated = false
-	portalCollider.disabled = true
-	set_lamp_color(deactiveLampColor)
-	portalViewport.render_target_update_mode = portalViewport.UPDATE_DISABLED
+	portal_surface_collider.disabled = true
+	set_lamp_color(deactive_lamp_color)
+	portal_camera_target_viewport.render_target_update_mode = portal_camera_target_viewport.UPDATE_DISABLED
 
 func set_lamp_color(color : Color) -> void:
 	var material : StandardMaterial3D =  StandardMaterial3D.new()
 	material.albedo_color = color
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	portalLightMesh.set_surface_override_material(0 , material)
-	portalSpotLight1.light_color = color
-	portalSpotLight2.light_color = color
+	portal_light_mesh_instance.set_surface_override_material(0 , material)
+	portal_spot_light_one.light_color = color
+	portal_spot_light_two.light_color = color
 
-func checkForTeleport() -> void:
-	for bodyToCheck in bodiesToCheck:
-		var direction_to_portal : Vector3 = bodyToCheck.global_position - global_position
+func check_for_cross_and_teleport() -> void:
+	for portable_body in portable_bodies_in_area:
+		var direction_to_portal : Vector3 = portable_body.global_position - global_position
 		var dot_product_portal_normal : float = direction_to_portal.dot(global_basis.z)
-		var hasCrossedPortal : bool = previousDots.has(bodyToCheck) and sign(dot_product_portal_normal) != sign(float(previousDots.get(bodyToCheck)))
-		if hasCrossedPortal:
-			stop_checking_body(bodyToCheck)
-			teleport(bodyToCheck)
-		previousDots.erase(bodyToCheck)
-		previousDots.get_or_add(bodyToCheck, dot_product_portal_normal)
+		var body_has_crossed_portal : bool = previous_dot_products.has(portable_body) and sign(dot_product_portal_normal) != sign(float(previous_dot_products.get(portable_body)))
+		if body_has_crossed_portal:
+			stop_checking_body(portable_body)
+			teleport(portable_body)
+		previous_dot_products.erase(portable_body)
+		previous_dot_products.get_or_add(portable_body, dot_product_portal_normal)
 
 func update_portal_camera() -> void:
-	portalCamera.position = linkedPortal.to_global(to_local(playerCamera.global_position)*(Vector3(-1,1,-1)))
+	portal_camera.position = linked_portal.to_global(to_local(player_camera.global_position)*(Vector3(-1,1,-1)))
 	
-	var relative_rotation_to_portal : Basis  = global_transform.basis.inverse() * playerCamera.global_transform.basis
-	portalCamera.rotation = (linkedPortal.global_transform.basis * relative_rotation_to_portal.scaled(Vector3(-1,1,-1))).get_euler()	
+	var relative_rotation_to_portal : Basis  = global_transform.basis.inverse() * player_camera.global_transform.basis
+	portal_camera.rotation = (linked_portal.global_transform.basis * relative_rotation_to_portal.scaled(Vector3(-1,1,-1))).get_euler()	
 	
-	var cameraNormal : Vector3 = portalCamera.global_basis.z
+	var cameraNormal : Vector3 = portal_camera.global_basis.z
 	
-	var smallestDst : float = portalCamera.far
-	for ancor : Node3D in linkedPortal.ancors:
-		var dst : float = (ancor.global_position - portalCamera.global_position).dot(cameraNormal) / cameraNormal.length()
+	var smallestDst : float = portal_camera.far
+	for ancor : Node3D in linked_portal.ancors:
+		var dst : float = (ancor.global_position - portal_camera.global_position).dot(cameraNormal) / cameraNormal.length()
 		smallestDst = min(smallestDst, abs(dst))
-	portalCamera.near = max(0.25, smallestDst)
+	portal_camera.near = max(0.25, smallestDst)
 
 func teleport(body : Node3D) -> void:
 	set_relative_position(body)
 	set_relative_rotation(body)
 	set_relative_velocity(body)
-	SignalBus.signal_teleport(body, linkedPortal)
+	SignalBus.signal_teleport(body, linked_portal)
 
 func set_relative_position(body : Node3D) -> void:
-	var newPosition : Vector3 = linkedPortal.to_global(to_local(body.global_position)*Vector3(-1,1,-1))
+	var newPosition : Vector3 = linked_portal.to_global(to_local(body.global_position)*Vector3(-1,1,-1))
 	body.global_position = newPosition
 
 func set_relative_rotation(body : Node3D) -> void:
 	var relative_rotation_to_portal : Basis = global_transform.basis.inverse() * body.global_transform.basis
-	body.global_rotation = (linkedPortal.global_transform.basis * relative_rotation_to_portal.scaled(Vector3(-1,1,-1))).get_euler()
+	body.global_rotation = (linked_portal.global_transform.basis * relative_rotation_to_portal.scaled(Vector3(-1,1,-1))).get_euler()
 
 func set_relative_velocity(body : Node3D) -> void:
 	if body is Player:
-		var vel_in : Vector3 = body.velocity 
-		var vel_out = calculate_relative_velocity(vel_in)
-		body.velocity = vel_out
+		var velocity_in : Vector3 = body.velocity 
+		var velocity_out = calculate_relative_velocity(velocity_in)
+		body.velocity = velocity_out
 	elif body is RigidBody3D:
-		var vel_in = body.linear_velocity
-		var vel_out = calculate_relative_velocity(vel_in)
-		body.set_linear_velocity(vel_out)
+		var velocity_in = body.linear_velocity
+		var velocity_out = calculate_relative_velocity(velocity_in)
+		body.set_linear_velocity(velocity_out)
 
-func calculate_relative_velocity(vel_in : Vector3) -> Vector3:
+func calculate_relative_velocity(velocity_in : Vector3) -> Vector3:
 	var portal_x : Vector3 = basis.x
 	var portal_y : Vector3 = basis.y
 	var portal_z : Vector3 = basis.z
 		
-	var linkPortal_x = -linkedPortal.basis.x
-	var linkPortal_y = linkedPortal.basis.y
-	var linkPortal_z = -linkedPortal.basis.z
+	var linkPortal_x = -linked_portal.basis.x
+	var linkPortal_y = linked_portal.basis.y
+	var linkPortal_z = -linked_portal.basis.z
 		
-	var vel_parallel_out_x = (vel_in.dot(portal_x)) * linkPortal_x
-	var vel_parallel_out_y = (vel_in.dot(portal_y)) * linkPortal_y
-	var vel_parallel_out_z = (vel_in.dot(portal_z)) * linkPortal_z
-	var vel_out = vel_parallel_out_x + vel_parallel_out_y + vel_parallel_out_z
-	return vel_out
+	var velocity_parallel_out_x = (velocity_in.dot(portal_x)) * linkPortal_x
+	var velocity_parallel_out_y = (velocity_in.dot(portal_y)) * linkPortal_y
+	var velocity_parallel_out_z = (velocity_in.dot(portal_z)) * linkPortal_z
+	var velocity_out = velocity_parallel_out_x + velocity_parallel_out_y + velocity_parallel_out_z
+	return velocity_out
 
 func are_all_buttons_activated() -> bool:
 	var active : bool = true
 	for button in buttons:
 		active = active and button.activated
 	return active
-	
+
 func both_portals_activated() -> bool:
-	return activated and linkedPortal.activated 
+	return activated and linked_portal.activated 
 
 func stop_checking_body(body : Node3D) -> void:
-	bodiesToCheck.erase(body)
-	previousDots.erase(body)
+	portable_bodies_in_area.erase(body)
+	previous_dot_products.erase(body)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("portable"):
-		bodiesToCheck.append(body)
+		portable_bodies_in_area.append(body)
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	stop_checking_body(body)

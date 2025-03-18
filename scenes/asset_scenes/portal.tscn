@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://shaders/portal_shader.gdshader" id="2_u7x4l"]
 [ext_resource type="Environment" uid="uid://0ja3rgp6mlci" path="res://materials/WorldEnvoirment.tres" id="3_5we1s"]
 [ext_resource type="ArrayMesh" uid="uid://45a7pdtg1obi" path="res://assets/Portal.obj" id="4_68e08"]
-[ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/identifier.tscn" id="5_4oxvl"]
+[ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/asset_scenes/part/identifier.tscn" id="5_4oxvl"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3qlyh"]
 data = PackedVector3Array(-1, 1.5625, 0.05, 1, 1.5625, 0.05, -1, -1.5625, 0.05, 1, 1.5625, 0.05, 1, -1.5625, 0.05, -1, -1.5625, 0.05, 1, 1.5625, -0.05, -1, 1.5625, -0.05, 1, -1.5625, -0.05, -1, 1.5625, -0.05, -1, -1.5625, -0.05, 1, -1.5625, -0.05, 1, 1.5625, 0.05, 1, 1.5625, -0.05, 1, -1.5625, 0.05, 1, 1.5625, -0.05, 1, -1.5625, -0.05, 1, -1.5625, 0.05, -1, 1.5625, -0.05, -1, 1.5625, 0.05, -1, -1.5625, -0.05, -1, 1.5625, 0.05, -1, -1.5625, 0.05, -1, -1.5625, -0.05, 1, 1.5625, 0.05, -1, 1.5625, 0.05, 1, 1.5625, -0.05, -1, 1.5625, 0.05, -1, 1.5625, -0.05, 1, 1.5625, -0.05, -1, -1.5625, 0.05, 1, -1.5625, 0.05, -1, -1.5625, -0.05, 1, -1.5625, 0.05, 1, -1.5625, -0.05, -1, -1.5625, -0.05)

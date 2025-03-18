@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://bmnnvpd8yahq6"]
 
-[ext_resource type="MeshLibrary" uid="uid://cfgh1ubvucgx4" path="res://assets/MeshLibrarySurroundings.tres" id="1_d34ol"]
+[ext_resource type="MeshLibrary" uid="uid://by3r76rudmg34" path="res://assets/MeshLibrarySurroundings.tres" id="1_d34ol"]
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/character/player.tscn" id="2_hvmsp"]
-[ext_resource type="PackedScene" uid="uid://c68u36b6ggbkq" path="res://scenes/gravity.tscn" id="3_l3gxv"]
+[ext_resource type="PackedScene" uid="uid://c68u36b6ggbkq" path="res://scenes/custom_area/gravity.tscn" id="3_l3gxv"]
 [ext_resource type="PackedScene" uid="uid://daoyla3i11tg7" path="res://scenes/asset_scenes/standing_button.tscn" id="4_3qjmv"]
-[ext_resource type="PackedScene" uid="uid://bk7ix6d50gba1" path="res://scenes/link_group.tscn" id="5_qk8nq"]
+[ext_resource type="PackedScene" uid="uid://bk7ix6d50gba1" path="res://scenes/tools_and_helper/link_group.tscn" id="5_qk8nq"]
 [ext_resource type="PackedScene" uid="uid://shgwkgqjj7x1" path="res://scenes/asset_scenes/level_exit_portal.tscn" id="5_yrl7i"]
 [ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/asset_scenes/portal.tscn" id="6_6jet6"]
 [ext_resource type="PackedScene" uid="uid://dkf418jeykrkf" path="res://scenes/asset_scenes/door.tscn" id="7_n0yiu"]

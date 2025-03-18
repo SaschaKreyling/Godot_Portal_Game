@@ -38,8 +38,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource("Theme_3at6r")
 script = ExtResource("2_pvwml")
-indtroductionLevelPath = "res://scenes/level/"
-testingLevelPath = "res://scenes/level_test/"
+indtroduction_level_path = "res://scenes/level/"
+testing_level_path = "res://scenes/level_test/"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
