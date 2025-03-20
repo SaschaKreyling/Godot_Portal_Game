@@ -34,13 +34,13 @@ func _process(delta: float) -> void:
 		if abs(movable_door_mesh_instance.position.z) > 0:
 			movable_door_mesh_instance.position.z -= direction * min(delta * opened_target / open_time , abs(movable_door_mesh_instance.position.z))
 
-func set_link_color(color : Color) -> void:
-	link_color = color
-	front_identifier.update_color(link_color)
-	back_identifier.update_color(link_color)
-
 func areAllButtonsActive() -> bool:
 	var active : bool = true
 	for button in buttons:
 		active = active and button.activated
 	return active
+
+func set_link_color(color : Color) -> void:
+	link_color = color
+	front_identifier.update_color(link_color)
+	back_identifier.update_color(link_color)

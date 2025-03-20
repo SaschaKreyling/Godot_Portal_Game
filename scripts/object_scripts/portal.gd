@@ -23,6 +23,8 @@ class_name Portal
 @onready var portal_spot_light_one: SpotLight3D = $PortalLight/SpotLight3D
 @onready var portal_spot_light_two: SpotLight3D = $PortalLight/SpotLight3D2
 
+@onready var audio_listener_3d: AudioListener3D = $AudioListener3D
+
 var activated : bool
 var active_lamp_color: Color  = Color.GREEN
 var deactive_lamp_color: Color = Color.RED
@@ -32,18 +34,11 @@ var link_color: Color
 var portable_bodies_in_area : Array[Node3D]
 var previous_dot_products : Dictionary
 
-
 func _ready() -> void:
-	player_camera.get_viewport().connect("size_changed", _on_viewport_resize)
+	player_camera.get_viewport().size_changed.connect(_on_viewport_resize)
+	SettingsManager.portal_quality_updated.connect(_on_viewport_resize)
 	_on_viewport_resize()
 	set_deactivated()
-
-func set_link_color(color : Color) -> void:
-	link_color = color
-	identfier.update_color(link_color)
-
-func _on_viewport_resize() -> void:
-	portal_camera_target_viewport.size = player_camera.get_viewport().size * SettingsManager.portal_quality
 
 func _process(_delta: float) -> void:
 	if are_all_buttons_activated() and not activated:
@@ -58,13 +53,13 @@ func _process(_delta: float) -> void:
 	else:
 		portal_surface_mesh_instance.visible = false
 
-func set_activated():
+func set_activated() -> void:
 	activated = true
 	portal_surface_collider.disabled = false
 	set_lamp_color(active_lamp_color)
 	portal_camera_target_viewport.render_target_update_mode = portal_camera_target_viewport.UPDATE_ALWAYS
 	
-func set_deactivated():
+func set_deactivated() -> void:
 	activated = false
 	portal_surface_collider.disabled = true
 	set_lamp_color(deactive_lamp_color)
@@ -155,9 +150,16 @@ func stop_checking_body(body : Node3D) -> void:
 	portable_bodies_in_area.erase(body)
 	previous_dot_products.erase(body)
 
+func _on_viewport_resize() -> void:
+	portal_camera_target_viewport.size = player_camera.get_viewport().size * SettingsManager.get_portal_quality_scale()
+
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("portable"):
 		portable_bodies_in_area.append(body)
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	stop_checking_body(body)
+
+func set_link_color(color : Color) -> void:
+	link_color = color
+	identfier.update_color(link_color)

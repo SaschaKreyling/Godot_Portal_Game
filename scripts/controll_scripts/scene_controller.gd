@@ -12,7 +12,6 @@ func _ready():
 	current_scene_node = root.get_child(root.get_child_count() - 1)
 
 func _process(_delta: float) -> void:
-	
 	var root = get_tree().get_root()
 	current_scene_node = root.get_child(root.get_child_count() - 1)
 	
@@ -22,7 +21,7 @@ func _process(_delta: float) -> void:
 		var progress : float = tempArray[0]
 		if progress == 1:
 			var loaded_scene : PackedScene  = ResourceLoader.load_threaded_get(loading_path)
-			set_scene(loaded_scene)
+			call_deferred("set_scene", loaded_scene)
 			loading = false
 			loading_path = ""
 

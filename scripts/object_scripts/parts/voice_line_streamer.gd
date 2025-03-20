@@ -10,10 +10,9 @@ var voice_lines = [
 	]
 
 func _init() -> void:
-	var random_index = randi_range(0,voice_lines.size()-1) 
-	var voice_line = voice_lines[random_index]
+	var random_index : int = randi_range(0,voice_lines.size()-1) 
+	var voice_line : AudioStream = voice_lines[random_index]
 	stream = voice_line
-	
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	play()

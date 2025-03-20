@@ -23,43 +23,8 @@ var current_activators : Array = []
 var glued: bool = false
 var current_gum_ball: GumBall
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_deactivated()
-
-func set_link_color(color : Color) -> void:
-	link_color = color
-	identfier.update_color(link_color)
-
-func set_glued(gum_ball : GumBall) -> bool:
-	if(not activated or glued):
-		return false
-			
-	on_activartion_streamer.stream = squish_sound
-	on_activartion_streamer.play()
-	
-	glued = true
-	activated = true
-	current_gum_ball = gum_ball
-	
-	active_collider.set_deferred("disable", false)
-	button_glued_mesh_instance.visible = true
-	
-	deactive_collider.set_deferred("disable", true) 
-	button_deactive_mesh_instance.visible = false
-	
-	button_active_mesh_instance.visible = false
-	
-	return true
-
-func set_unglued() -> void:
-	if glued:
-		glued = false
-		current_gum_ball.reset()
-		current_gum_ball = null
-		on_activartion_streamer.stream = squish_sound
-		on_activartion_streamer.play()
-		update_state()
 
 func set_activated() -> void:
 	on_activartion_streamer.stream = activation_sound 
@@ -91,16 +56,13 @@ func set_deactivated() -> void:
 	
 	button_glued_mesh_instance.visible = false
 
-func update_state():
-	var new_activated = not current_activators.is_empty() or glued
-	if new_activated and not activated:
+func update_state() -> void:
+	var updated_activated = not current_activators.is_empty() or glued
+	if updated_activated and not activated:
 		set_activated()
-	elif not new_activated and activated:
+	elif not updated_activated and activated:
 		set_deactivated()
-	activated = new_activated
-
-func interact():
-	set_unglued()
+	activated = updated_activated
 
 func _on_activation_area_body_entered(body: Node3D) -> void:
 	if(body.is_in_group("presser")):
@@ -111,3 +73,42 @@ func _on_activation_area_body_exited(body: Node3D) -> void:
 	if(body.is_in_group("presser")):
 		current_activators.erase(body)
 	update_state()
+
+func set_link_color(color : Color) -> void:
+	link_color = color
+	identfier.update_color(link_color)
+
+func set_glued(gum_ball : GumBall) -> bool:
+	
+	
+	if(not activated or glued):
+		return false
+			
+	on_activartion_streamer.stream = squish_sound
+	on_activartion_streamer.play()
+	
+	glued = true
+	activated = true
+	current_gum_ball = gum_ball
+	
+	active_collider.set_deferred("disable", false)
+	button_glued_mesh_instance.visible = true
+	
+	deactive_collider.set_deferred("disable", true) 
+	button_deactive_mesh_instance.visible = false
+	
+	button_active_mesh_instance.visible = false
+	
+	return true
+
+func set_unglued() -> void:
+	if glued:
+		glued = false
+		current_gum_ball.reset()
+		current_gum_ball = null
+		on_activartion_streamer.stream = squish_sound
+		on_activartion_streamer.play()
+		update_state()
+
+func _on_interaction_collider_component_interacted() -> void:
+	set_unglued()

@@ -24,6 +24,5 @@ func create_new_base_button() -> Button:
 	button.custom_minimum_size = Vector2(200,100)
 	return button
 
-
 func _on_button_pressed() -> void:
 	SceneController.goto_scene_no_loading_screen("res://menus/main_menu.tscn")

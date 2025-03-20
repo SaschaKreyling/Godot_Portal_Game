@@ -8,7 +8,6 @@ var speed : float = 4
 
 func _process(delta: float) -> void:
 	rotate_object_local(Vector3(0,1,0),speed * delta)
-	
 
 func update_color(color : Color) -> void:
 	var material = StandardMaterial3D.new()

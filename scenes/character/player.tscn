@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://c4hom0ownjibx"]
 
-[ext_resource type="Script" path="res://scripts/controll_scripts/player_controller.gd" id="1_0f4vj"]
+[ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_0f4vj"]
 [ext_resource type="Environment" uid="uid://0ja3rgp6mlci" path="res://materials/WorldEnvoirment.tres" id="2_88xg0"]
-[ext_resource type="Script" path="res://scripts/controll_scripts/ui_controller.gd" id="3_m3llk"]
+[ext_resource type="Script" path="res://scripts/player/ui_controller.gd" id="3_m3llk"]
 [ext_resource type="PackedScene" uid="uid://dhit0w3r7capu" path="res://menus/pause_menu.tscn" id="4_7orkh"]
 [ext_resource type="Texture2D" uid="uid://b41ocqh83k7gk" path="res://assets/crosshair.png" id="4_shkf2"]
-[ext_resource type="Script" path="res://scripts/controll_scripts/interact.gd" id="6_t4a1l"]
+[ext_resource type="Script" path="res://scripts/player/interact.gd" id="6_t4a1l"]
 [ext_resource type="Script" path="res://scripts/object_scripts/parts/voice_line_streamer.gd" id="7_wu7n8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ooojm"]

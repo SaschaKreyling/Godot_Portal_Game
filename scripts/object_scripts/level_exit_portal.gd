@@ -13,7 +13,7 @@ func _process(_delta: float) -> void:
 	check_for_exit()
 	flicker_lights()
 
-func flicker_lights():
+func flicker_lights() -> void:
 	var flicker_value : float = randf()
 	if flicker_value < 0.1:
 		var color_value : float = randf()
@@ -34,7 +34,7 @@ func check_for_exit() -> void:
 			pass
 		previous_dot_product = dot_product
 
-func exit_level():
+func exit_level() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	SceneController.goto_scene("res://menus/level_finished_screen.tscn")
 

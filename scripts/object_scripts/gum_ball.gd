@@ -32,9 +32,6 @@ func reset() -> void:
 	glued_object = null
 	is_used_as_glue = false
 
-func toggle_picked_up() -> void:
-	is_picked_up = !is_picked_up
-
 func is_not_on_ground() -> bool:
 	return is_picked_up or is_used_as_glue or is_idling
 	
@@ -73,3 +70,9 @@ func _on_hit_zone_body_entered(body: Node3D) -> void:
 
 func _on_timer_timeout() -> void:
 	reset()
+
+func _on_holdable_shape_component_picked_up() -> void:
+	is_picked_up = true
+
+func _on_holdable_shape_component_dropped() -> void:
+	is_picked_up = false

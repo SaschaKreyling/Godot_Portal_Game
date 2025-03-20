@@ -14,8 +14,8 @@ func _ready() -> void:
 func set_gravity(direction) -> void:
 	area.set_gravity_direction(direction)
 		
-func set_gravity_up():
+func set_gravity_up() -> void:
 	set_gravity(Vector3.UP)
 
-func set_gravity_down():
+func set_gravity_down() -> void:
 	set_gravity(Vector3.DOWN)
