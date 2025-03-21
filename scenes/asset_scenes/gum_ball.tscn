@@ -13,8 +13,6 @@ radius = 0.344196
 [node name="GumBall" type="RigidBody3D" groups=["holdable", "portable"]]
 script = ExtResource("1_ts4us")
 
-[node name="HoldableShapeComponent" parent="." instance=ExtResource("2_urhsg")]
-
 [node name="GumBallMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.206, 0)
 mesh = ExtResource("2_tr37a")
@@ -22,15 +20,17 @@ mesh = ExtResource("2_tr37a")
 [node name="PhysicCollider" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_fobg7")
 
-[node name="HitZone" type="Area3D" parent="."]
+[node name="GlueArea" type="Area3D" parent="."]
 
-[node name="InteractCollider" type="CollisionShape3D" parent="HitZone"]
+[node name="InteractCollider" type="CollisionShape3D" parent="GlueArea"]
 shape = SubResource("SphereShape3D_uor2p")
+
+[node name="HoldableShapeComponent" parent="." instance=ExtResource("2_urhsg")]
 
 [node name="ResetTimer" type="Timer" parent="."]
 wait_time = 5.0
 
+[connection signal="body_entered" from="GlueArea" to="." method="_on_hit_zone_body_entered"]
 [connection signal="dropped" from="HoldableShapeComponent" to="." method="_on_holdable_shape_component_dropped"]
 [connection signal="picked_up" from="HoldableShapeComponent" to="." method="_on_holdable_shape_component_picked_up"]
-[connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]
 [connection signal="timeout" from="ResetTimer" to="." method="_on_timer_timeout"]

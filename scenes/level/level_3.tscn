@@ -24,10 +24,10 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 2, 0)
 
-[node name="Gravity_area" parent="." node_paths=PackedStringArray("upButton", "downButton") instance=ExtResource("8_y50xy")]
+[node name="Gravity_area" parent="." node_paths=PackedStringArray("up_button", "down_button") instance=ExtResource("8_y50xy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.63404, 0, -15.1054)
-upButton = NodePath("../StandingButton3")
-downButton = NodePath("../StandingButton2")
+up_button = NodePath("../StandingButton3")
+down_button = NodePath("../StandingButton2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Gravity_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30304, 4.89874, 8.85644)
@@ -42,7 +42,7 @@ transform = Transform3D(-0.616239, 0, 0.787559, 0, 1, 0, -0.787559, 0, -0.616239
 
 [node name="LinkGroup" parent="." instance=ExtResource("5_c2alu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.36222, 1.52655, -2.50497)
-linkColor = Color(0.800602, 0.117856, 0.637398, 1)
+link_color = Color(1, 1, 0, 1)
 
 [node name="Door" parent="LinkGroup" node_paths=PackedStringArray("buttons") instance=ExtResource("6_erhyp")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -4.5, 8.071, -3.9)

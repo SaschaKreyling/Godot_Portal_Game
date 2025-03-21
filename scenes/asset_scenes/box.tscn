@@ -9,6 +9,7 @@
 size = Vector3(1.6, 1.6, 1.6)
 
 [node name="Box" type="RigidBody3D" groups=["holdable", "portable", "presser"]]
+mass = 2.0
 can_sleep = false
 contact_monitor = true
 max_contacts_reported = 1

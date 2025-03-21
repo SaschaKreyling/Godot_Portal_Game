@@ -10,7 +10,7 @@ class_name FloorButton
 
 @onready var identfier : Identifier = $Identifier
 
-@onready var on_activartion_streamer: AudioStreamPlayer3D = $OnActivartionStreamer
+@onready var on_activation_streamer: AudioStreamPlayer3D = $OnActivartionStreamer
 const activation_sound = preload("res://assets/button-click-289742.mp3")
 const deactivation_sound = preload("res://assets/button-click-289742 (mp3cut.net).mp3")
 const squish_sound = preload("res://assets/gooey-squish-14820.mp3")
@@ -27,8 +27,8 @@ func _ready() -> void:
 	set_deactivated()
 
 func set_activated() -> void:
-	on_activartion_streamer.stream = activation_sound 
-	on_activartion_streamer.play()
+	on_activation_streamer.stream = activation_sound 
+	on_activation_streamer.play()
 	
 	glued = false
 	activated = true
@@ -39,11 +39,12 @@ func set_activated() -> void:
 	deactive_collider.set_deferred("disable", true) 
 	button_deactive_mesh_instance.visible = false
 	
+	print("glue hidden")
 	button_glued_mesh_instance.visible = false
 
 func set_deactivated() -> void:
-	on_activartion_streamer.stream = deactivation_sound
-	on_activartion_streamer.play()
+	on_activation_streamer.stream = deactivation_sound
+	on_activation_streamer.play()
 	
 	glued = false
 	activated = false
@@ -79,13 +80,11 @@ func set_link_color(color : Color) -> void:
 	identfier.update_color(link_color)
 
 func set_glued(gum_ball : GumBall) -> bool:
-	
-	
 	if(not activated or glued):
 		return false
 			
-	on_activartion_streamer.stream = squish_sound
-	on_activartion_streamer.play()
+	on_activation_streamer.stream = squish_sound
+	on_activation_streamer.play()
 	
 	glued = true
 	activated = true
@@ -103,11 +102,12 @@ func set_glued(gum_ball : GumBall) -> bool:
 
 func set_unglued() -> void:
 	if glued:
+		set_activated()
 		glued = false
 		current_gum_ball.reset()
 		current_gum_ball = null
-		on_activartion_streamer.stream = squish_sound
-		on_activartion_streamer.play()
+		on_activation_streamer.stream = squish_sound
+		on_activation_streamer.play()
 		update_state()
 
 func _on_interaction_collider_component_interacted() -> void:

@@ -24,13 +24,16 @@ func _physics_process(_delta: float) -> void:
 
 func _process(_delta: float) -> void:	
 	if Input.is_action_just_pressed("interact"):
-		if picked_object:
-			drop_object()
-		else:
-			var object : Node3D = get_looked_at_object()
-			if object == null: return
-			try_to_interact_with(object)
-			try_to_pick_up(object)
+		var object : Node3D = get_looked_at_object()
+		if object == null: return
+		try_to_interact_with(object)
+			
+	if Input.is_action_just_pressed("pickup"):
+		var object : Node3D = get_looked_at_object()
+		if object == null: return
+		try_to_pick_up(object)
+	elif picked_object and Input.is_action_just_released("pickup"):
+		drop_object()
 
 	if Input.is_action_just_pressed("throw"):
 		throw_object()

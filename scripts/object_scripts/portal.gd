@@ -23,8 +23,6 @@ class_name Portal
 @onready var portal_spot_light_one: SpotLight3D = $PortalLight/SpotLight3D
 @onready var portal_spot_light_two: SpotLight3D = $PortalLight/SpotLight3D2
 
-@onready var audio_listener_3d: AudioListener3D = $AudioListener3D
-
 var activated : bool
 var active_lamp_color: Color  = Color.GREEN
 var deactive_lamp_color: Color = Color.RED
