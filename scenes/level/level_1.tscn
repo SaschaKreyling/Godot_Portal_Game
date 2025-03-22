@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c4hom0ownjibx" path="res://scenes/character/player.tscn" id="1_3rsea"]
 [ext_resource type="PackedScene" uid="uid://bk7ix6d50gba1" path="res://scenes/tools_and_helper/link_group.tscn" id="1_hwujs"]
-[ext_resource type="MeshLibrary" uid="uid://by3r76rudmg34" path="res://assets/MeshLibrarySurroundings.tres" id="1_ypd3k"]
+[ext_resource type="MeshLibrary" uid="uid://d0sytpjd0k1va" path="res://assets/MeshLibrarySurroundings.tres" id="1_ypd3k"]
 [ext_resource type="PackedScene" uid="uid://cwdi26x82y0hu" path="res://scenes/asset_scenes/box.tscn" id="2_tfxtw"]
 [ext_resource type="PackedScene" uid="uid://bsow8susscqvf" path="res://scenes/asset_scenes/portal.tscn" id="3_xaqut"]
 [ext_resource type="PackedScene" uid="uid://dycqntdf0o0jc" path="res://scenes/asset_scenes/button.tscn" id="4_ic7lc"]
@@ -28,7 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67403, 0.0600014, -7.76825
 link_color = Color(0, 0, 1, 1)
 
 [node name="Portal" parent="LinkGroup2" node_paths=PackedStringArray("linked_portal") instance=ExtResource("3_xaqut")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32, 6.47993, 13.25)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.32, 6.47993, 13.25)
 linked_portal = NodePath("../Portal2")
 
 [node name="Portal2" parent="LinkGroup2" node_paths=PackedStringArray("linked_portal", "buttons") instance=ExtResource("3_xaqut")]
