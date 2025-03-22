@@ -83,10 +83,10 @@ func check_for_cross_and_teleport() -> void:
 		previous_dot_products.get_or_add(portable_body, dot_product_portal_normal)
 
 func update_portal_camera() -> void:
-	portal_camera.position = linked_portal.to_global(to_local(player_camera.global_position)*(Vector3(-1,1,-1)))
+	portal_camera.position = linked_portal.to_global(to_local(player_camera.global_position))
 	
 	var relative_rotation_to_portal : Basis  = global_transform.basis.inverse() * player_camera.global_transform.basis
-	portal_camera.rotation = (linked_portal.global_transform.basis * relative_rotation_to_portal.scaled(Vector3(-1,1,-1))).get_euler()	
+	portal_camera.rotation = (linked_portal.global_transform.basis * relative_rotation_to_portal).get_euler()	
 	
 	var cameraNormal : Vector3 = portal_camera.global_basis.z
 	
@@ -103,12 +103,12 @@ func teleport(body : Node3D) -> void:
 	SignalBus.signal_teleport(body, linked_portal)
 
 func set_relative_position(body : Node3D) -> void:
-	var newPosition : Vector3 = linked_portal.to_global(to_local(body.global_position)*Vector3(-1,1,-1))
+	var newPosition : Vector3 = linked_portal.to_global(to_local(body.global_position))
 	body.global_position = newPosition
 
 func set_relative_rotation(body : Node3D) -> void:
 	var relative_rotation_to_portal : Basis = global_transform.basis.inverse() * body.global_transform.basis
-	body.global_rotation = (linked_portal.global_transform.basis * relative_rotation_to_portal.scaled(Vector3(-1,1,-1))).get_euler()
+	body.global_rotation = (linked_portal.global_transform.basis * relative_rotation_to_portal).get_euler()
 
 func set_relative_velocity(body : Node3D) -> void:
 	if body is Player:
@@ -122,7 +122,7 @@ func set_relative_velocity(body : Node3D) -> void:
 
 func calculate_relative_velocity(velocity_in : Vector3) -> Vector3:	
 	var velocity_local = global_basis.inverse() * velocity_in
-	var velocity_out = linked_portal.global_basis * Vector3(-1,1,-1) * velocity_local
+	var velocity_out = linked_portal.global_basis * velocity_local
 	return velocity_out
 
 func are_all_buttons_activated() -> bool:

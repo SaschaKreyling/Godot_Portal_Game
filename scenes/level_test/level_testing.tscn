@@ -41,7 +41,7 @@ buttons = [NodePath("../Button")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8, 0.08, 7.83739)
 
 [node name="Portal2" parent="LinkGroup" node_paths=PackedStringArray("linked_portal", "buttons") instance=ExtResource("4_6dpqo")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 3.28, 23.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.28, 23.7)
 linked_portal = NodePath("../Portal3")
 buttons = [NodePath("../Button")]
 
@@ -49,7 +49,7 @@ buttons = [NodePath("../Button")]
 link_color = Color(0, 1, 1, 1)
 
 [node name="Portal" parent="LinkGroup2" node_paths=PackedStringArray("linked_portal") instance=ExtResource("4_6dpqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.28, 23.7)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 3.28, 23.7)
 linked_portal = NodePath("../Portal4")
 
 [node name="Portal4" parent="LinkGroup2" node_paths=PackedStringArray("linked_portal") instance=ExtResource("4_6dpqo")]
