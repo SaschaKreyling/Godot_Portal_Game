@@ -53,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.28, 23.7)
 linked_portal = NodePath("../Portal4")
 
 [node name="Portal4" parent="LinkGroup2" node_paths=PackedStringArray("linked_portal") instance=ExtResource("4_6dpqo")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.8, 0.08, 8)
+transform = Transform3D(0.52098, 0, 0.853569, 0, 1, 0, -0.853569, 0, 0.52098, 10.8, 0.08, 8)
 linked_portal = NodePath("../Portal")
 
 [node name="LinkGroup3" parent="." instance=ExtResource("1_dmtr2")]

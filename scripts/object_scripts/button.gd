@@ -11,9 +11,9 @@ const BUTTON_GLUED_DEACTIVATED_MESH : Mesh = preload("res://assets/button_glued_
 
 
 @onready var on_activation_streamer: AudioStreamPlayer3D = $OnActivartionStreamer
-const activation_sound : AudioStream = preload("res://assets/button-click-289742.mp3")
-const deactivation_sound : AudioStream = preload("res://assets/button-click-289742 (mp3cut.net).mp3")
-const squish_sound : AudioStream = preload("res://assets/gooey-squish-14820.mp3")
+const ACTIVATION_SOUND : AudioStream = preload("res://assets/button-click-289742.mp3")
+const DEACTIVATION_SOUND : AudioStream = preload("res://assets/button-click-289742 (mp3cut.net).mp3")
+const SQUISH_SOUND : AudioStream = preload("res://assets/gooey-squish-14820.mp3")
 
 var link_color : Color
 
@@ -27,14 +27,14 @@ func set_activated() -> void:
 	if(state != ButtonState.ACTIVATED):
 		state = ButtonState.ACTIVATED
 		button_mesh_instance.mesh = BUTTON_ACTIVATED_MESH
-		on_activation_streamer.stream = activation_sound 
+		on_activation_streamer.stream = ACTIVATION_SOUND 
 		on_activation_streamer.play()
 
 func set_deactivated() -> void:
 	if(state != ButtonState.DEACTIVATED):
 		state = ButtonState.DEACTIVATED
 		button_mesh_instance.mesh = BUTTON_DEACTIVATED_MESH
-		on_activation_streamer.stream = deactivation_sound
+		on_activation_streamer.stream = DEACTIVATION_SOUND
 		on_activation_streamer.play()
 
 func set_glued():
@@ -45,12 +45,12 @@ func set_glued():
 		state = ButtonState.GLUED_DEACTIVATED
 		button_mesh_instance.mesh = BUTTON_GLUED_DEACTIVATED_MESH
 		
-	on_activation_streamer.stream = squish_sound
+	on_activation_streamer.stream = SQUISH_SOUND
 	on_activation_streamer.play()
 
 func set_unglued() -> void:
 	state = ButtonState.UNKNOWN
-	on_activation_streamer.stream = squish_sound
+	on_activation_streamer.stream = SQUISH_SOUND
 	on_activation_streamer.play()
 	update_state()
 
@@ -65,6 +65,8 @@ func is_glued() -> bool:
 	return state == ButtonState.GLUED_ACTIVATED or state == ButtonState.GLUED_DEACTIVATED
 	
 func is_activated() -> bool:
+	if state == ButtonState.UNKNOWN:
+		update_state()
 	return state == ButtonState.GLUED_ACTIVATED or state == ButtonState.ACTIVATED
 
 func _on_activation_area_body_entered(body: Node3D) -> void:

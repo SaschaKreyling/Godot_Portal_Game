@@ -120,19 +120,9 @@ func set_relative_velocity(body : Node3D) -> void:
 		var velocity_out = calculate_relative_velocity(velocity_in)
 		body.set_linear_velocity(velocity_out)
 
-func calculate_relative_velocity(velocity_in : Vector3) -> Vector3:
-	var portal_x : Vector3 = basis.x
-	var portal_y : Vector3 = basis.y
-	var portal_z : Vector3 = basis.z
-		
-	var linkPortal_x = -linked_portal.basis.x
-	var linkPortal_y = linked_portal.basis.y
-	var linkPortal_z = -linked_portal.basis.z
-		
-	var velocity_parallel_out_x = (velocity_in.dot(portal_x)) * linkPortal_x
-	var velocity_parallel_out_y = (velocity_in.dot(portal_y)) * linkPortal_y
-	var velocity_parallel_out_z = (velocity_in.dot(portal_z)) * linkPortal_z
-	var velocity_out = velocity_parallel_out_x + velocity_parallel_out_y + velocity_parallel_out_z
+func calculate_relative_velocity(velocity_in : Vector3) -> Vector3:	
+	var velocity_local = global_basis.inverse() * velocity_in
+	var velocity_out = linked_portal.global_basis * Vector3(-1,1,-1) * velocity_local
 	return velocity_out
 
 func are_all_buttons_activated() -> bool:
