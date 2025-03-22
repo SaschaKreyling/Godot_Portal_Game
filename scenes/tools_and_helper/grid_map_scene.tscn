@@ -46,6 +46,7 @@ shape = SubResource("ConcavePolygonShape3D_dhx7r")
 
 [node name="WallCornerTile" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.6, 0)
+visible = false
 mesh = ExtResource("2_1dfvm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="WallCornerTile"]
@@ -55,6 +56,7 @@ shape = SubResource("ConcavePolygonShape3D_4y3db")
 
 [node name="WallFloorCornerTile" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.6, 0)
+visible = false
 mesh = ExtResource("3_fr3hh")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="WallFloorCornerTile"]
@@ -91,6 +93,7 @@ shape = SubResource("ConcavePolygonShape3D_lbj6r")
 
 [node name="Block" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.6, 0)
+visible = false
 mesh = ExtResource("7_mx1b3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Block"]
@@ -100,6 +103,7 @@ shape = SubResource("ConcavePolygonShape3D_ifbrk")
 
 [node name="FloorTileDark" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -1.6, 0)
+visible = false
 mesh = ExtResource("8_pxw40")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="FloorTileDark"]

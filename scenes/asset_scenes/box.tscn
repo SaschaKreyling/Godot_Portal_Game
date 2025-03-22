@@ -3,7 +3,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bwj2llsam8vie" path="res://assets/Box.obj" id="1_0qm42"]
 [ext_resource type="Script" path="res://scripts/object_scripts/box.gd" id="1_lcevr"]
 [ext_resource type="AudioStream" uid="uid://p011y4gthg5j" path="res://assets/hit-by-a-wood-230542.mp3" id="3_6ebcd"]
-[ext_resource type="PackedScene" uid="uid://c01lcudgwnk13" path="res://scenes/components/holdable_shape_component.tscn" id="3_vxuf8"]
+[ext_resource type="PackedScene" uid="uid://c01lcudgwnk13" path="res://scenes/components/holdable_component.tscn" id="3_vxuf8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dy76n"]
 size = Vector3(1.6, 1.6, 1.6)
@@ -25,7 +25,7 @@ mesh = ExtResource("1_0qm42")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0.0240711)
 shape = SubResource("BoxShape3D_dy76n")
 
-[node name="HoldableShapeComponent" parent="." instance=ExtResource("3_vxuf8")]
+[node name="HoldableComponent" parent="." instance=ExtResource("3_vxuf8")]
 
 [node name="CollisionStreamer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_6ebcd")

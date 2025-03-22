@@ -1,5 +1,5 @@
 extends Node
-class_name InteractionColliderComponent
+class_name InteractionComponent
 
 signal interacted
 

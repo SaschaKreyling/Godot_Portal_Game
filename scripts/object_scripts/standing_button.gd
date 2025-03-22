@@ -5,14 +5,10 @@ signal standing_button_pushed
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var push_sound_stream_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
-@onready var interaction_collider_component: InteractionColliderComponent = $InteractionColliderComponent
 
-func _ready() -> void:
-	interaction_collider_component.interacted.connect(interact)
-
-func interact() -> void:
+func _on_interaction_component_interacted() -> void:
 	if animation_player.is_playing():
 		return
 	animation_player.play("push")
 	push_sound_stream_player.play()
-	standing_button_pushed.emit()
+	standing_button_pushed.emit() # Replace with function body.

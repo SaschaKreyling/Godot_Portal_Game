@@ -1,5 +1,5 @@
 extends Node
-class_name HoldableShapeComponent
+class_name HoldableComponent
 
 signal dropped
 signal picked_up

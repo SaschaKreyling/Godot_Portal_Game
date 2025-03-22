@@ -21,7 +21,6 @@ var activated: bool = false
 var current_activators : Array = []
 
 var glued: bool = false
-var current_gum_ball: GumBall
 
 func _ready() -> void:
 	set_deactivated()
@@ -39,7 +38,6 @@ func set_activated() -> void:
 	deactive_collider.set_deferred("disable", true) 
 	button_deactive_mesh_instance.visible = false
 	
-	print("glue hidden")
 	button_glued_mesh_instance.visible = false
 
 func set_deactivated() -> void:
@@ -79,7 +77,7 @@ func set_link_color(color : Color) -> void:
 	link_color = color
 	identfier.update_color(link_color)
 
-func set_glued(gum_ball : GumBall) -> bool:
+func set_glued() -> bool:
 	if(not activated or glued):
 		return false
 			
@@ -88,7 +86,6 @@ func set_glued(gum_ball : GumBall) -> bool:
 	
 	glued = true
 	activated = true
-	current_gum_ball = gum_ball
 	
 	active_collider.set_deferred("disable", false)
 	button_glued_mesh_instance.visible = true
@@ -104,11 +101,12 @@ func set_unglued() -> void:
 	if glued:
 		set_activated()
 		glued = false
-		current_gum_ball.reset()
-		current_gum_ball = null
 		on_activation_streamer.stream = squish_sound
 		on_activation_streamer.play()
 		update_state()
 
-func _on_interaction_collider_component_interacted() -> void:
+func _on_gluable_component_glued() -> void:
+	set_glued()
+
+func _on_gluable_component_unglued() -> void:
 	set_unglued()

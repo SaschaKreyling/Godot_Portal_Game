@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c01lcudgwnk13"]
-
-[ext_resource type="Script" path="res://scenes/components/holdable_component.gd" id="1_yienx"]
-
-[node name="HoldableShapeComponent" type="Node"]
-script = ExtResource("1_yienx")

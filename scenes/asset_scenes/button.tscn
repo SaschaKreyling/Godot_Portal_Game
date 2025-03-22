@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dycqntdf0o0jc"]
+[gd_scene load_steps=13 format=3 uid="uid://dycqntdf0o0jc"]
 
 [ext_resource type="ArrayMesh" uid="uid://ckvhkh5yw3kj" path="res://assets/button.obj" id="1_c1uwg"]
 [ext_resource type="Script" path="res://scripts/object_scripts/button.gd" id="1_o4m6b"]
 [ext_resource type="ArrayMesh" uid="uid://ck0mt8jp4reyl" path="res://assets/button_activated.obj" id="2_e5u0n"]
-[ext_resource type="PackedScene" uid="uid://buiqnucfpsdl8" path="res://scenes/components/interaction_collider_component.tscn" id="2_js5dl"]
+[ext_resource type="PackedScene" uid="uid://buiqnucfpsdl8" path="res://scenes/components/interaction_component.tscn" id="2_js5dl"]
+[ext_resource type="PackedScene" uid="uid://dfmomxs21oih1" path="res://scenes/components/gluable_component.tscn" id="3_dmnll"]
 [ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/asset_scenes/part/identifier.tscn" id="4_y7b7o"]
 [ext_resource type="ArrayMesh" uid="uid://do1v7h10hme6v" path="res://assets/button_glued.obj" id="5_76y1l"]
 [ext_resource type="AudioStream" uid="uid://c2nefp5senivt" path="res://assets/button-click-289742.mp3" id="6_4ih1j"]
@@ -24,7 +25,10 @@ radius = 0.75
 [node name="Button" type="StaticBody3D" groups=["gluable", "interactable", "linkable"]]
 script = ExtResource("1_o4m6b")
 
-[node name="InteractionColliderComponent" parent="." instance=ExtResource("2_js5dl")]
+[node name="InteractionComponent" parent="." instance=ExtResource("2_js5dl")]
+
+[node name="GluableComponent" parent="." node_paths=PackedStringArray("interaction_component") instance=ExtResource("3_dmnll")]
+interaction_component = NodePath("../InteractionComponent")
 
 [node name="Identifier" parent="." instance=ExtResource("4_y7b7o")]
 transform = Transform3D(0.0922534, 0, -0.0388003, 0, 0.1, 0, 0.0388003, 0, 0.0922534, 0, 0.576457, 0)
@@ -75,6 +79,8 @@ shape = SubResource("CylinderShape3D_dyumm")
 stream = ExtResource("6_4ih1j")
 pitch_scale = 0.8
 
-[connection signal="interacted" from="InteractionColliderComponent" to="." method="_on_interaction_collider_component_interacted"]
+[connection signal="interacted" from="InteractionComponent" to="." method="_on_interaction_collider_component_interacted"]
+[connection signal="glued" from="GluableComponent" to="." method="_on_gluable_component_glued"]
+[connection signal="unglued" from="GluableComponent" to="." method="_on_gluable_component_unglued"]
 [connection signal="body_entered" from="ActivationArea" to="." method="_on_activation_area_body_entered"]
 [connection signal="body_exited" from="ActivationArea" to="." method="_on_activation_area_body_exited"]

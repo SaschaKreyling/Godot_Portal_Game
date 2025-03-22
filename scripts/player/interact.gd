@@ -48,34 +48,33 @@ func get_looked_at_object() -> Node:
 	return object
 
 func try_to_pick_up(object : Node3D) -> void:
-	var holdable_component : HoldableShapeComponent = get_holdable_component(object)
+	var holdable_component : HoldableComponent = get_holdable_component(object)
 	if holdable_component:
 		picked_object = object
 		holdable_component.pick_up()
 		
 func try_to_interact_with(object):
-	var interaction_component : InteractionColliderComponent = get_interaction_component(object)
+	var interaction_component : InteractionComponent = get_interaction_component(object)
 	if interaction_component:
 		interaction_component.interact()
 
 func drop_object() -> void:
-	var holdable_component : HoldableShapeComponent = get_holdable_component(picked_object)
+	var holdable_component : HoldableComponent = get_holdable_component(picked_object)
 	holdable_component.drop()
 	picked_object = null
 	interacted_portal = null
 
-func get_holdable_component(object : Node3D) -> HoldableShapeComponent:
-	if object.has_node("HoldableShapeComponent"):
-		return object.get_node("HoldableShapeComponent")
-	return null 
+func get_holdable_component(object : Node3D) -> HoldableComponent:
+	var holdable_components : Array = object.find_children("*", "HoldableComponent")
+	if !holdable_components.is_empty():
+		return holdable_components.pop_front()
+	return null  
 	
-func get_interaction_component(object : Node3D) -> InteractionColliderComponent:
-	if object.has_node("InteractionColliderComponent"):
-		return object.get_node("InteractionColliderComponent")
-	return null 
-
-func is_interactable(object) -> bool:
-	return object and object.is_in_group("interactable")
+func get_interaction_component(object : Node3D) -> InteractionComponent:
+	var interactable_components : Array = object.find_children("*", "InteractionComponent")
+	if !interactable_components.is_empty():
+		return interactable_components.pop_front()
+	return null  
 
 func throw_object() -> void:
 	if picked_object == null: 

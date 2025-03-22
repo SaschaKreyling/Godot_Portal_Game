@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/object_scripts/standing_button.gd" id="1_dd1ad"]
 [ext_resource type="ArrayMesh" uid="uid://b3iu06db4xtfb" path="res://assets/StandingButtonActivated.obj" id="2_3utvq"]
-[ext_resource type="PackedScene" uid="uid://buiqnucfpsdl8" path="res://scenes/components/interaction_collider_component.tscn" id="2_s3rj3"]
+[ext_resource type="PackedScene" uid="uid://buiqnucfpsdl8" path="res://scenes/components/interaction_component.tscn" id="2_s3rj3"]
 [ext_resource type="ArrayMesh" uid="uid://djalbgdmotap0" path="res://assets/StandingButtonDeactivated.obj" id="3_yjcpg"]
 [ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://scenes/asset_scenes/part/identifier.tscn" id="4_uthud"]
 [ext_resource type="AudioStream" uid="uid://c2nefp5senivt" path="res://assets/button-click-289742.mp3" id="5_awotw"]
@@ -50,7 +50,7 @@ _data = {
 [node name="StandingButton" type="StaticBody3D" groups=["interactable"]]
 script = ExtResource("1_dd1ad")
 
-[node name="InteractionColliderComponent" parent="." instance=ExtResource("2_s3rj3")]
+[node name="InteractionComponent" parent="." instance=ExtResource("2_s3rj3")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -70,3 +70,5 @@ stream = ExtResource("5_awotw")
 libraries = {
 "": SubResource("AnimationLibrary_nym5v")
 }
+
+[connection signal="interacted" from="InteractionComponent" to="." method="_on_interaction_component_interacted"]
