@@ -138,7 +138,7 @@ func calculate_relative_velocity(velocity_in : Vector3) -> Vector3:
 func are_all_buttons_activated() -> bool:
 	var active : bool = true
 	for button in buttons:
-		active = active and button.activated
+		active = active and button.is_activated()
 	return active
 
 func both_portals_activated() -> bool:

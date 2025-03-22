@@ -28,14 +28,14 @@ func _process(_delta: float) -> void:
 		if object == null: return
 		try_to_interact_with(object)
 			
-	if Input.is_action_just_pressed("pickup"):
+	if Input.is_action_pressed("pickup") and !picked_object:
 		var object : Node3D = get_looked_at_object()
 		if object == null: return
 		try_to_pick_up(object)
 	elif picked_object and Input.is_action_just_released("pickup"):
 		drop_object()
 
-	if Input.is_action_just_pressed("throw"):
+	if Input.is_action_pressed("throw"):
 		throw_object()
 
 func get_looked_at_object() -> Node:
@@ -50,7 +50,7 @@ func get_looked_at_object() -> Node:
 func try_to_pick_up(object : Node3D) -> void:
 	var holdable_component : HoldableComponent = get_holdable_component(object)
 	if holdable_component:
-		picked_object = object
+		picked_object = holdable_component.get_parent()
 		holdable_component.pick_up()
 		
 func try_to_interact_with(object):
@@ -77,15 +77,10 @@ func get_interaction_component(object : Node3D) -> InteractionComponent:
 	return null  
 
 func throw_object() -> void:
-	if picked_object == null: 
-		return
-	var throw_direction : Vector3 = camera.global_basis.z.normalized()
-	
-	if interacted_portal:
-		throw_direction = interacted_portal.portal_camera.global_basis.z.normalized()
-		
-	picked_object.apply_impulse(throw_direction * throw_strength)
-	drop_object()
+	if picked_object:
+		var throw_direction : Vector3 = interacted_portal.portal_camera.global_basis.z.normalized() if interacted_portal else camera.global_basis.z.normalized()
+		picked_object.set_linear_velocity(throw_direction * throw_strength)
+		drop_object()
 
 func _on_object_teleported(object : Node3D, destination : Portal) -> void:
 		if not picked_object:

@@ -14,8 +14,8 @@ func _ready() -> void:
 		interaction_component.interacted.connect(set_unglued)
 
 func set_glued(gum_ball : GumBall) -> void:
-	used_gum_ball = gum_ball
-	glued.emit()
+		used_gum_ball = gum_ball
+		glued.emit()
 
 func set_unglued() -> void:
 	if(used_gum_ball):

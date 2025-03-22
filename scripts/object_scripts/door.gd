@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 func areAllButtonsActive() -> bool:
 	var active : bool = true
 	for button in buttons:
-		active = active and button.activated
+		active = active and button.is_activated()
 	return active
 
 func set_link_color(color : Color) -> void:

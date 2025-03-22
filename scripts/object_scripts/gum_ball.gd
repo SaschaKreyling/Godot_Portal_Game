@@ -40,8 +40,7 @@ func set_hidden():
 
 func _on_hit_zone_body_entered(body: Node3D) -> void:
 	var gluable_component = get_holdable_component(body)
-	if gluable_component:
-		
+	if gluable_component and not gluable_component.used_gum_ball:
 		reset_timer.stop()
 		set_hidden.call_deferred()
 		
