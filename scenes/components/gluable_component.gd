@@ -1,7 +1,6 @@
 extends Node
 class_name GluableComponent
 
-
 @export var interaction_component : InteractionComponent
 
 signal glued

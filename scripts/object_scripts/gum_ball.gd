@@ -10,7 +10,6 @@ var rest_position : Vector3
 
 var	is_used_as_glue : bool = false
 var is_picked_up : bool = false
-var is_idling : bool = true
 
 func _ready() -> void:
 	rest_position = global_position

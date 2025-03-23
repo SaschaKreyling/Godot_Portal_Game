@@ -1,4 +1,5 @@
 extends RigidBody3D
+class_name Box
 
 @onready var collision_streamer: AudioStreamPlayer3D = $CollisionStreamer
 var speed_factor : float = 1.5

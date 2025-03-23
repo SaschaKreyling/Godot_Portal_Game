@@ -11,4 +11,4 @@ func _on_interaction_component_interacted() -> void:
 		return
 	animation_player.play("push")
 	push_sound_stream_player.play()
-	standing_button_pushed.emit() # Replace with function body.
+	standing_button_pushed.emit() 
