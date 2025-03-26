@@ -9,11 +9,16 @@ class_name Player extends CharacterBody3D
 
 @onready var ui: Node = $Camera3D/UI
 
-var was_gravity_turned = false
-var paused = false
-var turning = false
+var was_gravity_turned : bool = false
+var paused : bool = false
+var turning : bool = false
+
+var last_save_basis : Basis
+var last_save_position : Vector3
+
 
 func _ready() -> void:
+	save_current_position()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event):
@@ -30,10 +35,16 @@ func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 	move_and_slide()
 
+func reset_to_last_save_position() -> void:
+	global_basis = last_save_basis
+	global_position = last_save_position
+
 func handle_movement(delta):
 	var local_velocity = global_basis.inverse() * velocity
 	if !was_gravity_turned:
+		
 		if Input.is_action_just_pressed("Up") and is_on_floor() :
+			save_current_position()
 			local_velocity.y = JUMP_VELOCITY 
 			
 		var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
@@ -74,3 +85,11 @@ func turn_to_gravity() -> void:
 		rotate(axis , angle)
 	else:
 		turning = false
+
+func save_current_position() -> void:
+	last_save_basis = global_basis
+	last_save_position = global_position
+	
+func _on_timer_timeout() -> void:
+	if is_on_floor():
+		save_current_position()

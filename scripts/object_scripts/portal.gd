@@ -35,7 +35,7 @@ var portable_bodies_in_area : Array[Node3D]
 var previous_dot_products : Dictionary
 
 func _ready() -> void:
-	navigation_link.set_global_end_position(linked_portal.global_position)
+	navigation_link.end_position = to_local(linked_portal.global_position)
 	player_camera.get_viewport().size_changed.connect(_on_viewport_resize)
 	SettingsManager.portal_quality_updated.connect(_on_viewport_resize)
 	_on_viewport_resize()

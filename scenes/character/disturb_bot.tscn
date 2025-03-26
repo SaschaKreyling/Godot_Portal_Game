@@ -14,6 +14,7 @@ radius = 0.3
 height = 1.0
 
 [node name="DisturbBot" type="CharacterBody3D" groups=["portable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 script = ExtResource("1_7vlmn")
 
 [node name="HoldableComponent" parent="." instance=ExtResource("2_afwlw")]
