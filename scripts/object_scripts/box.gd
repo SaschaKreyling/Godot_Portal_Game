@@ -5,7 +5,5 @@ class_name Box
 var speed_factor : float = 1.5
 
 func _on_body_entered(_body: Node) -> void:
-	if(abs(linear_velocity.x) > speed_factor
-		or abs(linear_velocity.y) > speed_factor
-		or abs(linear_velocity.z) > speed_factor):
+	if(linear_velocity.length() > speed_factor):
 		collision_streamer.play()

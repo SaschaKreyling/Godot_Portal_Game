@@ -18,7 +18,12 @@ func _physics_process(_delta: float) -> void:
 		var target_holding_position : Vector3 =  interacted_portal.alternate_holding_ancor.global_position if interacted_portal else holding_ancor.global_position
 		var distance_to_target_position : float = picked_object.global_position.distance_to(target_holding_position)
 		var velocity_torwards_target : Vector3 = picked_object.global_position.direction_to(target_holding_position) * distance_to_target_position * pull_power
-		picked_object.set_linear_velocity(velocity_torwards_target)
+		
+		if picked_object is CharacterBody3D:
+			picked_object.velocity = velocity_torwards_target
+		elif picked_object is RigidBody3D:
+			picked_object.set_linear_velocity(velocity_torwards_target)
+		
 		if(distance_to_target_position > drop_distance):
 			drop_object()
 
@@ -79,7 +84,10 @@ func get_interaction_component(object : Node3D) -> InteractionComponent:
 func throw_object() -> void:
 	if picked_object:
 		var throw_direction : Vector3 = interacted_portal.portal_camera.global_basis.z.normalized() if interacted_portal else camera.global_basis.z.normalized()
-		picked_object.set_linear_velocity(throw_direction * throw_strength)
+		if picked_object is CharacterBody3D:
+			picked_object.velocity = throw_direction * throw_strength
+		elif picked_object is RigidBody3D:
+			picked_object.set_linear_velocity(throw_direction * throw_strength)
 		drop_object()
 
 func _on_object_teleported(object : Node3D, destination : Portal) -> void:

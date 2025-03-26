@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyt47n3is5as8"]
+
+[ext_resource type="Shader" path="res://shaders/water.gdshader" id="1_u7fgn"]
+[ext_resource type="Script" path="res://scenes/asset_scenes/water_plane.gd" id="2_vdpxa"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ynxfs"]
+noise_type = 3
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lr20b"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_ynxfs")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3e7o4"]
+noise_type = 2
+frequency = 0.0121
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8r7xe"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_3e7o4")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0okrx"]
+noise_type = 3
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0wesn"]
+seamless = true
+noise = SubResource("FastNoiseLite_0okrx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4dvlw"]
+render_priority = 0
+shader = ExtResource("1_u7fgn")
+shader_parameter/albedo = Color(0, 0.827451, 0, 1)
+shader_parameter/albedo2 = Color(1, 1, 0, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.02
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(0, 1)
+shader_parameter/time_scale = 0.025
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.15
+shader_parameter/color_deep = Color(0, 0, 0.517647, 1)
+shader_parameter/color_shallow = Color(0.180392, 0.67451, 0.141176, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.1
+shader_parameter/near = 1.0
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(0, 0.992157, 0.486275, 1)
+shader_parameter/wave = SubResource("NoiseTexture2D_0wesn")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_lr20b")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_8r7xe")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qkr5a"]
+material = SubResource("ShaderMaterial_4dvlw")
+subdivide_width = 200
+subdivide_depth = 200
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rll7u"]
+
+[node name="WaterPlane" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("QuadMesh_qkr5a")
+script = ExtResource("2_vdpxa")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+shape = SubResource("BoxShape3D_rll7u")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -23,6 +23,8 @@ class_name Portal
 @onready var portal_spot_light_one: SpotLight3D = $PortalLight/SpotLight3D
 @onready var portal_spot_light_two: SpotLight3D = $PortalLight/SpotLight3D2
 
+@onready var navigation_link: NavigationLink3D = $NavigationLink3D
+
 var activated : bool
 var active_lamp_color: Color  = Color.GREEN
 var deactive_lamp_color: Color = Color.RED
@@ -33,10 +35,15 @@ var portable_bodies_in_area : Array[Node3D]
 var previous_dot_products : Dictionary
 
 func _ready() -> void:
+	navigation_link.set_global_end_position(linked_portal.global_position)
 	player_camera.get_viewport().size_changed.connect(_on_viewport_resize)
 	SettingsManager.portal_quality_updated.connect(_on_viewport_resize)
 	_on_viewport_resize()
 	set_deactivated()
+
+func _physics_process(_delta: float) -> void:
+	if both_portals_activated():
+		check_for_cross_and_teleport()
 
 func _process(_delta: float) -> void:
 	if are_all_buttons_activated() and not activated:
@@ -47,18 +54,19 @@ func _process(_delta: float) -> void:
 	if both_portals_activated():
 		portal_surface_mesh_instance.visible = true
 		update_portal_camera()
-		check_for_cross_and_teleport()
 	else:
 		portal_surface_mesh_instance.visible = false
 
 func set_activated() -> void:
 	activated = true
+	navigation_link.enabled = true
 	portal_surface_collider.disabled = false
 	set_lamp_color(active_lamp_color)
 	portal_camera_target_viewport.render_target_update_mode = portal_camera_target_viewport.UPDATE_ALWAYS
 	
 func set_deactivated() -> void:
 	activated = false
+	navigation_link.enabled = false
 	portal_surface_collider.disabled = true
 	set_lamp_color(deactive_lamp_color)
 	portal_camera_target_viewport.render_target_update_mode = portal_camera_target_viewport.UPDATE_DISABLED
@@ -97,8 +105,8 @@ func update_portal_camera() -> void:
 	portal_camera.near = max(0.25, smallestDst)
 
 func teleport(body : Node3D) -> void:
-	set_relative_position(body)
 	set_relative_rotation(body)
+	set_relative_position(body)
 	set_relative_velocity(body)
 	SignalBus.signal_teleport(body, linked_portal)
 
@@ -111,7 +119,7 @@ func set_relative_rotation(body : Node3D) -> void:
 	body.global_rotation = (linked_portal.global_transform.basis * relative_rotation_to_portal).get_euler()
 
 func set_relative_velocity(body : Node3D) -> void:
-	if body is Player:
+	if body is CharacterBody3D:
 		var velocity_in : Vector3 = body.velocity 
 		var velocity_out = calculate_relative_velocity(velocity_in)
 		body.velocity = velocity_out
