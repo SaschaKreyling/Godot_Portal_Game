@@ -20,10 +20,23 @@ config/icon="res://assets/icon.png"
 SceneController="*res://scripts/controll_scripts/scene_controller.gd"
 SignalBus="*res://scripts/controll_scripts/signal_bus.gd"
 SettingsManager="*res://scripts/controll_scripts/setting_manager.gd"
+UtilityFunctions="*res://scripts/controll_scripts/utility_functions.gd"
 
 [editor]
 
 export/convert_text_resources_to_binary=false
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://materials/": "orange",
+"res://menus/": "yellow",
+"res://scenes/": "green",
+"res://scripts/": "teal",
+"res://shaders/": "blue",
+"res://workInProgressModels/": "purple"
+}
 
 [global_group]
 

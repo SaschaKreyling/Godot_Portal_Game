@@ -3,14 +3,13 @@ extends CharacterBody3D
 const SPEED = 6
 
 
-@export var my_box : Box
+@export var assigned_box : Box
 
-@onready var disturb_bot_mesh: MeshInstance3D = $DisturbBotMesh
-@onready var navigation: NavigationAgent3D = $NavigationAgent3D
+@onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var path_finding_timer: Timer = $PathFindingTimer
 
 var glued : bool
-@onready var target_position = get_close_navigable_position(my_box.global_position)
+var target_position : Vector3
 var target_direction : Vector3 = Vector3()
 var portals_in_scene : Array[Portal]
 
@@ -19,7 +18,7 @@ func _ready() -> void:
 	portals_in_scene.assign(get_tree().get_root().find_children("*", "Portal", true, false))
 
 func _physics_process(delta: float) -> void:
-	target_position = get_close_navigable_position(my_box.global_position)
+	target_position = get_close_navigable_position(assigned_box.global_position)
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -33,14 +32,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func get_close_navigable_position(point : Vector3) -> Vector3:
-	if NavigationServer3D.map_is_active(navigation.get_navigation_map()):
-		var nav_map = navigation.get_navigation_map()
+	if NavigationServer3D.map_is_active(navigation_agent.get_navigation_map()):
+		var nav_map = navigation_agent.get_navigation_map()
 		return NavigationServer3D.map_get_closest_point(nav_map, point)
 	return point
 
 func direction_to_target() -> Vector3:
-	navigation.target_position = target_position
-	return global_position.direction_to(navigation.get_next_path_position())
+	navigation_agent.target_position = target_position
+	return global_position.direction_to(navigation_agent.get_next_path_position())
 
 func _on_path_finding_timer_timeout() -> void:
 	if glued: return

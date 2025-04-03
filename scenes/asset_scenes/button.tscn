@@ -43,6 +43,12 @@ shape = SubResource("CylinderShape3D_dyumm")
 stream = ExtResource("6_4ih1j")
 pitch_scale = 0.8
 
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+height = 0.2
+vertices = PackedVector3Array(-0.595958, 0, 0.79512, -0.808508, 0, 0.578142, -0.804079, 0, -0.586454, -0.573817, 0, -0.812288, 0.599635, 0, -0.812288, 0.794472, 0, -0.59531, 0.807756, 0, 0.600283, 0.581923, 0, 0.812832)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
 [connection signal="interacted" from="InteractionComponent" to="." method="_on_interaction_collider_component_interacted"]
 [connection signal="glued" from="GluableComponent" to="." method="_on_gluable_component_glued"]
 [connection signal="unglued" from="GluableComponent" to="." method="_on_gluable_component_unglued"]
