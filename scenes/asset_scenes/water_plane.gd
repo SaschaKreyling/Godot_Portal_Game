@@ -6,7 +6,7 @@ var drag : float = 0.05
 
 @onready var water_plane_mesh_instance: MeshInstance3D = $"."
 @onready var water_plane_body: StaticBody3D = $".."
-@onready var gravity_particle_emitter: GPUParticles3D = $GPUParticles3D
+@onready var gravity_particle_emitter: GPUParticles3D = $"../Node3D"
 
 
 func _process(delta: float) -> void:
