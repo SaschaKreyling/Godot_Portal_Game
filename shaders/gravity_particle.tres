@@ -1,0 +1,80 @@
+[gd_resource type="VisualShader" load_steps=9 format=3 uid="uid://dd5qkqjq5ye4p"]
+
+[sub_resource type="Gradient" id="Gradient_8ouxs"]
+offsets = PackedFloat32Array(0, 0.943642, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.986994, 0.986994, 0.986994, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hnjoc"]
+gradient = SubResource("Gradient_8ouxs")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_52fej"]
+expanded_output_ports = [0]
+texture = SubResource("GradientTexture2D_hnjoc")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_gajjb"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="Gradient" id="Gradient_vq1go"]
+offsets = PackedFloat32Array(0, 0.00578035, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0346821, 0.0346821, 0.0346821, 1, 1, 1, 1, 1, 0.0214723, 0.0214723, 0.0214723, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1x6y6"]
+gradient = SubResource("Gradient_vq1go")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_wjuwk"]
+texture = SubResource("GradientTexture2D_1x6y6")
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_jghwy"]
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, shadow_to_opacity;
+
+uniform vec4 ColorParameter : source_color;
+uniform sampler2D tex_frg_2 : source_color;
+uniform sampler2D tex_frg_4;
+
+
+
+void fragment() {
+// ColorParameter:3
+	vec4 n_out3p0 = ColorParameter;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+	float n_out2p1 = n_out2p0.r;
+
+
+// Texture2D:4
+	vec4 n_out4p0 = texture(tex_frg_4, UV);
+
+
+// FloatOp:5
+	float n_out5p0 = n_out2p1 * n_out4p0.x;
+
+
+// Output:0
+	ALBEDO = vec3(n_out3p0.xyz);
+	ALPHA = n_out5p0;
+
+
+}
+"
+modes/cull = 2
+flags/unshaded = true
+flags/shadow_to_opacity = true
+nodes/fragment/0/position = Vector2(580, 60)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_52fej")
+nodes/fragment/2/position = Vector2(20, 600)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorParameter_gajjb")
+nodes/fragment/3/position = Vector2(0, 100)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_wjuwk")
+nodes/fragment/4/position = Vector2(-200, 280)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatOp_jghwy")
+nodes/fragment/5/position = Vector2(260, 480)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0, 2, 1, 5, 0, 5, 0, 0, 1, 4, 0, 5, 1)
