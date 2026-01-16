@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bektlcbm0grv2"
-path="res://.godot/imported/not inspired by Portal.wav-d69b752c89d03efe4ee964b5b934896a.sample"
+path="res://.godot/imported/not inspired by Portal.wav-a89c8d07a38e20ebc3255237e9e38152.sample"
 
 [deps]
 
-source_file="res://assets/voice_lines/not inspired by Portal.wav"
-dest_files=["res://.godot/imported/not inspired by Portal.wav-d69b752c89d03efe4ee964b5b934896a.sample"]
+source_file="res://Assets/voice_lines/not inspired by Portal.wav"
+dest_files=["res://.godot/imported/not inspired by Portal.wav-a89c8d07a38e20ebc3255237e9e38152.sample"]
 
 [params]
 

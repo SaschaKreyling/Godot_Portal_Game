@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bl5opx7str42h"
-path="res://.godot/imported/we dont care about you.wav-b2342179325e43d21308f5dc7c0d7bf3.sample"
+path="res://.godot/imported/we dont care about you.wav-b42d6a9b9b1763f80c3bb0abced06ad9.sample"
 
 [deps]
 
-source_file="res://assets/voice_lines/we dont care about you.wav"
-dest_files=["res://.godot/imported/we dont care about you.wav-b2342179325e43d21308f5dc7c0d7bf3.sample"]
+source_file="res://Assets/voice_lines/we dont care about you.wav"
+dest_files=["res://.godot/imported/we dont care about you.wav-b42d6a9b9b1763f80c3bb0abced06ad9.sample"]
 
 [params]
 

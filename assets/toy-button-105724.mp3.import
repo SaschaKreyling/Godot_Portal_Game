@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://pa7nrssi0jqx"
-path="res://.godot/imported/toy-button-105724.mp3-80c1614d19e1e6f6d5016e092f428275.mp3str"
+path="res://.godot/imported/toy-button-105724.mp3-0146a0fad9846ac17b20ace4702dfe3d.mp3str"
 
 [deps]
 
-source_file="res://assets/toy-button-105724.mp3"
-dest_files=["res://.godot/imported/toy-button-105724.mp3-80c1614d19e1e6f6d5016e092f428275.mp3str"]
+source_file="res://Assets/toy-button-105724.mp3"
+dest_files=["res://.godot/imported/toy-button-105724.mp3-0146a0fad9846ac17b20ace4702dfe3d.mp3str"]
 
 [params]
 

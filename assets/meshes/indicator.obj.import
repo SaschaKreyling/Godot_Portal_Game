@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b2y6n83845arm"
+path="res://.godot/imported/indicator.obj-cffdb7b06d462d8a200202e4c28bdcda.mesh"
+
+[deps]
+
+files=["res://.godot/imported/indicator.obj-cffdb7b06d462d8a200202e4c28bdcda.mesh"]
+
+source_file="res://Assets/meshes/indicator.obj"
+dest_files=["res://.godot/imported/indicator.obj-cffdb7b06d462d8a200202e4c28bdcda.mesh", "res://.godot/imported/indicator.obj-cffdb7b06d462d8a200202e4c28bdcda.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

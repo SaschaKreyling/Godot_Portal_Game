@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ck0mt8jp4reyl"
+path="res://.godot/imported/button_activated.obj-1daa70709431bbad72764616c23c3b16.mesh"
+
+[deps]
+
+files=["res://.godot/imported/button_activated.obj-1daa70709431bbad72764616c23c3b16.mesh"]
+
+source_file="res://Assets/meshes/button_activated.obj"
+dest_files=["res://.godot/imported/button_activated.obj-1daa70709431bbad72764616c23c3b16.mesh", "res://.godot/imported/button_activated.obj-1daa70709431bbad72764616c23c3b16.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpubartiu8mv7"]
+
+[ext_resource type="FontFile" uid="uid://bg5hh6emi7q6" path="res://Assets/Minercraftory.ttf" id="1_i8wx4"]
+[ext_resource type="Texture2D" uid="uid://cxe30hlfin1l5" path="res://Assets/MenuBackground.PNG" id="2_k5wrx"]
+[ext_resource type="Script" path="res://Menus/SceneTransitionAndLoading/level_finished_screen.gd" id="2_ljok6"]
+
+[sub_resource type="Theme" id="Theme_xj8at"]
+default_font = ExtResource("1_i8wx4")
+
+[sub_resource type="Theme" id="Theme_8dq8l"]
+default_font_size = 70
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mb5tt"]
+bg_color = Color(0.6, 0.6, 0.6, 0.498039)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_xj8at")
+script = ExtResource("2_ljok6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k5wrx")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="BoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Container"]
+custom_minimum_size = Vector2(650, 110)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = SubResource("Theme_8dq8l")
+text = "Level Finished
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(425, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+
+[node name="play" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mb5tt")
+text = "Level Select"
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/play" to="." method="_on_play_pressed"]

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://btebh5titkufh"
+path="res://.godot/imported/FloorTileDark.obj-1e6a2a12fec584bd59786cb64b8a86df.mesh"
+
+[deps]
+
+files=["res://.godot/imported/FloorTileDark.obj-1e6a2a12fec584bd59786cb64b8a86df.mesh"]
+
+source_file="res://Assets/meshes/FloorTileDark.obj"
+dest_files=["res://.godot/imported/FloorTileDark.obj-1e6a2a12fec584bd59786cb64b8a86df.mesh", "res://.godot/imported/FloorTileDark.obj-1e6a2a12fec584bd59786cb64b8a86df.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

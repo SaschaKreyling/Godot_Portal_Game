@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://yfx0554bq3xa"]
+
+[ext_resource type="ArrayMesh" uid="uid://e5ptb80ju1r3" path="res://Assets/meshes/GumBallDispenser.obj" id="1_nu070"]
+[ext_resource type="PackedScene" uid="uid://veo3d7ysvncp" path="res://InteractableObjects/GumBallDispenser/gum_ball.tscn" id="1_x2o8t"]
+[ext_resource type="PackedScene" uid="uid://c1wfxgo0x3eu7" path="res://EnvironmentObjects/Identifier/identifier.tscn" id="3_bbn2b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n2usd"]
+size = Vector3(0.804, 1.60172, 0.804)
+
+[node name="GumBallDispenser" type="StaticBody3D"]
+
+[node name="GumBallCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000305176, 0.800679, 0.000442505)
+shape = SubResource("BoxShape3D_n2usd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = ExtResource("1_nu070")
+
+[node name="GumBallHold" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95197, 0)
+
+[node name="GumBall" parent="." instance=ExtResource("1_x2o8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95197, 0)
+
+[node name="Identifier" parent="." instance=ExtResource("3_bbn2b")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.04344, 0)

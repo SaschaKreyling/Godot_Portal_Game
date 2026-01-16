@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://benmc3hvxr10k"
-path="res://.godot/imported/gooey-squish-14820.mp3-5585f0e2775b513a4c7765913831924d.mp3str"
+path="res://.godot/imported/gooey-squish-14820.mp3-b956b748f275c793bd3cee5f8cb73112.mp3str"
 
 [deps]
 
-source_file="res://assets/gooey-squish-14820.mp3"
-dest_files=["res://.godot/imported/gooey-squish-14820.mp3-5585f0e2775b513a4c7765913831924d.mp3str"]
+source_file="res://Assets/gooey-squish-14820.mp3"
+dest_files=["res://.godot/imported/gooey-squish-14820.mp3-b956b748f275c793bd3cee5f8cb73112.mp3str"]
 
 [params]
 

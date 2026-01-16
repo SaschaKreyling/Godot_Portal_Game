@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bc4f6vjbc8cvh"
-path="res://.godot/imported/Welcome to warpurtre science.wav-097dc41d9fef932b2d51e1be6780df67.sample"
+path="res://.godot/imported/Welcome to warpurtre science.wav-3526b1f9e77d43ce5d16b23b54fd981c.sample"
 
 [deps]
 
-source_file="res://assets/voice_lines/Welcome to warpurtre science.wav"
-dest_files=["res://.godot/imported/Welcome to warpurtre science.wav-097dc41d9fef932b2d51e1be6780df67.sample"]
+source_file="res://Assets/voice_lines/Welcome to warpurtre science.wav"
+dest_files=["res://.godot/imported/Welcome to warpurtre science.wav-3526b1f9e77d43ce5d16b23b54fd981c.sample"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://uy2lixkghe7o"
-path="res://.godot/imported/we care about profits.wav-801464b845013f893ef483fa2681ccde.sample"
+path="res://.godot/imported/we care about profits.wav-25a53da83747f52d0f1bb5b7b0ba42d6.sample"
 
 [deps]
 
-source_file="res://assets/voice_lines/we care about profits.wav"
-dest_files=["res://.godot/imported/we care about profits.wav-801464b845013f893ef483fa2681ccde.sample"]
+source_file="res://Assets/voice_lines/we care about profits.wav"
+dest_files=["res://.godot/imported/we care about profits.wav-25a53da83747f52d0f1bb5b7b0ba42d6.sample"]
 
 [params]
 

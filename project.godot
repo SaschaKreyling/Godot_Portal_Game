@@ -11,16 +11,22 @@ config_version=5
 [application]
 
 config/name="GameStudioProject"
-run/main_scene="res://menus/main_menu.tscn"
+run/main_scene="res://Menus/MenuScreenMenus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://assets/icon.png"
+config/icon="res://Assets/icon.png"
 
 [autoload]
 
-SceneController="*res://scripts/controll_scripts/scene_controller.gd"
-SignalBus="*res://scripts/controll_scripts/signal_bus.gd"
-SettingsManager="*res://scripts/controll_scripts/setting_manager.gd"
-UtilityFunctions="*res://scripts/controll_scripts/utility_functions.gd"
+SceneController="*res://Menus/SceneTransitionAndLoading/scene_controller.gd"
+SignalBus="*res://EnvironmentObjects/PortalTeleport/TelportationSignalBus.gd"
+SettingsManager="*res://Menus/MenuScreenMenus/setting_manager.gd"
+PathConstants="*res://Menus/path_constants.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=420
+window/size/mode=3
 
 [editor]
 
@@ -29,12 +35,31 @@ export/convert_text_resources_to_binary=false
 [file_customization]
 
 folder_colors={
-"res://assets/": "red",
-"res://materials/": "orange",
-"res://menus/": "yellow",
-"res://scenes/": "green",
-"res://scripts/": "teal",
-"res://shaders/": "blue",
+"res://Assets/": "red",
+"res://Characters/": "red",
+"res://Characters/Disturbot/": "orange",
+"res://Characters/Player/": "orange",
+"res://EnvironmentObjects/": "red",
+"res://EnvironmentObjects/Door/": "orange",
+"res://EnvironmentObjects/Identifier/": "orange",
+"res://EnvironmentObjects/PortalExit/": "orange",
+"res://EnvironmentObjects/PortalTeleport/": "orange",
+"res://EnvironmentObjects/Water/": "orange",
+"res://InteractableObjects/": "red",
+"res://InteractableObjects/Box/": "orange",
+"res://InteractableObjects/FloorButton/": "orange",
+"res://InteractableObjects/GumBallDispenser/": "orange",
+"res://InteractableObjects/StandingButton/": "orange",
+"res://Level/": "red",
+"res://Materials/": "red",
+"res://Menus/": "red",
+"res://Menus/MenuScreenMenus/": "orange",
+"res://Menus/PlayerConnectedMenus/": "orange",
+"res://Menus/SceneTransitionAndLoading/": "orange",
+"res://Misc/": "red",
+"res://Misc/Organisation/": "orange",
+"res://Misc/SceneComponents/": "orange",
+"res://TestLevel/": "red",
 "res://workInProgressModels/": "purple"
 }
 
@@ -47,6 +72,16 @@ linkable=""
 interactable=""
 holdable=""
 navigation_mesh_source_group=""
+
+[importer_defaults]
+
+wavefront_obj={
+"force_disable_mesh_compression": false,
+"generate_tangents": true,
+"offset_mesh": Vector3(0, 0, 0),
+"optimize_mesh": true,
+"scale_mesh": Vector3(1, 1, 1)
+}
 
 [input]
 

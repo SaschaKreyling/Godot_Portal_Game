@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dl1pinm05wtu6"
+path="res://.godot/imported/StandingButton.obj-80b83af9f1845728a83eb36a60895265.mesh"
+
+[deps]
+
+files=["res://.godot/imported/StandingButton.obj-80b83af9f1845728a83eb36a60895265.mesh"]
+
+source_file="res://Assets/meshes/StandingButton.obj"
+dest_files=["res://.godot/imported/StandingButton.obj-80b83af9f1845728a83eb36a60895265.mesh", "res://.godot/imported/StandingButton.obj-80b83af9f1845728a83eb36a60895265.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bg5hh6emi7q6"
-path="res://.godot/imported/Minercraftory.ttf-85bb0cd0c421df391f8515ecb2cec4bf.fontdata"
+path="res://.godot/imported/Minercraftory.ttf-e06734212fdfdf50b47a8bce256d8acc.fontdata"
 
 [deps]
 
-source_file="res://assets/Minercraftory.ttf"
-dest_files=["res://.godot/imported/Minercraftory.ttf-85bb0cd0c421df391f8515ecb2cec4bf.fontdata"]
+source_file="res://Assets/Minercraftory.ttf"
+dest_files=["res://.godot/imported/Minercraftory.ttf-e06734212fdfdf50b47a8bce256d8acc.fontdata"]
 
 [params]
 
